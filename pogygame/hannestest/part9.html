@@ -1,0 +1,100 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+    <title>Phaser - Making your first game, part 9</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+
+function preload() {
+    game.load.tilemap('map', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+    game.load.image('tree', 'assets/tree2-final.png', 256, 256);
+    game.load.image('platform', 'assets/platform.png', 256, 256);
+    game.load.image('number', 'assets/number-buttons-90x90.png', 256, 256);
+    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+}
+
+var map;
+var layer;
+var pogys;
+
+function create() {
+    // Physics and shit
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.stage.backgroundColor = '#4444EE';
+
+    // Create the map
+    map = game.add.tilemap('map');
+    map.addTilesetImage('platform');
+    map.addTilesetImage('tree');
+    map.addTilesetImage('number');
+    layer = map.createLayer('collision');
+    map.setCollisionBetween(1, 1000);
+
+    // Make Pogys
+    pogys = game.add.group();
+    game.time.events.repeat(Phaser.Timer.SECOND, 10, createPogy, this);    
+}
+
+function update() {
+    // Add physics between the groups and layers
+    game.physics.arcade.collide(pogys, layer);
+    
+    // Add Colldie to all
+    pogys.forEach(function(pogy) {
+
+        // Play animations
+        if(pogy.body.velocity.x >= 0) {
+            pogy.animations.play('right');
+        }
+        else {
+            pogy.animations.play('left');
+        }
+        //If we wanna change velocity of our Pogys
+        if(pogy.body.onWall()) {
+            if(pogy.body.facing % 2) {
+                pogy.body.velocity.x = 100;
+            }
+            else {
+                pogy.body.velocity.x = -100;
+            }
+        }
+    });
+}
+
+// Creats new pogys into Pogys-Group
+function createPogy() {
+    var pogy = game.add.sprite(-10, game.world.height - 180, 'dude');
+    game.physics.arcade.enable(pogy);
+    pogy.body.bounce.y = 0.2;
+    pogy.body.gravity.y = 300;
+    pogy.body.colldieWorldBounds = true;
+
+    // Animations for le player
+    pogy.animations.add('left', [0, 1, 2, 3], 5, true);
+    pogy.animations.add('right', [5, 6, 7, 8], 5, true);
+
+    // Set initial velocity of le Pogys
+    pogy.body.velocity.x = 100;
+    pogys.add(pogy);
+}
+    
+
+
+
+
+
+</script>
+
+</body>
+</html>
