@@ -14,7 +14,7 @@
  </tileset>
  <layer name="collision" width="25" height="19">
   <data encoding="base64" compression="zlib">
-   eJztz8sKQFAQgOHhBYgF8f5P4n63wc6z+JdCQljNX1+nps4cRDRN07SrdYZIb+znA7PxYP6k6WTPfPENyxSxzXe+Z5vDXhce/I/eCNgbIuJ/YyRIkSFHgRIVajRoV+edO3+0AL0bGXs=
+   eJztzUkOgkAUhOEHF9DgQqP3PwkoKg44grOo4OwZ/JduFEiIq1fJl150d5WIRqPRaLJmaIj4GGGMCaaYYW4UsxHQE2KBJVZYY4Ntxo2SKVI2v9/v6NkjwgFHnBAjSdmw6K2gitqPjTM9F1xxwx0PPPFK2ajT24DNOwdNtOCijQ668NBDH4OPM8+ff+QNJb8wZg==
   </data>
  </layer>
 </map>

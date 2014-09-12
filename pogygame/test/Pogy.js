@@ -17,7 +17,7 @@ Pogy.prototype = {
 
 // Create new pogys and add to pogy group
 	createPogy: function(){
-    var pogy = this.game.add.sprite(-10, this.game.world.height - 168, 'dude');
+    var pogy = this.game.add.sprite(0, this.game.world.height - 168, 'dude');
     this.game.physics.arcade.enable(pogy);
     pogy.body.bounce.y = 0.2;
     pogy.body.gravity.y = 300;
@@ -37,23 +37,23 @@ Pogy.prototype = {
 		this.game.physics.arcade.collide(this.pogygroup, level.layer);
 		//Add collision to all
 		
-    this.pogygroup.forEach(function(pogy) {
-        // Play animations
-        if(pogy.body.velocity.x >= 0) {
-            pogy.animations.play('right');
-        }
-        else {
-            pogy.animations.play('left');
-        }
-        //If we wanna change velocity of our Pogys
-        if(pogy.body.onWall()) {
-            if(pogy.body.facing % 2) {
-                pogy.body.velocity.x = 100;
+        this.pogygroup.forEach(function(pogy) {
+            // Play animations
+            if(pogy.body.velocity.x >= 0) {
+               pogy.animations.play('right');
             }
             else {
-                pogy.body.velocity.x = -100;
+               pogy.animations.play('left');
             }
-        }
+            //If we wanna change velocity of our Pogys
+            if(pogy.body.onWall()) {
+                if(pogy.body.facing % 2) {
+                    pogy.body.velocity.x = 100;
+                }
+                else {
+                    pogy.body.velocity.x = -100;
+                }
+            }
     	});
 	}
 }
