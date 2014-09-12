@@ -15,8 +15,38 @@ Pogy.prototype = {
 		this.game.time.events.repeat(Phaser.Timer.SECOND, 10, this.createPogy, this)
 	},
 
-// Create new pogys and add to pogy group
-	createPogy: function(){
+	update: function(){
+		this.game.physics.arcade.collide(this.pogygroup, level.layer);
+		//Add collision to all
+		
+        this.pogygroup.forEach(function(pogy){
+            if(!this.reachedGoal(pogy)){
+                // Play animations
+                if(pogy.body.velocity.x >= 0) {
+                   pogy.animations.play('right');
+                }
+                else {
+                   pogy.animations.play('left');
+                }
+                //If we wanna change velocity of our Pogys
+
+                if(pogy.body.onWall()) {
+                    if(pogy.body.facing % 2) {
+                        pogy.body.velocity.x = 100;
+                    }
+                    else {
+                        pogy.body.velocity.x = -100;
+                    }
+                }
+            }
+            else {
+                pogy.kill();
+            }
+    	});
+	},
+
+    // Create new pogys and add to pogy group
+    createPogy: function(){
     var pogy = this.game.add.sprite(0, this.game.world.height - 168, 'dude');
     this.game.physics.arcade.enable(pogy);
     pogy.body.bounce.y = 0.2;
@@ -30,30 +60,14 @@ Pogy.prototype = {
     // Set initial velocity of the Pogys
     pogy.body.velocity.x = 100;
     this.pogygroup.add(pogy);
-    console.log("Velocity: " + pogy.body.velocity.x);
-	},
+    }
+};
 
-	update: function(){
-		this.game.physics.arcade.collide(this.pogygroup, level.layer);
-		//Add collision to all
-		
-        this.pogygroup.forEach(function(pogy) {
-            // Play animations
-            if(pogy.body.velocity.x >= 0) {
-               pogy.animations.play('right');
-            }
-            else {
-               pogy.animations.play('left');
-            }
-            //If we wanna change velocity of our Pogys
-            if(pogy.body.onWall()) {
-                if(pogy.body.facing % 2) {
-                    pogy.body.velocity.x = 100;
-                }
-                else {
-                    pogy.body.velocity.x = -100;
-                }
-            }
-    	});
-	}
+function reachedGoal(pogy){
+    /*var goalPos = this.game.world.width-100;
+    console.log(pogy + " och " + goalPos);*/
+    if(this.game.physics.arcade.overlap(pogy, level.number)
+        return true;
+    else 
+        return false;
 }
