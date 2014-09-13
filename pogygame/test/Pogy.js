@@ -12,7 +12,7 @@ Pogy.prototype = {
 	create: function(){
     this.pogygroup = this.game.add.group();
     //this.pogygroup.enableBody = true;
-		this.game.time.events.repeat(Phaser.Timer.SECOND, 10, this.createPogy, this)
+		this.game.time.events.repeat(Phaser.Timer.SECOND, 10, this.createPogy, this);
 	},
 
 	update: function(){
