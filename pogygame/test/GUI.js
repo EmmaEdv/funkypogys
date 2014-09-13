@@ -3,13 +3,18 @@ GUI = function(game){
 	this.game = game;
 	this.score = null;
 
-	this.time = 0;
+	// Time
+	this.gameTime = 0;
+	this.gameTimeText = null;
 
-	// Stars
-	this.starCounter = 0;
+	// Coins
+	this.coinsCounter = 0;
+	this.coinsX = 600;
+	this.coinsY = 60;
+	this.coinsInBetween = 20;
 
 	// Counter for our Pogys
-	this.pogyCounter = null;
+	this.pogyCounter = 0;
 };
 
 GUI.prototype = {
@@ -18,17 +23,25 @@ GUI.prototype = {
 	},
 
 	create: function(){
-
 		this.coins = game.add.group();
+		this.game.time.events.repeat(Phaser.Timer.SECOND, 3, this.addCoin, this);
 
-		var star = this.coins.create(600, 60, 'coin');
-		star = this.coins.create(620, 60, 'coin');
-		star = this.coins.create(640, 60, 'coin');
+		this.gameTimeText = game.add.text(620, 20, "Time: 0.000", {
+        font: "17px Arial",
+        fill: "#ff0044",
+        align: "left"
+    });
 	},
 
 	update: function(){
+		// Time in game
 		this.game.time.advancedTiming = true;
-		console.log(this.game.time);
+		this.gameTime = Math.round(this.game.time.now - this.game.time._started)/1000;
+		this.gameTimeText.setText("Time: " + this.gameTime);
+	},
 
+	addCoin: function(){
+		var star = this.coins.create(this.coinsX+this.coinsInBetween*(this.coinsCounter+1), this.coinsY, 'coin');
+		this.coinsCounter++;
 	}
 };
