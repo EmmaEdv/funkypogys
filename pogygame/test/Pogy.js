@@ -2,6 +2,7 @@ Pogy = function(game){
 	this.game = game;
 	this.pogysprite = null;
 	this.pogygroup = null;
+    this.nrOfPogys = 10;
 };
 
 Pogy.prototype = {
@@ -12,7 +13,7 @@ Pogy.prototype = {
 	create: function(){
     this.pogygroup = this.game.add.group();
     //this.pogygroup.enableBody = true;
-		this.game.time.events.repeat(Phaser.Timer.SECOND, 10, this.createPogy, this);
+		this.game.time.events.repeat(Phaser.Timer.SECOND, this.nrOfPogys, this.createPogy, this);
         console.log("World width: " + this.game.world.width)
 	},
 
@@ -20,7 +21,7 @@ Pogy.prototype = {
 		this.game.physics.arcade.collide(this.pogygroup, level.layer);
 		//Add collision to all
         this.pogygroup.forEach(function(pogy){
-            if(reachedGoal(pogy)){
+            if(!reachedGoal(pogy)){
                 if(pogy.body.velocity.x >= 0) {
                    pogy.animations.play('right');
                 }
@@ -37,8 +38,10 @@ Pogy.prototype = {
                     }
                 }    
             }
-            else {
+            else if(reachedGoal(pogy) && !pogy.finished){
                 pogy.kill();
+                gui.pogyCounter++;
+                pogy.finished = true;
             }
     	});
 	},
@@ -50,7 +53,7 @@ Pogy.prototype = {
     pogy.body.bounce.y = 0.2;
     pogy.body.gravity.y = 300;
     pogy.body.collideWorldBounds = true;
-
+    pogy.finished = false;
     // Animations for the pogys
     pogy.animations.add('left', [0, 1, 2, 3], 5, true);
     pogy.animations.add('right', [5, 6, 7, 8], 5, true);
@@ -63,7 +66,7 @@ Pogy.prototype = {
 
 function reachedGoal(pogy){
     //UGLY SOLUTION - PLEASE FIX WHEN TILEMAP IS BETTER!!!!
-    if(pogy.body.position.x < (this.game.world.width-3*pogy.body.width))
+    if(pogy.body.position.x >= (this.game.world.width-3*pogy.body.width))
         return true;
     else 
         return false;
