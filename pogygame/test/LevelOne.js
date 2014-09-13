@@ -8,9 +8,9 @@ LevelOne = function(game){
 LevelOne.prototype = {
 	preload: function(){
 		this.game.load.tilemap('map', 'assets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.image('tree', 'assets/tree2-final.png', 256, 256);
-    this.game.load.image('platform', 'assets/platform.png', 256, 256);
-    this.game.load.image('number', 'assets/number-buttons-90x90.png', 256, 256);
+    this.game.load.image('ground', 'assets/tiles.png', 1920, 1080);
+    //this.game.load.image('coin', 'assets/coin.png', 20, 20);
+    this.game.load.image('houses', 'assets/house.png', 174, 91);
 	},
 
 	create: function(){
@@ -18,11 +18,14 @@ LevelOne.prototype = {
 		
 		// Create the map
     this.map = this.game.add.tilemap('map');
-    this.map.addTilesetImage('platform');
-    this.map.addTilesetImage('tree');
-    this.map.addTilesetImage('number');
-    this.layer = this.map.createLayer('collision');
-    this.map.setCollisionBetween(1, 1000);
+    this.map.addTilesetImage('tiles', 'ground');
+    this.map.addTilesetImage('house', 'houses');
+
+    this.layer = this.map.createLayer('ground');
+    this.layer = this.map.createLayer('sky');
+    this.layer = this.map.createLayer('houseHome');
+    this.layer = this.map.createLayer('houseAway');
+		this.layer = this.map.createLayer('coin');
 	},
 
 	update: function(){

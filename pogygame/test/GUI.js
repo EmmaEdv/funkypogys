@@ -36,7 +36,7 @@ GUI.prototype = {
 	update: function(){
 		// Time in game
 		this.game.time.advancedTiming = true;
-		this.gameTime = Math.round(this.game.time.now - this.game.time._started)/1000;
+		this.gameTime = Math.round(this.game.time.now - this.game.time._started,2,2)/1000;
 		this.gameTimeText.setText("Time: " + this.gameTime);
 	},
 
