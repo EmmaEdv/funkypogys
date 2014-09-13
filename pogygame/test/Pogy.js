@@ -13,15 +13,14 @@ Pogy.prototype = {
     this.pogygroup = this.game.add.group();
     //this.pogygroup.enableBody = true;
 		this.game.time.events.repeat(Phaser.Timer.SECOND, 10, this.createPogy, this);
+        console.log("World width: " + this.game.world.width)
 	},
 
 	update: function(){
 		this.game.physics.arcade.collide(this.pogygroup, level.layer);
 		//Add collision to all
-		
         this.pogygroup.forEach(function(pogy){
-            if(!this.reachedGoal(pogy)){
-                // Play animations
+            if(reachedGoal(pogy)){
                 if(pogy.body.velocity.x >= 0) {
                    pogy.animations.play('right');
                 }
@@ -29,7 +28,6 @@ Pogy.prototype = {
                    pogy.animations.play('left');
                 }
                 //If we wanna change velocity of our Pogys
-
                 if(pogy.body.onWall()) {
                     if(pogy.body.facing % 2) {
                         pogy.body.velocity.x = 100;
@@ -37,7 +35,7 @@ Pogy.prototype = {
                     else {
                         pogy.body.velocity.x = -100;
                     }
-                }
+                }    
             }
             else {
                 pogy.kill();
@@ -64,9 +62,8 @@ Pogy.prototype = {
 };
 
 function reachedGoal(pogy){
-    /*var goalPos = this.game.world.width-100;
-    console.log(pogy + " och " + goalPos);*/
-    if(this.game.physics.arcade.overlap(pogy, level.number)
+    //UGLY SOLUTION - PLEASE FIX WHEN TILEMAP IS BETTER!!!!
+    if(pogy.body.position.x < (this.game.world.width-3*pogy.body.width))
         return true;
     else 
         return false;
