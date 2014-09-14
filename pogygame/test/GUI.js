@@ -1,5 +1,4 @@
 GUI = function(game){
-	
 	this.game = game;
 	this.score = null;
 
@@ -28,9 +27,9 @@ GUI.prototype = {
 
 	create: function(){
 		this.coins = game.add.group();
-		this.game.time.events.repeat(Phaser.Timer.SECOND, 3, this.addCoin, this);
+		//this.game.time.events.repeat(Phaser.Timer.SECOND, 3, this.addCoin, this);
 
-		this.gameTimeText = game.add.text(620, 20, "Time: 0.000", {
+		this.gameTimeText = game.add.text(620, 20, "Time: 0.0", {
         font: "17px Arial",
         fill: "#000",
         align: "left"
@@ -61,7 +60,10 @@ GUI.prototype = {
 	},
 
 	updateTime: function(){
+		//Det finns en funktion för som heter: totalElapsedSeconds() som man kanske kan använda istället, eventuellt? :) 
 		this.gameTime = Math.round(this.game.time.now - this.game.time._started)/1000;
-		this.gameTimeText.setText("Time: " + this.gameTime);
+		var time = JSON.stringify(this.gameTime);
+		time = time.slice(0,-2);
+		this.gameTimeText.setText("Time: " + time);
 	}
 };
