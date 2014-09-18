@@ -4,7 +4,12 @@ LevelOne = function(game){
 	this.groundLayer = null;
 
   this.coins = null;
-  this.coinId = 51;
+  this.homes = null;
+
+  this.homeId = 1000;
+  this.coinId = 666;
+
+  
 };
 
 LevelOne.prototype = {
@@ -13,6 +18,7 @@ LevelOne.prototype = {
 	  this.game.load.image('coin', 'assets/coin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
 	  this.game.load.image('sky', 'assets/sky2.png');
+	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	},
 
@@ -23,13 +29,16 @@ LevelOne.prototype = {
 		this.map.addTilesetImage('kenney');
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 
-
 		this.map.setCollision(32);
 		this.groundLayer.debug = true;
 
 		this.coins = this.game.add.group();
 		this.coins.enableBody = true;
-		this.map.createFromObjects('coins', 666, 'coin', 0, true, false, this.coins);
+		this.map.createFromObjects('coins', this.coinId, 'coin', 0, true, false, this.coins);
+
+		this.homes = this.game.add.group();
+		this.homes.enableBody = true;
+		this.map.createFromObjects('homes', 1000, null , 0, true, false, this.homes);
 	},
 
 	update: function(){
