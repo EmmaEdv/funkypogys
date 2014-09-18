@@ -33,6 +33,7 @@ Pogy.prototype = {
 		this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
 //console.log(level.coins)
         this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
+        this.game.physics.arcade.collide(this.pogygroup, level.slope);
 
         //this.game.physics.arcade.collide(this.pogygroup, level.startLayer);
 		//Add collision to all
@@ -66,7 +67,7 @@ Pogy.prototype = {
     // Create new pogys and add to pogy group
     createPogy: function(){
         //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
-        var pogy = this.game.add.sprite(0, this.game.world.height - 216, 'dude');
+        var pogy = this.game.add.sprite(0, this.game.world.height-300 , 'dude');
         this.game.physics.arcade.enable(pogy);
         pogy.body.bounce.y = 0.2;
         pogy.body.gravity.y = 300;

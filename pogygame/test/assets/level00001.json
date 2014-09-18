@@ -12,56 +12,90 @@
          "y":0
         }, 
         {
+         "draworder":"topdown",
          "height":40,
          "name":"coinz",
-         "firstgid":66,
          "objects":[
                 {
                  "ellipse":true,
+                 "gid":67,
                  "height":0,
                  "name":"",
                  "properties":
                     {
 
                     },
+                 "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":538,
-                 "y":486,
-                 "gid":67
+                 "y":486
                 }, 
                 {
                  "ellipse":true,
+                 "gid":67,
                  "height":0,
                  "name":"",
                  "properties":
                     {
 
                     },
+                 "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":377,
-                 "y":489,
-                 "gid":67
+                 "y":489
                 }, 
                 {
                  "ellipse":true,
+                 "gid":67,
                  "height":0,
                  "name":"",
                  "properties":
                     {
 
                     },
+                 "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":0,
                  "x":232,
-                 "y":487,
-                 "gid":67
+                 "y":487
                 }],
          "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":50,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":40,
+         "name":"slope",
+         "objects":[
+                {
+                 "firstgid": 68,
+                 "height":70,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":129,
+                 "x":392,
+                 "y":441
+                }],
+         "opacity":1,
+         "properties":
+            {
+             "collide":"true"
+            },
          "type":"objectgroup",
          "visible":true,
          "width":50,
@@ -73,6 +107,7 @@
     {
 
     },
+ "renderorder":"right-down",
  "tileheight":16,
  "tilesets":[
         {
