@@ -15,6 +15,7 @@
 <script type="text/javascript" src="LevelOne.js"></script>
 <script type="text/javascript" src="Pogy.js"></script>
 <script type="text/javascript" src="GUI.js"></script>
+<script type="text/javascript" src="DigPogy.js"></script>
 <script type="text/javascript">
 
 var game = new Phaser.Game(1000, 800, Phaser.AUTO, '', {preload: preload, create: create, update: update});
@@ -26,7 +27,8 @@ function preload() {
     level.preload();
     pogy = new Pogy(game);
     pogy.preload();
-    
+    digpogy = new DigPogy(game);
+    digpogy.preload();
     gui = new GUI(game);
     gui.preload();
 }
@@ -34,13 +36,14 @@ function preload() {
 function create() {
     level.create();
     pogy.create();
+    digpogy.create();
     //gui.create();
 }
 
 function update() {
-    /*
     pogy.update();
-    gui.update();*/
+    gui.update();
+    digpogy.update();
 }
 
 </script>

@@ -21,10 +21,10 @@ DigPogy.prototype = {
 			var yPos = Math.floor(this.game.input.mousePointer.y/level.tileSize);
 
 			var clickedTile = level.map.getTile(xPos, yPos, level.groundLayer);
+			console.log(clickedTile);
 			if(clickedTile){
 				console.log("Clicked tile: x:" + clickedTile.x+ ", y: "+ clickedTile.y + ", index: " + clickedTile.index);
-				level.map.putTile(clickedTile, 0,0);
-				clickedTile.alpha = 0.2;
+				level.map.putTile(clickedTile, 32, 32);
 			}
 		}
 	}
