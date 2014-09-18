@@ -15,13 +15,15 @@ LevelOne = function(game){
 
 LevelOne.prototype = {
 	preload: function(){
-	  this.game.load.tilemap('map', 'assets/level00001.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('tiles', 'assets/tiles.png', 1920, 1080);
+	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
+	  /*this.game.load.image('tiles', 'assets/tiles.png', 1920, 1080);
 	  this.game.load.image('coin', 'assets/coin.png', 20, 20);
 	  this.game.load.image('arrow-button', 'assets/arrow-button.png', 224, 95);
 	  this.game.load.image('sky', 'assets/sky2.png');
 
-	  this.game.load.spritesheet('coinz', 'assets/coin.png', 20, 20);
+	  this.game.load.spritesheet('coinz', 'assets/coin.png', 20, 20);*/
+
+	  this.game.load.image('tiles', 'assets/tileset1.png', 672, 224);
 	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	},
 
