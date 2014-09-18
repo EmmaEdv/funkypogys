@@ -17,7 +17,7 @@
 <script type="text/javascript" src="GUI.js"></script>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+var game = new Phaser.Game(1000, 800, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 var level = null;
 var pogy = null;
 
@@ -32,15 +32,16 @@ function preload() {
 }
 
 function create() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
     level.create();
+    /*
     pogy.create();    
-    gui.create();
+    gui.create();*/
 }
 
 function update() {
+    /*
     pogy.update();
-    gui.update();
+    gui.update();*/
 }
 
 </script>

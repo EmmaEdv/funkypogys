@@ -16,7 +16,6 @@
     {
 
     },
- "renderorder":"right-down",
  "tileheight":70,
  "tilesets":[
         {
@@ -34,10 +33,6 @@
          "tileheight":70,
          "tileproperties":
             {
-             "115":
-                {
-                 "slope":"2"
-                },
              "136":
                 {
                  "slope":"3"
@@ -48,20 +43,11 @@
                 },
              "31":
                 {
-                 "collideable":"true",
                  "slope":"1"
-                },
-             "33":
-                {
-                 "collideable":"true"
                 },
              "35":
                 {
                  "slope":"3"
-                },
-             "73":
-                {
-                 "collideable":"true"
                 },
              "76":
                 {
@@ -69,8 +55,7 @@
                 },
              "94":
                 {
-                 "collideable":"true",
-                 "slope":"3"
+                 "slope":"2"
                 }
             },
          "tilewidth":70
