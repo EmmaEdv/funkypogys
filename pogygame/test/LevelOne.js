@@ -12,11 +12,11 @@ LevelOne.prototype = {
 	  this.game.load.image('coin', 'assets/coin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
 	  this.game.load.image('sky', 'assets/sky2.png');
-	  this.game.load.spritesheet('dude', 'assets/dude.png');
+	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
 	},
 
 	create: function(){
-		//this.game.add.sprite(0,0,'sky');
+		this.game.add.sprite(0,0,'sky');
 		// Create the map
 		this.map = this.game.add.tilemap('map');
 		this.map.addTilesetImage('kenney');
@@ -25,7 +25,7 @@ LevelOne.prototype = {
 		this.groundLayer.debug = true;
 		this.coins = this.game.add.group();
 		this.coins.enableBody = true;
-		this.map.createFromObjects('coins', 67, 'coin', 0, true, false, this.coins);
+		this.map.createFromObjects('coins', 666, 'coin', 0, true, false, this.coins);
 	},
 
 	update: function(){
