@@ -1,7 +1,7 @@
 DigPogy = function(game){
 	this.game = game;
 	this.digpogy = null;
-  this.nrOfDigPogys = 1;
+  //this.nrOfDigPogys = 1;
 };
 
 DigPogy.prototype = {
