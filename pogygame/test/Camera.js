@@ -1,7 +1,7 @@
 Camera = function(game){
   this.game = game;
   this.cameraSprite = null;
-  this.speedOfCamera = 8;
+  this.speedOfCamera = 6;
 };
 Camera.prototype = {
 	preload: function(){
@@ -9,7 +9,7 @@ Camera.prototype = {
 
 	create: function(){
 		// Sets the camera in the middle
-		this.cameraSprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2 , null);
+		this.cameraSprite = this.game.add.sprite(this.game.world.width/2, this.game.world.height/2, null);
 	},
 
 	update: function(){
