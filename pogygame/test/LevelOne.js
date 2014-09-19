@@ -7,6 +7,8 @@ LevelOne = function(game){
 
   this.homeId = 1000;
   this.coinId = 666;
+  this.tileSize = 70;
+  this.startYpos = 300;
 };
 
 LevelOne.prototype = {
@@ -37,6 +39,7 @@ LevelOne.prototype = {
 
 		// Set Collision
 		this.map.setCollision(32);
+		this.map.setCollision(34);
 
 		// Debug
 		this.groundLayer.debug = true;

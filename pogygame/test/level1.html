@@ -17,11 +17,14 @@
 <script type="text/javascript" src="GUI.js"></script>
 <script type="text/javascript" src="Camera.js"></script>
 <script type="text/javascript" src="DigPogy.js"></script>
+<script type="text/javascript" src="BuildPogy.js"></script>
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 var level = null;
 var pogy = null;
+var digpogy = null;
+var buildpogy = null;
 
 function preload() {
     level = new LevelOne(game);
@@ -33,8 +36,11 @@ function preload() {
     camera = new Camera(game);
     camera.preload();    
 
-    digpogy = new DigPogy(game);
-    digpogy.preload();
+ //   digpogy = new DigPogy(game);
+ //   digpogy.preload();
+    
+    buildpogy = new BuildPogy(game);
+    buildpogy.preload();
 
     gui = new GUI(game);
     gui.preload();
@@ -43,7 +49,8 @@ function preload() {
 function create() {
     level.create();
     pogy.create();
-    digpogy.create();
+  //  digpogy.create();
+    buildpogy.create();
     gui.create();
     camera.create();
 }
@@ -52,7 +59,8 @@ function update() {
     pogy.update();
     gui.update();
     camera.update();
-    digpogy.update();
+   // digpogy.update();
+    buildpogy.update();
 }
 
 </script>
