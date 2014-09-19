@@ -7,6 +7,7 @@ LevelOne = function(game){
 
   this.homeId = 1000;
   this.coinId = 666;
+  this.tileSize = 70;
 };
 
 LevelOne.prototype = {
