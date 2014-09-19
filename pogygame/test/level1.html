@@ -15,18 +15,23 @@
 <script type="text/javascript" src="LevelOne.js"></script>
 <script type="text/javascript" src="Pogy.js"></script>
 <script type="text/javascript" src="GUI.js"></script>
+<script type="text/javascript" src="Camera.js"></script>
 <script type="text/javascript">
 
-var game = new Phaser.Game(1800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+var game = new Phaser.Game(800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 var level = null;
 var pogy = null;
 
 function preload() {
     level = new LevelOne(game);
     level.preload();
+
     pogy = new Pogy(game);
     pogy.preload();
-    
+
+    camera = new Camera(game);
+    camera.preload();    
+
     gui = new GUI(game);
     gui.preload();
 }
@@ -36,11 +41,13 @@ function create() {
     level.create();
     pogy.create();
     gui.create();
+    camera.create();
 }
 
 function update() {
     pogy.update();
     gui.update();
+    camera.update();
 }
 
 </script>

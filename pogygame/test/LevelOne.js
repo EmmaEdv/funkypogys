@@ -23,6 +23,7 @@ LevelOne.prototype = {
 	},
 
 	create: function(){
+		this.game.world.setBounds(0, 0, 1750, 640);
 		this.game.add.sprite(0,0,'sky');
 		// Create the map
 		this.map = this.game.add.tilemap('map');
