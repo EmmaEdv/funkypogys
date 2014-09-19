@@ -103,31 +103,31 @@ GUI.prototype = {
 
 function actionDig(button){
 	//If the other button is not active and 
-	if(digpogy.active && !buildpogy.active){
+	if(button.alpha == 1 && !buildpogy.active){
 		console.log("Build: " + buildpogy.active);
 		button.alpha = 0.5;
 		digpogy.active = false;
-		console.log("Digbutton active")
+		console.log("Digbutton "+ digpogy.active)
 	}
 	else {
 		console.log("Build: " + buildpogy.active);
 		digpogy.active = true;
 		button.alpha = 1;
-		console.log("Digbutton inactive")
+		console.log("Digbutton "+ digpogy.active)
 	}
 }
 
 function actionBuild(button){
-	if(buildpogy.active && !digpogy.active){
+	if(button.alpha == 1 && !digpogy.active){
 		console.log("Dig: " + digpogy.active);
 		button.alpha = 0.5;
 		buildpogy.active = false;
-		console.log("Buildbutton active")
+		console.log("Buildbutton "+ buildpogy.active)
 	}
 	else {
 		console.log("Dig: " + digpogy.active);
 		buildpogy.active = true;
 		button.alpha = 1;
-		console.log("Buildbutton inactive")
+		console.log("Buildbutton "+ buildpogy.active)
 	}
 }

@@ -24,6 +24,7 @@ DigPogy.prototype = {
 			var clickedTile = level.map.getTile(xPos, yPos);
 			//console.log(clickedTile);
 			if(clickedTile && this.active){
+				console.log("Digbutton active");
 				//console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
@@ -31,7 +32,7 @@ DigPogy.prototype = {
 				clickedTile.setCollision(false,false,false,false);
 			}
 			else{
-				console.log("Button Unactive");
+				console.log("Digbutton Unactive");
 			}
 		}
 	}
