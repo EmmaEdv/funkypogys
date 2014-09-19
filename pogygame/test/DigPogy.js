@@ -26,7 +26,8 @@ DigPogy.prototype = {
 				console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
-				level.map.replace(clickedTile.index, 1, xPos, yPos, 1, 1);
+				level.map.replace(clickedTile.index, 9, xPos, yPos, 1, 1);
+				clickedTile.setCollision(false,false,false,false);
 			}
 		}
 	}

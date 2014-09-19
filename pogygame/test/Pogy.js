@@ -33,10 +33,10 @@ Pogy.prototype = {
       //If we wanna change velocity of our Pogys
       if(pogy.body.onWall()) {
         if(pogy.body.facing % 2) {
-          pogy.body.velocity.x = 100;
+          pogy.body.velocity.x = 80;
         }
         else {
-          pogy.body.velocity.x = -100;
+          pogy.body.velocity.x = -80;
         }
       }    
     });
@@ -45,7 +45,7 @@ Pogy.prototype = {
     // Create new pogys and add to pogy group
     createPogy: function() {
       //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
-      var pogy = this.game.add.sprite(20, this.game.world.height-300 , 'dude');
+      var pogy = this.game.add.sprite(0, this.game.world.height-level.startYpos, 'dude');
       this.game.physics.arcade.enable(pogy);
       pogy.body.bounce.y = 0.2;
       pogy.body.gravity.y = 300;
@@ -57,14 +57,13 @@ Pogy.prototype = {
       pogy.animations.add('right', [5, 6, 7, 8], 5, true);
 
       // Set initial velocity of the Pogys
-      pogy.body.velocity.x = 200;
+      pogy.body.velocity.x = 80;
       this.pogygroup.add(pogy);  
     },
 };
 
 // If a Pogy reach le home
 function pogyFinish(pogy, goal){
-  console.log("KILL");
   pogy.kill();
   gui.pogyCounter++;
   pogy.finished = true;
