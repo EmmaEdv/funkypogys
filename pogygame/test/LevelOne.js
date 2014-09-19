@@ -2,14 +2,11 @@ LevelOne = function(game){
 	this.game = game;
 	this.map = null;
 	this.groundLayer = null;
-
   this.coins = null;
   this.homes = null;
 
   this.homeId = 1000;
   this.coinId = 666;
-
-  
 };
 
 LevelOne.prototype = {

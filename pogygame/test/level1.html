@@ -16,6 +16,7 @@
 <script type="text/javascript" src="Pogy.js"></script>
 <script type="text/javascript" src="GUI.js"></script>
 <script type="text/javascript" src="Camera.js"></script>
+<script type="text/javascript" src="DigPogy.js"></script>
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
@@ -32,14 +33,17 @@ function preload() {
     camera = new Camera(game);
     camera.preload();    
 
+    digpogy = new DigPogy(game);
+    digpogy.preload();
+
     gui = new GUI(game);
     gui.preload();
 }
 
 function create() {
-    game.physics.startSystem(Phaser.Physics.ARCADE);
     level.create();
     pogy.create();
+    digpogy.create();
     gui.create();
     camera.create();
 }
@@ -48,6 +52,7 @@ function update() {
     pogy.update();
     gui.update();
     camera.update();
+    digpogy.update();
 }
 
 </script>
