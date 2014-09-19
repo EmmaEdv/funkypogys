@@ -16,7 +16,7 @@ Pogy.prototype = {
 
 	update: function(){
     //Collision towards ground
-	this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
+	  this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
     this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
     
@@ -24,23 +24,18 @@ Pogy.prototype = {
 		//Add collision to all
     this.pogygroup.forEach(function(pogy)
     {
-      if(pogy.body.velocity.x >= 0) 
-      {
+      if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
       }
-      else 
-      {
+      else {
         pogy.animations.play('left');
       }
       //If we wanna change velocity of our Pogys
-      if(pogy.body.onWall()) 
-      {
-        if(pogy.body.facing % 2) 
-        {
+      if(pogy.body.onWall()) {
+        if(pogy.body.facing % 2) {
           pogy.body.velocity.x = 100;
         }
-        else 
-        {
+        else {
           pogy.body.velocity.x = -100;
         }
       }    
@@ -48,7 +43,7 @@ Pogy.prototype = {
   },
 
     // Create new pogys and add to pogy group
-    createPogy: function(){
+    createPogy: function() {
       //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
       var pogy = this.game.add.sprite(20, this.game.world.height-300 , 'dude');
       this.game.physics.arcade.enable(pogy);
@@ -67,6 +62,7 @@ Pogy.prototype = {
     },
 };
 
+// If a Pogy reach le home
 function pogyFinish(pogy, goal){
   console.log("KILL");
   pogy.kill();
@@ -74,7 +70,7 @@ function pogyFinish(pogy, goal){
   pogy.finished = true;
 }
 
-
+// If a Pogy pick up a coin
 function collectCoin(pogy, coin){
     coin.kill();
     gui.addCoin();
