@@ -15,14 +15,15 @@
          "draworder":"topdown",
          "height":11,
          "name":"coins",
-         "gid": 666,
          "objects":[
                 {
                  "ellipse":true,
                  "height":0,
                  "name":"coin",
+                 "gid":666,
                  "properties":
                     {
+                     "gid":"666"
                     },
                  "rotation":0,
                  "type":"",
@@ -35,8 +36,10 @@
                  "ellipse":true,
                  "height":0,
                  "name":"coin",
+                 "gid":666,
                  "properties":
                     {
+                     "gid":"666"
                     },
                  "rotation":0,
                  "type":"",
@@ -49,8 +52,10 @@
                  "ellipse":true,
                  "height":0,
                  "name":"coin",
+                 "gid":666,
                  "properties":
                     {
+                     "gid":"666"
                     },
                  "rotation":0,
                  "type":"",

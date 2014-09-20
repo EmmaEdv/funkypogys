@@ -21,6 +21,10 @@ GUI = function(game){
 	// Time
 	this.gameTimeTextX = 620;
 	this.gameTimeTextY = 10;
+
+	// WinningScreen
+	this.winningScreen = null;
+	this.winningScreenTween = null;
 };
 
 GUI.prototype = {
@@ -29,13 +33,18 @@ GUI.prototype = {
 		this.game.load.image('coin', 'assets/coin.png');
 		this.game.load.image('pogy', 'assets/dudeHome.png');
 		this.game.load.image('toolbar', 'assets/toolbar.png');
+		this.game.load.image('winningScreen', 'assets/winningScreen.png');
+
+		guiwinningscreen = new GUIWinningScreen(this.game);
+    guiwinningscreen.preload();
 	},
 
 	create: function(){
+		guiwinningscreen.create();
+
 		// The toolbar-background
 		var toolbar = this.game.add.sprite(0, 0, 'toolbar');
 		toolbar.fixedToCamera = true;
-
 
 		// Coins in the scoreboard
 		this.coins = game.add.group();
@@ -61,6 +70,8 @@ GUI.prototype = {
 	},
 
 	update: function(){
+		guiwinningscreen.update();
+
 		// Time in game
 		this.game.time.advancedTiming = true;
 		
@@ -86,3 +97,5 @@ GUI.prototype = {
 		this.gameTimeText.setText("Time: " + time);
 	}
 };
+
+

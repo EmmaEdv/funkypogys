@@ -5,14 +5,14 @@ BuildPogy = function(game){
 };
 
 BuildPogy.prototype = {
-/*	preload: function(){
+	preload: function(){
 		
 	},
 
 	create: function(){
 		
 	},
-*/
+
 	update: function(){
 		if(this.game.input.mousePointer.isDown){
 			console.log("X:" + this.game.input.mousePointer.x + ", Y: " + this.game.input.mousePointer.y);

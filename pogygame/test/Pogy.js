@@ -20,7 +20,6 @@ Pogy.prototype = {
     this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
     
-
 		//Add collision to all
     this.pogygroup.forEach(function(pogy)
     {
@@ -33,10 +32,10 @@ Pogy.prototype = {
       //If we wanna change velocity of our Pogys
       if(pogy.body.onWall()) {
         if(pogy.body.facing % 2) {
-          pogy.body.velocity.x = 80;
+          pogy.body.velocity.x = 100;
         }
         else {
-          pogy.body.velocity.x = -80;
+          pogy.body.velocity.x = -100;
         }
       }    
     });
@@ -57,7 +56,7 @@ Pogy.prototype = {
       pogy.animations.add('right', [5, 6, 7, 8], 5, true);
 
       // Set initial velocity of the Pogys
-      pogy.body.velocity.x = 80;
+      pogy.body.velocity.x = 100;
       this.pogygroup.add(pogy);  
     },
 };
