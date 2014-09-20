@@ -19,6 +19,11 @@ GUIWinningScreen = function(game){
 	this.totalNumberOfPogys = null;
 	this.totalNumberOfPogysTween = null;
 
+	// Total Score
+	this.totalScore = null;
+	this.totalScoreTween = null;
+
+
 };
 
 GUIWinningScreen.prototype = {
@@ -67,6 +72,17 @@ GUIWinningScreen.prototype = {
     });
     this.totalNumberOfPogys.fixedToCamera = true;
     this.totalNumberOfPogys.scale.set(0);
+
+    // Total score
+		this.totalScore = game.add.text(	this.winningScreenStartX+10, 
+																							this.winningScreenStartY+120, 
+																							"Total score: 0", {
+        font: "17px Arial",
+        fill: "#000",
+        align: "left"
+    });
+    this.totalScore.fixedToCamera = true;
+    this.totalScore.scale.set(0);
 	},
 
 	update: function(){
@@ -76,13 +92,13 @@ GUIWinningScreen.prototype = {
 		this.totalGameTimeText.setText("Total Time: " + time);
 
 		// Update the Number of Coins	
-		this.totalNumberOfCoinsText.setText("Number of coins: "+ gui.coinsCounter);	
+		this.totalNumberOfCoinsText.setText("Number of coins: "+ level.coinsCounter);	
 
 		// Update the Number of Pogys
-		this.totalNumberOfPogys.setText("Total number of Pogys: " + gui.pogyCounter)
+		this.totalNumberOfPogys.setText("Total number of Pogys: " + level.pogyCounter);
 
 		// Show the scrren when all pogys are home
-		if(gui.pogyCounter == pogy.nrOfPogys) {
+		if(level.pogyCounter == level.nrOfPogys) {
 			this.openWindow();
 		}
 	},
@@ -94,9 +110,34 @@ GUIWinningScreen.prototype = {
     }
     //  Create a tween that will pop-open the window, but only if it's not already tweening or open
     this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-    this.totalGameTimeTextTween = this.game.add.tween(this.totalGameTimeText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-    this.totalNumberOfCoinsTextTween = this.game.add.tween(this.totalNumberOfCoinsText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-    this.totalNumberOfPogysTween = this.game.add.tween(this.totalNumberOfPogys.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
+	},
+
+	showTotalTimeText: function() {
+		this.totalGameTimeTextTween = this.game.add.tween(this.totalGameTimeText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalNumberOfCoinsText, this);
+	},
+
+	showTotalNumberOfCoinsText: function() {
+		this.totalNumberOfCoinsTextTween = this.game.add.tween(this.totalNumberOfCoinsText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalNumberOfPogys, this);
+	},
+
+	showTotalNumberOfPogys: function() {
+		this.totalNumberOfPogysTween = this.game.add.tween(this.totalNumberOfPogys.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+		this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalScore, this);
+	},
+
+	showTotalScore: function() {
+		this.calculateTotalScore()
+		this.totalScoreTween = this.game.add.tween(this.totalScore.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+	},
+
+	calculateTotalScore: function() {
+		var time = JSON.stringify(gui.gameTime);
+		time = time.slice(0,-2);
+		var totScore = ((level.coinsCounter * level.pogyCounter) / time)*100;
+		this.totalScore.setText("Total Score: " + totScore);
 	},
 
 	// Close winningScreen

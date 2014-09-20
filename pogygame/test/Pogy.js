@@ -2,7 +2,6 @@ Pogy = function(game){
 	this.game = game;
 	this.pogysprite = null;
 	this.pogygroup = null;
-  this.nrOfPogys = 10;
 };
 
 Pogy.prototype = {
@@ -11,7 +10,7 @@ Pogy.prototype = {
 
 	create: function(){
     this.pogygroup = this.game.add.group();
-    this.game.time.events.repeat(Phaser.Timer.SECOND, this.nrOfPogys, this.createPogy, this);
+    this.game.time.events.repeat(Phaser.Timer.SECOND, level.nrOfPogys, this.createPogy, this);
 	},
 
 	update: function(){
@@ -56,7 +55,7 @@ Pogy.prototype = {
       pogy.animations.add('right', [5, 6, 7, 8], 5, true);
 
       // Set initial velocity of the Pogys
-      pogy.body.velocity.x = 100;
+      pogy.body.velocity.x = 200;
       this.pogygroup.add(pogy);  
     },
 };
@@ -64,7 +63,7 @@ Pogy.prototype = {
 // If a Pogy reach le home
 function pogyFinish(pogy, goal){
   pogy.kill();
-  gui.pogyCounter++;
+  level.pogyCounter++;
   pogy.finished = true;
 }
 

@@ -7,24 +7,18 @@ GUI = function(game){
 	this.gameTimeText = null;
 
 	//Coins
-	this.coinsCounter = 0;
 	this.coinsX = 600;
 	this.coinsY = 40;
 	this.coinsInBetween = 20;
 
-	// Counter for our Pogys
-	this.pogyCounter = 0;
+	// Where the Pogy should appear in the GUI-toolbar
 	this.pogyX = 730;
 	this.pogyY = 5;
 	this.pogyText = null;
 
-	// Time
+	// Time should appear in the GUI-toolbar
 	this.gameTimeTextX = 620;
 	this.gameTimeTextY = 10;
-
-	// WinningScreen
-	this.winningScreen = null;
-	this.winningScreenTween = null;
 };
 
 GUI.prototype = {
@@ -40,6 +34,7 @@ GUI.prototype = {
 	},
 
 	create: function(){
+		//Create a winningscreen (GUIWinningScreen.js)
 		guiwinningscreen.create();
 
 		// The toolbar-background
@@ -76,16 +71,16 @@ GUI.prototype = {
 		this.game.time.advancedTiming = true;
 		
 		//Only count time if all pogys has not reached home
-		if(this.pogyCounter != pogy.nrOfPogys){
+		if(level.pogyCounter != level.nrOfPogys){
 			this.updateTime();
 		}
-		this.pogyText.setText(this.pogyCounter);
+		this.pogyText.setText(level.pogyCounter);
 	},
 
 	// Add coin to the scoreboard
 	addCoin: function(){
-		var star = this.coins.create(this.coinsX+this.coinsInBetween*(this.coinsCounter+1), this.coinsY, 'coin');
-		this.coinsCounter++;
+		var star = this.coins.create(this.coinsX+this.coinsInBetween*(level.coinsCounter+1), this.coinsY, 'coin');
+		level.coinsCounter++;
 	},
 
 	// Update time to the scoreboards

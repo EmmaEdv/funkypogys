@@ -5,6 +5,12 @@ LevelOne = function(game){
   this.coins = null;
   this.homes = null;
 
+  // Counter for our Pogys
+  this.nrOfPogys = 10;
+	this.pogyCounter = 0;
+	this.coinsCounter = 0;
+
+
   this.tileSize = 70;
   this.startYpos = 300;
 };
