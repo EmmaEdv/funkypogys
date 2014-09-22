@@ -24,10 +24,6 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 640, Phaser.AUTO, '', {preload: preload, create: create, update: update});
-var level = null;
-var pogy = null;
-var digpogy = null;
-var buildpogy = null;
 var states = {};
 game.state.add('MainMenu',StartMenu);
 game.state.add('startLevelOne',startLevelOne);

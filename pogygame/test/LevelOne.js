@@ -10,9 +10,10 @@ LevelOne = function(game){
 	this.pogyCounter = 0;
 	this.coinsCounter = 0;
 
-
   this.tileSize = 70;
   this.startYpos = 300;
+
+  this.levelTimer = null;
 };
 
 LevelOne.prototype = {
@@ -26,6 +27,11 @@ LevelOne.prototype = {
 	},
 
 	create: function(){
+		//  Create our Timer
+   	this.levelTimer = game.time.create(false);
+    this.levelTimer.add(60 * 1000, endGame, this);
+    this.levelTimer.start();
+
 		// Set bounds to the world
 		this.game.world.setBounds(0, 0, 1750, 640);
 
@@ -62,3 +68,7 @@ LevelOne.prototype = {
 	update: function(){
 	}
 };
+
+function endGame() {
+	console.log("End");
+}
