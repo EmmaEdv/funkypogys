@@ -68,9 +68,9 @@ GUI.prototype = {
     this.pogyText.fixedToCamera = true;
 
     //Buttons for build and dig pogy
-    var digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', actionDig, this, null, null, 'unclicked', 'clicked');
+    digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', digCallback, null, null, null, 'unclicked', 'clicked');
     digPogy.fixedToCamera = true;
-    var buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', actionBuild, this, null, null, 'unclicked', 'clicked');
+    buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', buildCallback, null, null, null, 'unclicked', 'clicked');
     buildPogy.fixedToCamera = true;
 	},
 
@@ -101,33 +101,29 @@ GUI.prototype = {
 	}
 };
 
-function actionDig(button){
-	//If the other button is not active and 
-	if(button.alpha == 1 && !buildpogy.active){
-		console.log("Build: " + buildpogy.active);
-		button.alpha = 0.5;
-		digpogy.active = false;
-		console.log("Digbutton "+ digpogy.active)
+function digCallback(){
+	//console.log();
+	if(digPogy.alpha == 1){
+		digPogy.alpha = 0.5;
+		buildPogy.alpha = 1;
+		digpogy.active = true;
+		buildpogy.active = false;
 	}
 	else {
-		console.log("Build: " + buildpogy.active);
-		digpogy.active = true;
-		button.alpha = 1;
-		console.log("Digbutton "+ digpogy.active)
+		digPogy.alpha = 1;
+		digpogy.active = false;
 	}
 }
 
-function actionBuild(button){
-	if(button.alpha == 1 && !digpogy.active){
-		console.log("Dig: " + digpogy.active);
-		button.alpha = 0.5;
-		buildpogy.active = false;
-		console.log("Buildbutton "+ buildpogy.active)
+function buildCallback(){
+	if(buildPogy.alpha == 1){
+		buildPogy.alpha = 0.5;
+		digPogy.alpha = 1;
+		buildpogy.active = true;
+		digpogy.active = false;
 	}
 	else {
-		console.log("Dig: " + digpogy.active);
-		buildpogy.active = true;
-		button.alpha = 1;
-		console.log("Buildbutton "+ buildpogy.active)
+		buildPogy.alpha = 1;
+		buildpogy.active = false;
 	}
 }

@@ -25,7 +25,7 @@ BuildPogy.prototype = {
 			//console.log("Build!! "+clickedTile);
 			if(!clickedTile && this.active){
 				//Byt ut första parametern till en byggtile :)
-				level.map.putTile(34, xPos, yPos)
+				level.map.putTile(34, xPos, yPos);
 			}
 		}
 	}
