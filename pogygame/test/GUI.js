@@ -22,10 +22,16 @@ GUI = function(game){
 
 	//Dig & build pogy
 	this.digPogy = null;
+	this.digPogyText = null;
 	//this.activeDig = false;
 	this.buildPogy = null;
+	this.buildPogyText = null;
 	//this.activeBuild = false;
 	this.centerX = this.game.world.centerX;
+
+	this.homeButton = null;
+	this.restartButton = null;
+	this.pauseButton = null;
 };
 
 GUI.prototype = {
@@ -37,6 +43,9 @@ GUI.prototype = {
 		this.game.load.image('ladder', 'assets/ladder.png');
 		this.game.load.image('spade', 'assets/spade.png');
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
+		this.game.load.image('homeButton', 'assets/home.png');
+		this.game.load.image('restartButton', 'assets/restart.png');
+		this.game.load.image('pauseButton', 'assets/pause.png');
 
 		guiwinningscreen = new GUIWinningScreen(this.game);
     guiwinningscreen.preload();
@@ -50,6 +59,21 @@ GUI.prototype = {
 		var toolbar = this.game.add.sprite(0, 0, 'toolbar');
 		toolbar.fixedToCamera = true;
 
+		// The toolbar homebutton
+		this.homeButton = this.game.add.button(10, 10, 'homeButton', function() {this.game.state.start('MainMenu');});
+		this.homeButton.fixedToCamera = true;
+
+		// The toolbar restartbutton
+		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start('startLevelOne',true,false);});
+		this.restartButton.fixedToCamera = true;
+
+		// The toolbar pausebutton
+		this.pauseButton = this.game.add.sprite(130, 10, 'pauseButton');
+		this.pauseButton.inputEnabled = true;
+		this.pauseButton.events.onInputUp.add(function () {this.game.paused = true;},this);
+		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
+		this.pauseButton.fixedToCamera = true;
+
 		// Coins in the scoreboard
 		this.coins = game.add.group();
 		this.coins.fixedToCamera = true;
@@ -62,7 +86,7 @@ GUI.prototype = {
     });
     this.gameTimeText.fixedToCamera = true;
 
-		// Show how pany Pogys reached home in le scoreboard
+		// Show how many Pogys reached home in le scoreboard
 		var homePogy = this.game.add.sprite(this.pogyX, this.pogyY, 'pogy');
 		homePogy.fixedToCamera = true;
     this.pogyText = game.add.text(this.pogyX+40, this.pogyY+15, "0", {
@@ -72,20 +96,32 @@ GUI.prototype = {
     });
     this.pogyText.fixedToCamera = true;
 
-    //Buttons for build and dig pogy
+    //Buttons and counter for DigPogy
     digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', digCallback, null, null, null, 'unclicked', 'clicked');
     digPogy.fixedToCamera = true;
+    this.digPogyText = game.add.text(this.centerX+70, this.pogyY, "0", {font: "17px Arial",fill: "#000",align: "left"});
+    this.digPogyText.fixedToCamera = true;
+
+    //Buttons and counter for BuildPogy
     buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', buildCallback, null, null, null, 'unclicked', 'clicked');
     buildPogy.fixedToCamera = true;
+    this.buildPogyText = game.add.text(this.centerX,this.pogyY,"0", {font: "17px Arial",fill: "#000",align: "left"});
+    this.buildPogyText.fixedToCamera = true;
 	},
 
 	update: function(){
 		guiwinningscreen.update();
+
+		// Update how many pogys we got left
+		this.digPogyText.setText(level.nrOfDigPogys);
+		this.buildPogyText.setText(level.nrOfBuildPogys);
 		
 		//Only count time if all pogys has not reached home
 		if(level.pogyCounter != level.nrOfPogys){
 			this.updateTime();
 		}
+
+		// How many Pogys are home
 		this.pogyText.setText(level.pogyCounter);
 	},
 
