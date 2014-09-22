@@ -5,8 +5,12 @@ LevelOne = function(game){
   this.coins = null;
   this.homes = null;
 
-  this.homeId = 1000;
-  this.coinId = 666;
+  // Counter for our Pogys
+  this.nrOfPogys = 10;
+	this.pogyCounter = 0;
+	this.coinsCounter = 0;
+
+
   this.tileSize = 70;
   this.startYpos = 300;
 };
@@ -47,7 +51,7 @@ LevelOne.prototype = {
 		// Add coins to the game
 		this.coins = this.game.add.group();
 		this.coins.enableBody = true;
-		this.map.createFromObjects('coins', this.coinId, 'coin', 0, true, false, this.coins);
+		this.map.createFromObjects('coins', 666, 'coin', 0, true, false, this.coins);
 
 		// Add home for the Pogys to the game
 		this.homes = this.game.add.group();
