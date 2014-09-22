@@ -3,6 +3,7 @@ DigPogy = function(game){
 	this.digpogy = null;
   //this.nrOfDigPogys = 1;
   this.active = false;
+  this.tileIndex = 9;
 };
 
 DigPogy.prototype = {
@@ -27,7 +28,7 @@ DigPogy.prototype = {
 				//console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
-				level.map.replace(clickedTile.index, 9, xPos, yPos, 1, 1);
+				level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1);
 				clickedTile.setCollision(false,false,false,false);
 			}
 		}

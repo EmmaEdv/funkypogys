@@ -18,10 +18,10 @@ Pogy.prototype = {
 	  this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
     this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
+    //this.game.physics.arcade.overlap(this.pogygroup, ., collectCoin, null, this);
     
 		//Add collision to all
-    this.pogygroup.forEach(function(pogy)
-    {
+    this.pogygroup.forEach(function(pogy){
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
       }

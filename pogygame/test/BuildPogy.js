@@ -3,6 +3,7 @@ BuildPogy = function(game){
 	this.buildpogy = null;
   //this.nrOfBuildPogys = 1;
   this.active = false;
+  this.tileIndex = 136;
 };
 
 BuildPogy.prototype = {
@@ -22,12 +23,12 @@ BuildPogy.prototype = {
 			var clickedTile = level.map.getTile(xPos, yPos);
 			if(!clickedTile && this.active){
 				//Byt ut första parametern till en byggtile :)
-				level.map.putTile(136, xPos, yPos);
+				level.map.putTile(this.tileIndex, xPos, yPos);
 			}
 			//Om klickad tile är en som redan är grävd
 			else if(clickedTile && this.active){
-				if(clickedTile.index==9){
-					level.map.replace(clickedTile.index, 136, xPos, yPos, 1, 1);
+				if(clickedTile.index==digpogy.tileIndex){
+					level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1);
 				}
 			}
 		}
