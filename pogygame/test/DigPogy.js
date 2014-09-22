@@ -18,7 +18,7 @@ DigPogy.prototype = {
 		if(this.game.input.mousePointer.isDown){
 			//console.log("X:" + this.game.input.mousePointer.x + ", Y: " + this.game.input.mousePointer.y);
 			//x and y positions in tile units:
-			var xPos = Math.floor(this.game.input.mousePointer.x/level.tileSize);
+			var xPos = Math.floor((this.game.input.mousePointer.x+this.game.camera.x)/level.tileSize);
 			var yPos = Math.floor(this.game.input.mousePointer.y/level.tileSize);
 
 			var clickedTile = level.map.getTile(xPos, yPos);

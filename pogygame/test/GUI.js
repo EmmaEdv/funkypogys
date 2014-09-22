@@ -114,26 +114,26 @@ GUI.prototype = {
 
 function digCallback(){
 	//console.log();
-	if(digPogy.alpha == 1){
+	if(digPogy.alpha == 1 && !level.levelTimer.paused){
 		digPogy.alpha = 0.5;
 		buildPogy.alpha = 1;
 		digpogy.active = true;
 		buildpogy.active = false;
 	}
-	else {
+	else if(!level.levelTimer.paused){
 		digPogy.alpha = 1;
 		digpogy.active = false;
 	}
 }
 
 function buildCallback(){
-	if(buildPogy.alpha == 1){
+	if(buildPogy.alpha == 1 && !level.levelTimer.paused){
 		buildPogy.alpha = 0.5;
 		digPogy.alpha = 1;
 		buildpogy.active = true;
 		digpogy.active = false;
 	}
-	else {
+	else if(!level.levelTimer.paused){
 		buildPogy.alpha = 1;
 		buildpogy.active = false;
 	}
