@@ -22,8 +22,6 @@ GUIWinningScreen = function(game){
 	// Total Score
 	this.totalScore = null;
 	this.totalScoreTween = null;
-
-
 };
 
 GUIWinningScreen.prototype = {
@@ -41,45 +39,45 @@ GUIWinningScreen.prototype = {
     this.winningScreen.fixedToCamera = true;
 
     // Total Game Time Text
-		this.totalGameTimeText = game.add.text(	this.winningScreenStartX+10, 
-																						this.winningScreenStartY+30, 
-																						"Total Time: 0", {
-        font: "17px Arial",
-        fill: "#000",
-        align: "left"
+		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
+																					this.winningScreenStartY+30, 
+																					"Total Time: 0", {
+      font: "17px Arial",
+      fill: "#000",
+      align: "left"
     });
     this.totalGameTimeText.fixedToCamera = true;
     this.totalGameTimeText.scale.set(0);
 
     // Total number of coins
-    this.totalNumberOfCoinsText = game.add.text(	this.winningScreenStartX+10, 
-    																							this.winningScreenStartY+60, 
-																									"Number of coins: 0", {
-        font: "17px Arial",
-        fill: "#000",
-        align: "left"
+    this.totalNumberOfCoinsText = game.add.text(this.winningScreenStartX+10, 
+  																							this.winningScreenStartY+60, 
+																								"Number of coins: 0", {
+      font: "17px Arial",
+      fill: "#000",
+      align: "left"
     });
     this.totalNumberOfCoinsText.fixedToCamera = true;
     this.totalNumberOfCoinsText.scale.set(0);
 
     // Total number of Pogys
-		this.totalNumberOfPogys = game.add.text(	this.winningScreenStartX+10, 
-																							this.winningScreenStartY+90, 
-																							"Total Number Of Pogyz: 0", {
-        font: "17px Arial",
-        fill: "#000",
-        align: "left"
+		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+10, 
+																						this.winningScreenStartY+90, 
+																						"Total Number Of Pogyz: 0", {
+      font: "17px Arial",
+      fill: "#000",
+      align: "left"
     });
     this.totalNumberOfPogys.fixedToCamera = true;
     this.totalNumberOfPogys.scale.set(0);
 
     // Total score
-		this.totalScore = game.add.text(	this.winningScreenStartX+10, 
-																							this.winningScreenStartY+120, 
-																							"Total score: 0", {
-        font: "17px Arial",
-        fill: "#000",
-        align: "left"
+		this.totalScore = game.add.text(this.winningScreenStartX+10, 
+																		this.winningScreenStartY+120, 
+																		"Total score: 0", {
+      font: "17px Arial",
+      fill: "#000",
+      align: "left"
     });
     this.totalScore.fixedToCamera = true;
     this.totalScore.scale.set(0);
@@ -95,7 +93,7 @@ GUIWinningScreen.prototype = {
 		// Update the Number of Pogys
 		this.totalNumberOfPogys.setText("Total number of Pogys: " + level.pogyCounter);
 
-		// Show the scrren when all pogys are home
+		// Show the screen when all pogys are home
 		if(level.pogyCounter == level.nrOfPogys) {
 			this.openWindow();
 			level.levelTimer.pause();
@@ -133,7 +131,6 @@ GUIWinningScreen.prototype = {
 	},
 
 	calculateTotalScore: function() {
-
 		var totScore = ((level.coinsCounter * level.pogyCounter) * (level.levelTimer.duration.toFixed(1)/1000));
 		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
 	},
@@ -147,5 +144,3 @@ GUIWinningScreen.prototype = {
     this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
 	}
 };
-
-
