@@ -81,9 +81,6 @@ GUI.prototype = {
 
 	update: function(){
 		guiwinningscreen.update();
-
-		// Time in game
-		this.game.time.advancedTiming = true;
 		
 		//Only count time if all pogys has not reached home
 		if(level.pogyCounter != level.nrOfPogys){
@@ -100,11 +97,7 @@ GUI.prototype = {
 
 	// Update time to the scoreboards
 	updateTime: function(){
-		//Det finns en funktion för som heter: totalElapsedSeconds() som man kanske kan använda istället, eventuellt? :) 
-		this.gameTime = Math.round(this.game.time.now - this.game.time._started)/1000;
-		var time = JSON.stringify(this.gameTime);
-		time = time.slice(0,-2);
-		this.gameTimeText.setText("Time: " + time);
+		this.gameTimeText.setText("Time: " + (level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
 	}
 };
 

@@ -14,13 +14,14 @@ StartMenu.prototype = {
 
 	create: function(){
 		this.game.add.sprite(0,0,'backgroundPicture');
-		this.levelOneButton = game.add.button(200, 400, 'button', actionOnClick, this, 2);
+		this.levelOneButton = game.add.button(200, 400, 'button', levelOne, this, 2);
 	},
 
 	update: function(){
 	}
 };
 
-function actionOnClick () {
-    this.game.state.start('startLevelOne');
+function levelOne () {
+	console.log("Start Level One");	
+  this.game.state.start('startLevelOne');
 }

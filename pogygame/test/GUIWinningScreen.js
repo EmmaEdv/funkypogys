@@ -87,9 +87,7 @@ GUIWinningScreen.prototype = {
 
 	update: function(){
 		// Update the time
-		var time = JSON.stringify(gui.gameTime);
-		time = time.slice(0,-2);
-		this.totalGameTimeText.setText("Total Time: " + time);
+		this.totalGameTimeText.setText("Time left: " + (level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
 
 		// Update the Number of Coins	
 		this.totalNumberOfCoinsText.setText("Number of coins: "+ level.coinsCounter);	
@@ -100,6 +98,7 @@ GUIWinningScreen.prototype = {
 		// Show the scrren when all pogys are home
 		if(level.pogyCounter == level.nrOfPogys) {
 			this.openWindow();
+			level.levelTimer.pause();
 		}
 	},
 
@@ -134,10 +133,9 @@ GUIWinningScreen.prototype = {
 	},
 
 	calculateTotalScore: function() {
-		var time = JSON.stringify(gui.gameTime);
-		time = time.slice(0,-2);
-		var totScore = ((level.coinsCounter * level.pogyCounter) / time)*100;
-		this.totalScore.setText("Total Score: " + totScore);
+
+		var totScore = ((level.coinsCounter * level.pogyCounter) * (level.levelTimer.duration.toFixed(1)/1000));
+		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
 	},
 
 	// Close winningScreen
