@@ -22,8 +22,10 @@ GUI = function(game){
 
 	//Dig & build pogy
 	this.digPogy = null;
+	this.digPogyText = null;
 	//this.activeDig = false;
 	this.buildPogy = null;
+	this.buildPogyText = null;
 	//this.activeBuild = false;
 	this.centerX = this.game.world.centerX;
 };
@@ -72,15 +74,24 @@ GUI.prototype = {
     });
     this.pogyText.fixedToCamera = true;
 
-    //Buttons for build and dig pogy
+    //Buttons and counter for DigPogy
     digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', digCallback, null, null, null, 'unclicked', 'clicked');
     digPogy.fixedToCamera = true;
+    this.digPogyText = game.add.text(this.centerX+70, this.pogyY, "0", {font: "17px Arial",fill: "#000",align: "left"});
+    this.digPogyText.fixedToCamera = true;
+
+    //Buttons and counter for BuildPogy
     buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', buildCallback, null, null, null, 'unclicked', 'clicked');
     buildPogy.fixedToCamera = true;
+    this.buildPogyText = game.add.text(this.centerX,this.pogyY,"0", {font: "17px Arial",fill: "#000",align: "left"});
+    this.digPogyText.fixedToCamera = true;
 	},
 
 	update: function(){
 		guiwinningscreen.update();
+
+		this.digPogyText.setText(level.nrOfDigPogys);
+		this.buildPogyText.setText(level.nrOfBuildPogys);
 		
 		//Only count time if all pogys has not reached home
 		if(level.pogyCounter != level.nrOfPogys){

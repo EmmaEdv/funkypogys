@@ -75,8 +75,8 @@ GUIWinningScreen.prototype = {
 
     // Total score
 		this.totalScore = game.add.text(	this.winningScreenStartX+10, 
-																							this.winningScreenStartY+120, 
-																							"Total score: 0", {
+																			this.winningScreenStartY+120, 
+																			"Total score: 0", {
         font: "17px Arial",
         fill: "#000",
         align: "left"
