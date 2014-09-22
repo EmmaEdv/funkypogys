@@ -23,14 +23,20 @@ BuildPogy.prototype = {
 			var clickedTile = level.map.getTile(xPos, yPos);
 			if(!clickedTile && this.active){
 				//Byt ut första parametern till en byggtile :)
-				level.map.putTile(this.tileIndex, xPos, yPos);
+				level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
+				//clickedTile.setCollision(true,true,false,false);
+				//clickedTile.setCollisionCallback(callbackFunc, this);
 			}
 			//Om klickad tile är en som redan är grävd
 			else if(clickedTile && this.active){
 				if(clickedTile.index==digpogy.tileIndex){
-					level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1);
+					level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1, level.groundLayer);
 				}
 			}
 		}
 	}
 };
+
+function callbackFunc(tile){
+	console.log("krock!");
+}

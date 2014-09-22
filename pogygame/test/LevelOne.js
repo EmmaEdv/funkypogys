@@ -5,6 +5,7 @@ LevelOne = function(game){
   this.coins = null;
   this.homes = null;
 
+  this.buildLayer = null;
   // Counter for our Pogys
   this.nrOfPogys = 10;
 	this.pogyCounter = 0;
@@ -46,6 +47,8 @@ LevelOne.prototype = {
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
+		//Add build and dig layer
+		//this.buildLayer = this.map.createBlankLayer('Build Layer', 25, 11, this.tileSize, this.tileSize);
 
 		// Set Collision
 		this.map.setCollision(32);
