@@ -1,13 +1,15 @@
 DigPogy = function(game){
 	this.game = game;
 	this.digpogy = null;
-  //this.nrOfDigPogys = 1;
   this.active = false;
+
+  this.digState = true;
+  this.timerCheck = null;
 };
 
 DigPogy.prototype = {
 	preload: function(){
-		
+		this.timerCheck = game.time.create(false);
 	},
 
 	create: function(){
@@ -23,14 +25,20 @@ DigPogy.prototype = {
 
 			var clickedTile = level.map.getTile(xPos, yPos);
 			//console.log(clickedTile);
-			if(clickedTile && this.active && (level.nrOfDigPogys > 0)) {
+			if(clickedTile && this.active && (level.nrOfDigPogys > 0) && this.digState) {
 				//console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
 				level.map.replace(clickedTile.index, 9, xPos, yPos, 1, 1);
 				clickedTile.setCollision(false,false,false,false);
 				level.nrOfDigPogys--;
+				this.timerCheck.add(500, this.setTimerCheck, this);
+				this.digState = false;
+    		this.timerCheck.start();
 			}
 		}
+	},
+	setTimerCheck: function() {
+		this.digState = true;
 	}
 };
