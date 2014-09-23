@@ -27,7 +27,7 @@ GUI = function(game){
 	this.buildPogy = null;
 	this.buildPogyText = null;
 	//this.activeBuild = false;
-	this.centerX = this.game.world.centerX;
+	this.centerX = 400;
 
 	this.homeButton = null;
 	this.restartButton = null;
@@ -64,7 +64,7 @@ GUI.prototype = {
 		this.homeButton.fixedToCamera = true;
 
 		// The toolbar restartbutton
-		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start('startLevelOne',true,false);});
+		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start('startLevelOne');});
 		this.restartButton.fixedToCamera = true;
 
 		// The toolbar pausebutton
@@ -97,14 +97,14 @@ GUI.prototype = {
     this.pogyText.fixedToCamera = true;
 
     //Buttons and counter for DigPogy
-    digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', digCallback, null, null, null, 'unclicked', 'clicked');
-    digPogy.fixedToCamera = true;
+    this.digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', this.digCallback);
+    this.digPogy.fixedToCamera = true;
     this.digPogyText = game.add.text(this.centerX+70, this.pogyY, "0", {font: "17px Arial",fill: "#000",align: "left"});
     this.digPogyText.fixedToCamera = true;
 
     //Buttons and counter for BuildPogy
-    buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', buildCallback, null, null, null, 'unclicked', 'clicked');
-    buildPogy.fixedToCamera = true;
+    this.buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', this.buildCallback);
+    this.buildPogy.fixedToCamera = true;
     this.buildPogyText = game.add.text(this.centerX,this.pogyY,"0", {font: "17px Arial",fill: "#000",align: "left"});
     this.buildPogyText.fixedToCamera = true;
 	},
@@ -134,32 +134,36 @@ GUI.prototype = {
 	// Update time to the scoreboards
 	updateTime: function(){
 		this.gameTimeText.setText("Time: " + (level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
+	},
+
+	digCallback: function(){
+		if(gui.digPogy.alpha == 1 && !level.levelTimer.paused){
+			gui.digPogy.alpha = 0.5;
+			gui.buildPogy.alpha = 1;
+			
+			digpogy.active = true;
+			buildpogy.active = false;
+		} else if(!level.levelTimer.paused){
+			gui.digPogy.alpha = 1;
+
+			digpogy.active = false;
+		}
+	},
+
+	buildCallback: function(){
+		if(gui.buildPogy.alpha == 1 && !level.levelTimer.paused){
+			gui.buildPogy.alpha = 0.5;
+			gui.digPogy.alpha = 1;
+
+			buildpogy.active = true;
+			digpogy.active = false;
+
+		} else if(!level.levelTimer.paused){
+			gui.buildPogy.alpha = 1;
+
+			buildpogy.active = false;
+		}
 	}
 };
 
-function digCallback(){
-	//console.log();
-	if(digPogy.alpha == 1 && !level.levelTimer.paused){
-		digPogy.alpha = 0.5;
-		buildPogy.alpha = 1;
-		digpogy.active = true;
-		buildpogy.active = false;
-	}
-	else if(!level.levelTimer.paused){
-		digPogy.alpha = 1;
-		digpogy.active = false;
-	}
-}
 
-function buildCallback(){
-	if(buildPogy.alpha == 1 && !level.levelTimer.paused){
-		buildPogy.alpha = 0.5;
-		digPogy.alpha = 1;
-		buildpogy.active = true;
-		digpogy.active = false;
-	}
-	else if(!level.levelTimer.paused){
-		buildPogy.alpha = 1;
-		buildpogy.active = false;
-	}
-}
