@@ -22,6 +22,10 @@ GUIWinningScreen = function(game){
 	// Total Score
 	this.totalScore = null;
 	this.totalScoreTween = null;
+
+	// Buttons
+	this.restartButton = null;
+	this.homeButton = null;
 };
 
 GUIWinningScreen.prototype = {
@@ -81,6 +85,13 @@ GUIWinningScreen.prototype = {
     });
     this.totalScore.fixedToCamera = true;
     this.totalScore.scale.set(0);
+
+    this.restartButton = this.game.add.button(this.winningScreenStartX+10, this.winningScreenStartY + 200, 'restartButton', function() {this.game.state.start('startLevelOne',true,false);});
+		this.restartButton.fixedToCamera = true;
+		this.restartButton.scale.set(0);
+		this.homeButton = this.game.add.button(this.winningScreenStartX+70, this.winningScreenStartY + 200, 'homeButton', function() {this.game.state.start('MainMenu');});
+		this.homeButton.fixedToCamera = true;
+		this.homeButton.scale.set(0);
 	},
 
 	update: function(){
@@ -107,6 +118,8 @@ GUIWinningScreen.prototype = {
     }
     //  Create a tween that will pop-open the window, but only if it's not already tweening or open
     this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+    this.restartButton.scale.set(1);
+    this.homeButton.scale.set(1);
     this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
 	},
 

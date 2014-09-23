@@ -55,7 +55,7 @@ Pogy.prototype = {
       pogy.animations.add('right', [5, 6, 7, 8], 5, true);
 
       // Set initial velocity of the Pogys
-      pogy.body.velocity.x = 100;
+      pogy.body.velocity.x = 250;
       this.pogygroup.add(pogy);  
     },
 };
