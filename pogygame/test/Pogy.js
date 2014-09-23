@@ -11,6 +11,7 @@ Pogy.prototype = {
 	create: function(){
     this.pogygroup = this.game.add.group();
     this.game.time.events.repeat(Phaser.Timer.SECOND, level.nrOfPogys, this.createPogy, this);
+
 	},
 
 	update: function(){
@@ -18,7 +19,9 @@ Pogy.prototype = {
 	  this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
     this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
-    this.game.physics.arcade.overlap(this.pogygroup, [], collectCoin, null, this);
+
+    //Trying to set collision for build tiles - callbackFunc should make pogys climb
+    level.map.setTileIndexCallback(136, callbackFunc, this, level.groundLayer)
     
 		//Add collision to all
     this.pogygroup.forEach(function(pogy){
@@ -71,4 +74,11 @@ function pogyFinish(pogy, goal){
 function collectCoin(pogy, coin){
     coin.kill();
     gui.addCoin();
+}
+
+function callbackFunc(sprite){
+  sprite.body.velocity.x = 10;
+  sprite.body.velocity.y = -100;
+  //console.log("sprite " + sprite.index);
+  
 }

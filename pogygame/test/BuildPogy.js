@@ -24,9 +24,8 @@ BuildPogy.prototype = {
 			if(!clickedTile && this.active && (level.nrOfBuildPogys > 0)){
 				//Byt ut första parametern till en byggtile :)
 				level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
-				//clickedTile.setCollision(true,true,false,false);
-				//clickedTile.setCollisionCallback(callbackFunc, this);
 				level.nrOfBuildPogys--;
+				//this.setCollisionCallback(callbackFunc, this);
 			}
 			//Om klickad tile är en som redan är grävd
 			else if(clickedTile && this.active && (level.nrOfBuildPogys > 0)) {
@@ -38,7 +37,8 @@ BuildPogy.prototype = {
 		}
 	}
 };
-
+/*
 function callbackFunc(tile){
 	console.log("krock!");
 }
+*/
