@@ -3,21 +3,34 @@ LevelOne = function(game){
 	this.map = null;
 
 	this.groundLayer = null;
-	this.buildLayer = null;
 
+	// Objects from tilemap
   this.coins = null;
   this.homes = null;
+  this.buildPogys = null;
+  this.digPogys = null;
 
   // Counter for our Pogys
-  this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 10;
-  this.nrOfDigPogys = 10;
+  this.nrOfPogys = 10;
+  this.nrOfBuildPogys = 0;
+  this.nrOfDigPogys = 0;
+
+  //Show or hide Build/Dig-pogys
+  this.hideBuildPogy = true;
+  this.hideDigPogy = true;
+
+  //How many is home/picked up
 	this.pogyCounter = 0;
 	this.coinsCounter = 0;
+	this.pogysLeft = this.nrOfPogys;
 
+	// Tilemap size
   this.tileSize = 70;
-  this.startYpos = 300;
 
+  //Startposition for our pogys
+  this.startYpos = 330;
+
+  // Timer for the level
   this.levelTimer = null;
 };
 
@@ -29,6 +42,8 @@ LevelOne.prototype = {
 	  this.game.load.image('sky', 'assets/sky2.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+	  this.game.load.image('ladder', 'assets/ladder.png');
+		this.game.load.image('spade', 'assets/spade.png');
 	},
 
 	create: function(){
@@ -41,7 +56,7 @@ LevelOne.prototype = {
 		this.game.world.setBounds(0, 0, 1750, 640);
 
 		// Set background
-		this.game.add.sprite(0,0,'sky');
+		//this.game.add.sprite(0,0,'sky');
 
 		// Create the map
 		this.map = this.game.add.tilemap('map');
@@ -51,7 +66,6 @@ LevelOne.prototype = {
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
-		this.buildLayer = this.map.createLayer('Tile Layer 2');
 
 		// Set Collision
 		this.map.setCollision(32);
@@ -69,6 +83,16 @@ LevelOne.prototype = {
 		this.homes = this.game.add.group();
 		this.homes.enableBody = true;
 		this.map.createFromObjects('homes', 1000, null , 0, true, false, this.homes);
+
+		// Add home for the Pogys to the game
+		this.digPogys = this.game.add.group();
+		this.digPogys.enableBody = true;
+		this.map.createFromObjects('digger', 1001, 'spade' , 0, true, false, this.digPogys);
+
+		// Add home for the Pogys to the game
+		this.buildPogys = this.game.add.group();
+		this.buildPogys.enableBody = true;
+		this.map.createFromObjects('builder', 1002, 'ladder' , 0, true, false, this.buildPogys);
 	},
 
 	update: function(){

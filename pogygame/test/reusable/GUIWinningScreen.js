@@ -105,7 +105,7 @@ GUIWinningScreen.prototype = {
 		this.totalNumberOfPogys.setText("Total number of Pogys: " + level.pogyCounter);
 
 		// Show the screen when all pogys are home
-		if(level.pogyCounter == level.nrOfPogys) {
+		if(level.pogyCounter == level.nrOfPogys || level.pogysLeft == 0) {
 			this.openWindow();
 			level.levelTimer.pause();
 		}

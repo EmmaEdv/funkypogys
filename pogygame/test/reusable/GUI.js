@@ -40,8 +40,6 @@ GUI.prototype = {
 		this.game.load.image('coin', 'assets/coin.png');
 		this.game.load.image('pogy', 'assets/dudeHome.png');
 		this.game.load.image('toolbar', 'assets/toolbar.png');
-		this.game.load.image('ladder', 'assets/ladder.png');
-		this.game.load.image('spade', 'assets/spade.png');
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
 		this.game.load.image('homeButton', 'assets/home.png');
 		this.game.load.image('restartButton', 'assets/restart.png');
@@ -87,7 +85,7 @@ GUI.prototype = {
     this.gameTimeText.fixedToCamera = true;
 
 		// Show how many Pogys reached home in le scoreboard
-		var homePogy = this.game.add.sprite(this.pogyX, this.pogyY, 'pogy');
+		var homePogy = this.game.add.sprite(this.pogyX,  this.pogyY, 'pogy');
 		homePogy.fixedToCamera = true;
     this.pogyText = game.add.text(this.pogyX+40, this.pogyY+15, "0", {
     	font: "17px Arial",
@@ -101,12 +99,20 @@ GUI.prototype = {
     this.digPogy.fixedToCamera = true;
     this.digPogyText = game.add.text(this.centerX+70, this.pogyY, "0", {font: "17px Arial",fill: "#000",align: "left"});
     this.digPogyText.fixedToCamera = true;
+    if(level.hideDigPogy) {
+    	this.digPogy.alpha = 0;
+    	this.digPogyText.alpha = 0;
+    }
 
     //Buttons and counter for BuildPogy
     this.buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', this.buildCallback);
     this.buildPogy.fixedToCamera = true;
     this.buildPogyText = game.add.text(this.centerX,this.pogyY,"0", {font: "17px Arial",fill: "#000",align: "left"});
     this.buildPogyText.fixedToCamera = true;
+    if(level.hideBuildPogy) {
+    	this.buildPogy.alpha = 0;
+    	this.buildPogyText.alpha = 0;
+    }
 	},
 
 	update: function(){
@@ -139,7 +145,9 @@ GUI.prototype = {
 	digCallback: function(){
 		if(gui.digPogy.alpha == 1 && !level.levelTimer.paused){
 			gui.digPogy.alpha = 0.5;
-			gui.buildPogy.alpha = 1;
+			if(!level.hideBuildPogy) {
+				gui.buildPogy.alpha = 1;
+			}
 			
 			digpogy.active = true;
 			buildpogy.active = false;
@@ -153,8 +161,10 @@ GUI.prototype = {
 	buildCallback: function(){
 		if(gui.buildPogy.alpha == 1 && !level.levelTimer.paused){
 			gui.buildPogy.alpha = 0.5;
-			gui.digPogy.alpha = 1;
-
+			if(!level.hideDigPogy) {
+				gui.digPogy.alpha = 1;
+			}
+			
 			buildpogy.active = true;
 			digpogy.active = false;
 
