@@ -20,11 +20,13 @@ Pogy.prototype = {
     this.game.physics.arcade.overlap(this.pogygroup, level.coins, collectCoin, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
 
-    //Trying to set collision for build tiles - callbackFunc should make pogys climb
-    level.map.setTileIndexCallback(136, callbackFunc, this, level.groundLayer)
     
 		//Add collision to all
     this.pogygroup.forEach(function(pogy){
+      //Trying to set collision for build tiles - callbackFunc should make pogys climb
+      level.map.setTileIndexCallback(buildpogy.tileIndex, climb, this, level.groundLayer);
+      level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimb, this, level.groundLayer);
+
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
       }
@@ -58,7 +60,7 @@ Pogy.prototype = {
       pogy.animations.add('right', [5, 6, 7, 8], 5, true);
 
       // Set initial velocity of the Pogys
-      pogy.body.velocity.x = 250;
+      pogy.body.velocity.x = 100;
       this.pogygroup.add(pogy);  
     },
 };
@@ -76,9 +78,15 @@ function collectCoin(pogy, coin){
     gui.addCoin();
 }
 
-function callbackFunc(sprite){
-  sprite.body.velocity.x = 10;
-  sprite.body.velocity.y = -100;
-  //console.log("sprite " + sprite.index);
-  
+function climb(pogy){
+  pogy.body.velocity.y = -100;
+  pogy.body.velocity.x = 0;
+  //pogy.x = pogy.x + 0.5;
+  console.log("hej");
+//Kolla om man är på toppen && om det inte är någon tile ovanför -- då gå vanligt
+}
+
+function stopClimb(pogy){
+  pogy.body.velocity.x = 100;
+  pogy.body.velocity.y = 0;
 }

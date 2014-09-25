@@ -6,7 +6,7 @@ LevelOne = function(game){
   this.coins = null;
   this.homes = null;
   // Counter for our Pogys
-  this.nrOfPogys = 1;
+  this.nrOfPogys = 10;
   this.nrOfBuildPogys = 10;
   this.nrOfDigPogys = 10;
 	this.pogyCounter = 0;

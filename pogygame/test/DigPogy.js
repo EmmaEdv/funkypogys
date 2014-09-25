@@ -25,8 +25,9 @@ DigPogy.prototype = {
 			var yPos = Math.floor(this.game.input.mousePointer.y/level.tileSize);
 
 			var clickedTile = level.map.getTile(xPos, yPos);
-			//console.log(clickedTile);
-			if(clickedTile && this.active && (level.nrOfDigPogys > 0) && this.digState) {
+
+			//Man ska inte kunna gräva på en stege!
+			if(clickedTile && (clickedTile.index!=buildpogy.tileIndex && clickedTile.index!=buildpogy.tileAbove) && this.active && (level.nrOfDigPogys > 0) && this.digState) {
 				//console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
