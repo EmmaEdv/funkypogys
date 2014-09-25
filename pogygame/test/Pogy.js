@@ -80,10 +80,9 @@ function collectCoin(pogy, coin){
 
 function climb(pogy){
   pogy.body.velocity.y = -100;
-  pogy.body.velocity.x = 0;
-  //pogy.x = pogy.x + 0.5;
-  console.log("hej");
-//Kolla om man är på toppen && om det inte är någon tile ovanför -- då gå vanligt
+  if(pogy.body.velocity.x != 0){
+    pogy.body.velocity.x = 0;
+  }
 }
 
 function stopClimb(pogy){
