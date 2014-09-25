@@ -25,6 +25,10 @@ Pogy.prototype = {
 		//Add collision to all
     this.pogygroup.forEach(function(pogy)
     {
+      //Trying to set collision for build tiles - callbackFunc should make pogys climb
+      level.map.setTileIndexCallback(buildpogy.tileIndex, climb, pogy);
+      level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimb, this, level.groundLayer);
+
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
       }
@@ -174,4 +178,16 @@ function addDigPogys(pogy, digImage) {
   gui.digPogy.alpha = 1;
   gui.digPogyText.alpha = 1;
   level.nrOfDigPogys += 10;
+}
+
+function climb(pogy){
+  pogy.body.velocity.y = -100;
+  if(pogy.body.velocity.x != 0){
+    pogy.body.velocity.x = 0;
+  }
+}
+
+function stopClimb(pogy){
+  pogy.body.velocity.x = 100;
+  pogy.body.velocity.y = 0;
 }

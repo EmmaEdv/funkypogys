@@ -27,6 +27,7 @@ BuildPogy.prototype = {
 
 			if(underClicked && (underClicked.index == this.tileIndex || underClicked.index == 32)){
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
+					
 					//Byt ut första parametern till en byggtile och den ovanför till en tileAbove:)
 					level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
 					level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
