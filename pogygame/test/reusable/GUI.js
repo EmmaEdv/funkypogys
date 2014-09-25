@@ -62,7 +62,7 @@ GUI.prototype = {
 		this.homeButton.fixedToCamera = true;
 
 		// The toolbar restartbutton
-		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start('startLevelOne');});
+		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 
 		// The toolbar pausebutton

@@ -86,56 +86,62 @@ Pogy.prototype = {
     var clickedTile = level.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos+1, yPos-1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case two - N
     clickedTile = level.map.getTile(xPos, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos, yPos-1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case three - NW
     clickedTile = level.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos-1, yPos-1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case four - E
     clickedTile = level.map.getTile(xPos+1, yPos);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos+1, yPos, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case five - W
     clickedTile = level.map.getTile(xPos-1, yPos);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos-1, yPos, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case six - SE
     clickedTile = level.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos+1, yPos+1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case seven - S
     clickedTile = level.map.getTile(xPos, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos, yPos+1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
     }
 
     // case eight - SW
     clickedTile = level.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
-      clickedTile.setCollision(false,false,false,false);
+      clickedTile.resetCollision();
+    }
+
+    // Ugly hack ... If this don't exist the collisions will be fucked up
+    if(clickedTile){
+      level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      clickedTile.resetCollision();
     }
 
     this.pogy.kill();
