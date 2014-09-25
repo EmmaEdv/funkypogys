@@ -11,7 +11,7 @@ LevelTwo = function(game){
   this.digPogys = null;
 
   // Counter for our Pogys
-  this.nrOfPogys = 10;
+  this.nrOfPogys = 1;
   this.nrOfBuildPogys = 6;
   this.nrOfDigPogys = 2;
 
@@ -47,6 +47,7 @@ LevelTwo.prototype = {
 	},
 
 	create: function(){
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
     this.levelTimer.add(60 * 1000, endGame, this);

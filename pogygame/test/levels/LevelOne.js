@@ -47,6 +47,7 @@ LevelOne.prototype = {
 	},
 
 	create: function(){
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
     this.levelTimer.add(60 * 1000, endGame, this);

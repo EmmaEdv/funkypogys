@@ -21,14 +21,14 @@ Pogy.prototype = {
     this.game.physics.arcade.overlap(this.pogygroup, level.homes, pogyFinish, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.buildPogys, addBuildPogys, null, this);
     this.game.physics.arcade.overlap(this.pogygroup, level.digPogys, addDigPogys, null, this);
-    
+
 		//Add collision to all
     this.pogygroup.forEach(function(pogy)
     {
-      //Trying to set collision for build tiles - callbackFunc should make pogys climb
-      level.map.setTileIndexCallback(buildpogy.tileIndex, climb, pogy);
+      // Trying to set collision for build tiles - callbackFunc should make pogys climb
+      level.map.setTileIndexCallback(buildpogy.tileIndex, climb, this, level.groundLayer);
       level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimb, this, level.groundLayer);
-
+      
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
       }
@@ -43,7 +43,7 @@ Pogy.prototype = {
         else {
           pogy.body.velocity.x = -100;
         }
-      }    
+      } 
     });
   },
 
@@ -52,10 +52,9 @@ Pogy.prototype = {
     //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
     var pogy = this.game.add.sprite(0, this.game.world.height-level.startYpos, 'dude');
     this.game.physics.arcade.enable(pogy);
-    pogy.body.bounce.y = 0.2;
-    pogy.body.gravity.y = 300;
     pogy.body.collideWorldBounds = true;
-    pogy.finished = false;
+    pogy.body.gravity.y = 200;
+    //pogy.finished = false;
     pogy.inputEnabled = true;
     pogy.events.onInputDown.add(this.blastPogy, {pogy: pogy});
 
@@ -74,7 +73,7 @@ Pogy.prototype = {
     var yPos = Math.floor(this.pogy.y/level.tileSize);
 
     //Add an explosion where the pogy
-    console.log("Pogy: " + this.pogy.x + " Camera: " + pogy.game.camera.x);
+    // console.log("Pogy: " + this.pogy.x + " Camera: " + pogy.game.camera.x);
     var explosion = pogy.game.add.sprite(this.pogy.x-100, this.pogy.y-100, 'explosion');
     explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50], 60, false);
     explosion.animations.play('explodes');
@@ -180,14 +179,20 @@ function addDigPogys(pogy, digImage) {
   level.nrOfDigPogys += 10;
 }
 
-function climb(pogy){
-  pogy.body.velocity.y = -100;
-  if(pogy.body.velocity.x != 0){
-    pogy.body.velocity.x = 0;
+function climb(pogys){
+  pogys.body.gravity.y  = 0;
+  pogys.body.velocity.y = -100;
+  if((pogys.body.velocity.x == 100) || (pogys.body.velocity.x == -100)) {
+    console.log("ONE");
+    pogys.body.velocity.x *= 0.00000001;
   }
 }
 
-function stopClimb(pogy){
-  pogy.body.velocity.x = 100;
-  pogy.body.velocity.y = 0;
+function stopClimb(pogys){
+  console.log("HALLÅ");
+  if((pogys.body.velocity.x <  1) && (pogys.body.velocity.x > -1)) {
+    pogys.body.velocity.x *= 100000000;
+    console.log("Two");
+  }
+  pogys.body.gravity.y = 200;
 }
