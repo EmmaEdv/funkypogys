@@ -18,7 +18,7 @@ GUI = function(game){
 
 	// Time should appear in the GUI-toolbar
 	this.gameTimeTextX = 620;
-	this.gameTimeTextY = 10;
+	this.gameTimeTextY = 13;
 
 	//Dig & build pogy
 	this.digPogy = null;
@@ -39,11 +39,12 @@ GUI.prototype = {
 		// Load images
 		this.game.load.image('coin', 'assets/coin.png');
 		this.game.load.image('pogy', 'assets/dudeHome.png');
-		this.game.load.image('toolbar', 'assets/toolbar.png');
+		this.game.load.image('toolbar', 'assets/woodenBar.png');
+		//this.game.load.image('toolbar', 'assets/toolbar.png');
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
-		this.game.load.image('homeButton', 'assets/home.png');
-		this.game.load.image('restartButton', 'assets/restart.png');
-		this.game.load.image('pauseButton', 'assets/pause.png');
+		this.game.load.image('homeButton', 'assets/homebutton.png');
+		this.game.load.image('restartButton', 'assets/restartbutton.png');
+		this.game.load.image('pauseButton', 'assets/pausebutton.png');
 
 		guiwinningscreen = new GUIWinningScreen(this.game);
     guiwinningscreen.preload();
@@ -58,15 +59,15 @@ GUI.prototype = {
 		toolbar.fixedToCamera = true;
 
 		// The toolbar homebutton
-		this.homeButton = this.game.add.button(10, 10, 'homeButton', function() {c.state.start('MainMenu');});
+		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {c.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 
 		// The toolbar restartbutton
-		this.restartButton = this.game.add.button(70, 10, 'restartButton', function() {this.game.state.start(this.game.state.current);});
+		this.restartButton = this.game.add.button(70, this.gameTimeTextY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 
 		// The toolbar pausebutton
-		this.pauseButton = this.game.add.sprite(130, 10, 'pauseButton');
+		this.pauseButton = this.game.add.sprite(130, this.gameTimeTextY, 'pauseButton');
 		this.pauseButton.inputEnabled = true;
 		this.pauseButton.events.onInputUp.add(function () {this.game.paused = true;},this);
 		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
@@ -79,39 +80,39 @@ GUI.prototype = {
 		// TimeText in the game
 		this.gameTimeText = game.add.text(this.gameTimeTextX, this.gameTimeTextY , "Time: 0.0", {
       font: "17px Arial",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.gameTimeText.fixedToCamera = true;
 
 		// Show how many Pogys reached home in le scoreboard
-		var homePogy = this.game.add.sprite(this.pogyX,  this.pogyY, 'pogy');
+		var homePogy = this.game.add.sprite(this.pogyX,  this.pogyY+5, 'pogy');
 		homePogy.fixedToCamera = true;
-    this.pogyText = game.add.text(this.pogyX+40, this.pogyY+15, "0", {
+    this.pogyText = game.add.text(this.pogyX+40, this.gameTimeTextY, "0", {
     	font: "17px Arial",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.pogyText.fixedToCamera = true;
 
-    //Buttons and counter for DigPogy
-    this.digPogy = this.game.add.button(this.centerX+35, this.pogyY, 'spade', this.digCallback);
-    this.digPogy.fixedToCamera = true;
-    this.digPogyText = game.add.text(this.centerX+70, this.pogyY, "0", {font: "17px Arial",fill: "#000",align: "left"});
-    this.digPogyText.fixedToCamera = true;
-    if(level.hideDigPogy) {
-    	this.digPogy.alpha = 0;
-    	this.digPogyText.alpha = 0;
-    }
-
     //Buttons and counter for BuildPogy
-    this.buildPogy = this.game.add.button(this.centerX-35, this.pogyY, 'ladder', this.buildCallback);
+    this.buildPogy = this.game.add.button(this.centerX-50, this.gameTimeTextY, 'ladder', this.buildCallback);
     this.buildPogy.fixedToCamera = true;
-    this.buildPogyText = game.add.text(this.centerX,this.pogyY,"0", {font: "17px Arial",fill: "#000",align: "left"});
+    this.buildPogyText = game.add.text(this.centerX, this.gameTimeTextY, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
     this.buildPogyText.fixedToCamera = true;
     if(level.hideBuildPogy) {
     	this.buildPogy.alpha = 0;
     	this.buildPogyText.alpha = 0;
+    }
+
+    //Buttons and counter for DigPogy
+    this.digPogy = this.game.add.button(this.centerX+30, this.gameTimeTextY, 'spade', this.digCallback);
+    this.digPogy.fixedToCamera = true;
+    this.digPogyText = game.add.text(this.centerX+85, this.gameTimeTextY, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
+    this.digPogyText.fixedToCamera = true;
+    if(level.hideDigPogy) {
+    	this.digPogy.alpha = 0;
+    	this.digPogyText.alpha = 0;
     }
 	},
 
@@ -168,7 +169,8 @@ GUI.prototype = {
 			buildpogy.active = true;
 			digpogy.active = false;
 
-		} else if(!level.levelTimer.paused){
+		}
+		else if(!level.levelTimer.paused){
 			gui.buildPogy.alpha = 1;
 
 			buildpogy.active = false;

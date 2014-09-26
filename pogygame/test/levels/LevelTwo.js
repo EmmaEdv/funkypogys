@@ -39,10 +39,10 @@ LevelTwo.prototype = {
 	  this.game.load.tilemap('map', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/coin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
-	  this.game.load.image('sky', 'assets/sky2.png');
+	  this.game.load.image('sky', 'assets/background.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-	  this.game.load.image('ladder', 'assets/ladder.png');
+	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
 	},
 
@@ -57,7 +57,7 @@ LevelTwo.prototype = {
 		this.game.world.setBounds(0, 0, 1750, 640);
 
 		// Set background
-		// this.game.add.sprite(0,0,'sky');
+		 this.game.add.sprite(0,0,'sky');
 
 		// Create the map
 		this.map = this.game.add.tilemap('map');
