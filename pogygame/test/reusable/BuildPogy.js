@@ -32,7 +32,6 @@ BuildPogy.prototype = {
 					level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
 					level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
 					level.nrOfBuildPogys--;
-					//this.setCollisionCallback(callbackFunc, this);
 				}
 				//Om klickad tile är en som redan är grävd eller 
 				else if((clickedTile && (clickedTile.index == digpogy.tileIndex || clickedTile.index == this.tileAbove) && this.active && (level.nrOfBuildPogys > 0))) {
