@@ -37,11 +37,11 @@ LevelTwo = function(game){
 LevelTwo.prototype = {
 	preload: function(){
 	  this.game.load.tilemap('map', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('coin', 'assets/coin.png');
+	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
 	  this.game.load.image('sky', 'assets/background.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
-	  this.game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
 	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
 	},
