@@ -8,7 +8,7 @@ GUI = function(game){
 
 	//Coins
 	this.coinsX = 600;
-	this.coinsY = 40;
+	this.coinsY = 30;
 	this.coinsInBetween = 20;
 
 	// Where the Pogy should appear in the GUI-toolbar
@@ -37,7 +37,7 @@ GUI = function(game){
 GUI.prototype = {
 	preload: function(){
 		// Load images
-		this.game.load.image('coin', 'assets/coin.png');
+		this.game.load.image('coin', 'assets/pogyCoin.png');
 		this.game.load.image('pogy', 'assets/dudeHome.png');
 		this.game.load.image('toolbar', 'assets/woodenBar.png');
 		//this.game.load.image('toolbar', 'assets/toolbar.png');
