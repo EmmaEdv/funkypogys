@@ -185,29 +185,38 @@ function climb(pogys){
     pogys.body.velocity.x *= 0.00000001;
   }
 
+
   /**  Check if pogy reaches          **
    **  the roof when climing          **
-   **  on the ladder                  **
-   **                                 **/
-   
+   **  on the ladder                  **/
+
   // Get X and Y postision of the tile where the pogy is
   var xPos = Math.floor(pogys.x/level.tileSize);
   var yPos = Math.floor(pogys.y/level.tileSize);
-  
+
   // Checks if the pogy reaches a roof and came from the right side of the ladder
   // Sends back the pogy to the left
-  var right = (pogys.body.velocity.x = 0.000001);
-  var checkTileLeft = level.map.getTile(xPos-1, yPos-1);
+  var right = (pogys.body.velocity.x == 0.000001);
+  var checkTileLeft = level.map.getTile(xPos, yPos-1);
   if(right && checkTileLeft && checkTileLeft.index == 34) {
+    console.log("Jump left");
+    pogys.body.x -= 10;
     pogys.body.velocity.x = -100;
     pogys.body.gravity.y = 200;
   }
 
   // Checks if the pogy reaches a roof and came from the right side of the ladder
   // Sends back the pogy to the right
-  var left = (pogys.body.velocity.x = -0.000001);
+
+  var left = (pogys.body.velocity.x == -0.000001);
   var checkTileRight = level.map.getTile(xPos+1, yPos-1);
-  if(left && checkTileRight && checkTileRight.index == 34) {
+
+  console.log("xPos: " + xPos);
+  console.log("yPos: " + yPos);
+  console.log(left);
+  if(left && checkTileRight) {
+    console.log("Jump right");
+    pogys.body.x += 10
     pogys.body.velocity.x = 100;
     pogys.body.gravity.y = 200;
   }
