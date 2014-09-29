@@ -101,5 +101,6 @@ LevelTwo.prototype = {
 };
 
 function endGame() {
-	console.log("End");
+	guiwinningscreen.openWindow();
+	level.levelTimer.pause();
 }

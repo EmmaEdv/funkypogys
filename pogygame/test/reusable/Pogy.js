@@ -73,7 +73,6 @@ Pogy.prototype = {
     var yPos = Math.floor(this.pogy.y/level.tileSize);
 
     //Add an explosion where the pogy
-    // console.log("Pogy: " + this.pogy.x + " Camera: " + pogy.game.camera.x);
     var explosion = pogy.game.add.sprite(this.pogy.x-100, this.pogy.y-100, 'explosion');
     explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50], 60, false);
     explosion.animations.play('explodes');
@@ -183,16 +182,50 @@ function climb(pogys){
   pogys.body.gravity.y  = 0;
   pogys.body.velocity.y = -100;
   if((pogys.body.velocity.x == 100) || (pogys.body.velocity.x == -100)) {
-    console.log("ONE");
     pogys.body.velocity.x *= 0.00000001;
+  }
+
+
+  /**  Check if pogy reaches          **
+   **  the roof when climing          **
+   **  on the ladder                  **/
+
+  // Get X and Y postision of the tile where the pogy is
+  var xPos = Math.floor(pogys.x/level.tileSize);
+  var yPos = Math.floor(pogys.y/level.tileSize);
+
+  // Checks if the pogy reaches a roof and came from the right side of the ladder
+  // Sends back the pogy to the left
+  var right = (pogys.body.velocity.x == 0.000001);
+  var checkTileLeft = level.map.getTile(xPos, yPos-1);
+  if(right && checkTileLeft && checkTileLeft.index == 34) {
+    console.log("Jump left");
+    pogys.body.x -= 10;
+    pogys.body.velocity.x = -100;
+    pogys.body.gravity.y = 200;
+  }
+
+  // Checks if the pogy reaches a roof and came from the right side of the ladder
+  // Sends back the pogy to the right
+
+  var left = (pogys.body.velocity.x == -0.000001);
+  var checkTileRight = level.map.getTile(xPos+1, yPos-1);
+
+  console.log("xPos: " + xPos);
+  console.log("yPos: " + yPos);
+  console.log(left);
+  if(left && checkTileRight) {
+    console.log("Jump right");
+    pogys.body.x += 10
+    pogys.body.velocity.x = 100;
+    pogys.body.gravity.y = 200;
   }
 }
 
 function stopClimb(pogys){
-  console.log("HALLÅ");
+  pogys.body.velocity.y = 0;
   if((pogys.body.velocity.x <  1) && (pogys.body.velocity.x > -1)) {
     pogys.body.velocity.x *= 100000000;
-    console.log("Two");
   }
   pogys.body.gravity.y = 200;
 }
