@@ -15,6 +15,7 @@ GUI = function(game){
 	this.pogyX = 730;
 	this.pogyY = 5;
 	this.pogyText = null;
+	this.levelText = null;
 
 	// Time should appear in the GUI-toolbar
 	this.gameTimeTextX = 620;
@@ -23,12 +24,12 @@ GUI = function(game){
 	//Dig & build pogy
 	this.digPogy = null;
 	this.digPogyText = null;
-	//this.activeDig = false;
 	this.buildPogy = null;
 	this.buildPogyText = null;
-	//this.activeBuild = false;
+	
 	this.centerX = 400;
 
+	// Buttons
 	this.homeButton = null;
 	this.restartButton = null;
 	this.pauseButton = null;
@@ -40,11 +41,15 @@ GUI.prototype = {
 		this.game.load.image('coin', 'assets/pogyCoin.png');
 		this.game.load.image('pogy', 'assets/dudeHome.png');
 		this.game.load.image('toolbar', 'assets/woodenBar.png');
-		//this.game.load.image('toolbar', 'assets/toolbar.png');
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
 		this.game.load.image('homeButton', 'assets/homebutton.png');
 		this.game.load.image('restartButton', 'assets/restartbutton.png');
 		this.game.load.image('pauseButton', 'assets/pausebutton.png');
+
+		// Bars för show left and right camera direction .. ? ;)
+		this.game.load.image('transparentR', 'assets/transparentRight.png');
+		this.game.load.image('transparentL', 'assets/transparentLeft.png');
+
 
 		guiwinningscreen = new GUIWinningScreen(this.game);
     guiwinningscreen.preload();
@@ -54,12 +59,28 @@ GUI.prototype = {
 		//Create a winningscreen (GUIWinningScreen.js)
 		guiwinningscreen.create();
 
+		// Transparent picture on right and left handside
+		var transparentR = this.game.add.sprite(720, 75, 'transparentR');
+		var transparentL = this.game.add.sprite(0, 75, 'transparentL');
+		transparentR.fixedToCamera = true;
+		transparentL.fixedToCamera = true;
+
+
 		// The toolbar-background
 		var toolbar = this.game.add.sprite(0, 0, 'toolbar');
 		toolbar.fixedToCamera = true;
 
+		// LevelText
+		this.levelText = game.add.text(200, 30 , "", {
+      font: "17px Arial",
+      fill: "#FFF",
+      align: "left"
+    });
+    this.levelText.fixedToCamera = true;
+    this.setLevelText();
+
 		// The toolbar homebutton
-		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {c.state.start('MainMenu');});
+		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {this.game.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 
 		// The toolbar restartbutton
@@ -175,6 +196,16 @@ GUI.prototype = {
 
 			buildpogy.active = false;
 		}
+	},
+
+	setLevelText: function() {
+		if(this.game.state.current == 'startLevelOne') {
+			this.levelText.setText("Level One");
+		}
+		else if(this.game.state.current == 'startLevelTwo') {
+			this.levelText.setText("Level Two");
+		}
+		
 	}
 };
 

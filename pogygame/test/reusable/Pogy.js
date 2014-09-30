@@ -44,6 +44,11 @@ Pogy.prototype = {
           pogy.body.velocity.x = -100;
         }
       } 
+
+      // If the level is over, kill all pogys
+      if(level.gameOver) {
+        pogy.kill()
+      }
     });
   },
 
@@ -74,7 +79,7 @@ Pogy.prototype = {
 
     //Add an explosion where the pogy
     var explosion = pogy.game.add.sprite(this.pogy.x-100, this.pogy.y-100, 'explosion');
-    explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50], 60, false);
+    explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47], 60, false);
     explosion.animations.play('explodes');
 
     // Remove he animation after it's done
@@ -226,3 +231,6 @@ function stopClimb(pogys){
   }
   pogys.body.gravity.y = 200;
 }
+
+
+

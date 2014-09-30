@@ -26,12 +26,14 @@ GUIWinningScreen = function(game){
 	// Buttons
 	this.restartButton = null;
 	this.homeButton = null;
+	this.nextLevelButton = null;
 };
 
 GUIWinningScreen.prototype = {
 	preload: function(){
 		// Upload background
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
+		this.game.load.image('nextLevelButton', 'assets/newLevelIcon.png');
 	},
 
 	create: function(){
@@ -87,12 +89,23 @@ GUIWinningScreen.prototype = {
     this.totalScore.fixedToCamera = true;
     this.totalScore.scale.set(0);
 
+    // Buttons on the winningscreen
     this.restartButton = this.game.add.button(this.winningScreenStartX+10, this.winningScreenStartY + 200, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 		this.restartButton.scale.set(0);
 		this.homeButton = this.game.add.button(this.winningScreenStartX+70, this.winningScreenStartY + 200, 'homeButton', function() {this.game.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 		this.homeButton.scale.set(0);
+		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+150, this.winningScreenStartY + 200, 'nextLevelButton', function() {
+			if(this.game.state.current == 'startLevelOne') {
+				this.game.state.start('startLevelTwo');
+			}
+			if(this.game.state.current == 'startLevelTwo') {
+				this.game.state.start('MainMenu');
+			}
+		});
+		this.nextLevelButton.fixedToCamera = true;
+		this.nextLevelButton.scale.set(0);
 	},
 
 	update: function(){
@@ -121,6 +134,7 @@ GUIWinningScreen.prototype = {
     this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
     this.restartButton.scale.set(1);
     this.homeButton.scale.set(1);
+    this.nextLevelButton.scale.set(1);
     this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
 	},
 

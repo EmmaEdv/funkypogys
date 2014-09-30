@@ -50,7 +50,7 @@ LevelTwo.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(60 * 1000, endGame, this);
+    this.levelTimer.add(10 * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
@@ -97,10 +97,12 @@ LevelTwo.prototype = {
 	},
 
 	update: function(){
-	}
+	},
+
+	endGame: function(){
+		guiwinningscreen.openWindow();
+		level.levelTimer.pause();
+		level.gameOver = true;
+	},
 };
 
-function endGame() {
-	guiwinningscreen.openWindow();
-	level.levelTimer.pause();
-}

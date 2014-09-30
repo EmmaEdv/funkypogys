@@ -1,7 +1,6 @@
 LevelOne = function(game){
 	this.game = game;
 	this.map = null;
-
 	this.groundLayer = null;
 
 	// Objects from tilemap
@@ -32,6 +31,9 @@ LevelOne = function(game){
 
   // Timer for the level
   this.levelTimer = null;
+
+  // If game is over
+  this.gameOver = false;
 };
 
 LevelOne.prototype = {
@@ -39,7 +41,6 @@ LevelOne.prototype = {
 	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
-	  //this.game.load.image('sky', 'assets/sky2.png');
 	  this.game.load.image('background', 'assets/background.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
@@ -49,9 +50,10 @@ LevelOne.prototype = {
 
 	create: function(){
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(60 * 1000, endGame, this);
+    this.levelTimer.add(10 * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
@@ -98,10 +100,11 @@ LevelOne.prototype = {
 	},
 
 	update: function(){
-	}
-};
+	},
 
-function endGame() {
-	guiwinningscreen.openWindow();
-	level.levelTimer.pause();
-}
+	endGame: function(){
+		guiwinningscreen.openWindow();
+		level.levelTimer.pause();
+		level.gameOver = true;
+	},
+};
