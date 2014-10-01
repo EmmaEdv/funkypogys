@@ -174,6 +174,10 @@ function addBuildPogys(pogy, buildImage) {
   gui.buildPogy.alpha = 1;
   gui.buildPogyText.alpha = 1;
   level.nrOfBuildPogys += 10;
+
+  if(level.showTutorialBuild) {
+    tutorialscreens.openBuildPogy();
+  }
 }
 
 function addDigPogys(pogy, digImage) {
@@ -181,6 +185,10 @@ function addDigPogys(pogy, digImage) {
   gui.digPogy.alpha = 1;
   gui.digPogyText.alpha = 1;
   level.nrOfDigPogys += 10;
+
+  if(level.showTutorialDig) {
+    tutorialscreens.openDigPogy();
+  }
 }
 
 function climb(pogys){

@@ -28,6 +28,9 @@ startLevelOne.prototype = {
 
         gui = new GUI(this.game);
         gui.preload();
+
+        tutorialscreens = new tutorialScreens(this.game);
+        tutorialscreens.preload();
 	},
 
 	create: function(){
@@ -37,6 +40,7 @@ startLevelOne.prototype = {
         buildpogy.create();
         gui.create();
         camera.create();
+        tutorialscreens.create();
 	},
 
 	update: function(){

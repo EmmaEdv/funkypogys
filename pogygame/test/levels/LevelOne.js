@@ -34,6 +34,11 @@ LevelOne = function(game){
 
   // If game is over
   this.gameOver = false;
+
+  // IF tutorial should start
+  this.showTutorialCamera = true;
+  this.showTutorialDig = true;
+  this.showTutorialBuild = false;
 };
 
 LevelOne.prototype = {
@@ -53,7 +58,7 @@ LevelOne.prototype = {
 
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(10 * 1000, this.endGame, this);
+    this.levelTimer.add(60 * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
