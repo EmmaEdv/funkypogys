@@ -33,7 +33,7 @@ GUIWinningScreen.prototype = {
 	preload: function(){
 		// Upload background
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
-		this.game.load.image('nextLevelButton', 'assets/newLevelIcon.png');
+		this.game.load.image('nextLevelButton', 'assets/nextButton.png');
 	},
 
 	create: function(){
@@ -48,7 +48,7 @@ GUIWinningScreen.prototype = {
 		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+30, 
 			"Total Time: 0", {
-      font: "17px Arial",
+      font: "17px changetomorrowtoday",
       fill: "#000",
       align: "left"
     });
@@ -60,7 +60,7 @@ GUIWinningScreen.prototype = {
     	this.winningScreenStartX+10, 
 			this.winningScreenStartY+60, 
 			"Number of coins: 0", {
-      font: "17px Arial",
+      font: "17px changetomorrowtoday",
       fill: "#000",
       align: "left"
     });
@@ -71,7 +71,7 @@ GUIWinningScreen.prototype = {
 		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+90, 
 			"Total Number Of Pogyz: 0", {
-      font: "17px Arial",
+      font: "17px changetomorrowtoday",
       fill: "#000",
       align: "left"
     });
@@ -82,7 +82,7 @@ GUIWinningScreen.prototype = {
 		this.totalScore = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+120, 
 			"Total score: 0", {
-      font: "17px Arial",
+      font: "17px changetomorrowtoday",
       fill: "#000",
       align: "left"
     });
@@ -96,7 +96,7 @@ GUIWinningScreen.prototype = {
 		this.homeButton = this.game.add.button(this.winningScreenStartX+70, this.winningScreenStartY + 200, 'homeButton', function() {this.game.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 		this.homeButton.scale.set(0);
-		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+150, this.winningScreenStartY + 200, 'nextLevelButton', function() {
+		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+140, this.winningScreenStartY + 205, 'nextLevelButton', function() {
 			if(this.game.state.current == 'startLevelOne') {
 				this.game.state.start('startLevelTwo');
 			}
