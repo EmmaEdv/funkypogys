@@ -81,7 +81,7 @@ LevelOne.prototype = {
 		this.map.setCollision(34);
 
 		// Debug
-		this.groundLayer.debug = true;
+		//this.groundLayer.debug = true;
 
 		// Add coins to the game
 		this.coins = this.game.add.group();
@@ -105,6 +105,11 @@ LevelOne.prototype = {
 	},
 
 	update: function(){
+		// Show camera tutorial
+		if(this.showTutorialCamera) {
+			this.showTutorialCamera = false;
+			tutorialscreens.openCamera();
+		}
 	},
 
 	endGame: function(){

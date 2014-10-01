@@ -37,7 +37,9 @@ Pogy.prototype = {
       }
       //If we wanna change velocity of our Pogys
       if(pogy.body.onWall()) {
-        if(pogy.body.facing % 2) {
+        
+        // Det är något fishy här.. 
+        if(pogy.body.facing % 2 || pogy.body.facing == 4) {
           pogy.body.velocity.x = 100;
         }
         else {
@@ -175,7 +177,9 @@ function addBuildPogys(pogy, buildImage) {
   gui.buildPogyText.alpha = 1;
   level.nrOfBuildPogys += 10;
 
+  // If the tutorial should been shown, show it!
   if(level.showTutorialBuild) {
+    level.showTutorialBuild = false;
     tutorialscreens.openBuildPogy();
   }
 }
@@ -186,7 +190,9 @@ function addDigPogys(pogy, digImage) {
   gui.digPogyText.alpha = 1;
   level.nrOfDigPogys += 10;
 
+  // If the tutorial should been shown, show it!
   if(level.showTutorialDig) {
+    level.showTutorialDig = false;
     tutorialscreens.openDigPogy();
   }
 }

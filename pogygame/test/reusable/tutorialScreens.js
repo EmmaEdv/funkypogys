@@ -17,8 +17,8 @@ tutorialScreens = function(game){
 	// Tutorial for buildPogy
   this.tutotialBuildPogy = null;
 	this.tutotialBuildPogyTween = null;
-	this.tutotialBuildPogyX = 250;
-	this.tutotialBuildPogyY = 200;
+	this.tutotialBuildPogyX = 330;
+	this.tutotialBuildPogyY = 80;
 
 	// Timer for how long the tutorials should been shown(in sek)
 	this.tutorialLength = 5;
@@ -33,7 +33,7 @@ tutorialScreens.prototype = {
 	create: function(){
 
 		// Set Cameratutorial
-		this.tutotialCamera = game.add.sprite(this.CameraX, this.tutotialCameraY, 'tutCamera');
+		this.tutotialCamera = game.add.sprite(this.tutotialCameraX, this.tutotialCameraY, 'tutCamera');
     this.tutotialCamera.alpha = 0.7;
     this.tutotialCamera.scale.set(0);
     this.tutotialCamera.fixedToCamera = true;

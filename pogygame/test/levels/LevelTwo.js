@@ -12,11 +12,11 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 6;
+  this.nrOfBuildPogys = 0;
   this.nrOfDigPogys = 2;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = false;
+  this.hideBuildPogy = true;
   this.hideDigPogy = false;
 
   //How many is home/picked up
@@ -31,7 +31,13 @@ LevelTwo = function(game){
   this.startYpos = 130;
 
   // Timer for the level
+  this.levelDuration = 60 // In sec
   this.levelTimer = null;
+
+  // IF tutorial should start
+  this.showTutorialCamera = false;
+  this.showTutorialDig = false;
+  this.showTutorialBuild = true;
 };
 
 LevelTwo.prototype = {
@@ -50,7 +56,7 @@ LevelTwo.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(10 * 1000, this.endGame, this);
+    this.levelTimer.add(this.levelDuration * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
