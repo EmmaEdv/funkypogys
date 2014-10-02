@@ -29,7 +29,7 @@ LevelTwo = function(game){
   this.tileSize = 70;
 
   //Startposition for our pogys
-  this.startYpos = 130;
+  this.startYpos = 200;
 
   // Timer for the level
   this.levelDuration = 60 // In sec
@@ -81,7 +81,7 @@ LevelTwo.prototype = {
 		this.map.setCollision(136);
 
 		// Debug
-		this.groundLayer.debug = true;
+		// this.groundLayer.debug = true;
 
 		// Add coins to the game
 		this.coins = this.game.add.group();

@@ -28,7 +28,7 @@ LevelOne = function(game){
   this.tileSize = 70;
 
   //Startposition for our pogys
-  this.startYpos = 330;
+  this.startYpos = 550;
 
   // Timer for the level
   this.levelTimer = null;
