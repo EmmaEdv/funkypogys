@@ -56,7 +56,6 @@ Pogy.prototype = {
 
         }
       } 
-      console.log(pogy.body.velocity.x);
 
       // If the level is over, kill all pogys
       if(level.gameOver) {
@@ -105,62 +104,62 @@ Pogy.prototype = {
     // case one - NE
     var clickedTile = level.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos-1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case two - N
     clickedTile = level.map.getTile(xPos, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos-1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case three - NW
     clickedTile = level.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos-1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case four - E
     clickedTile = level.map.getTile(xPos+1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case five - W
     clickedTile = level.map.getTile(xPos-1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case six - SE
     clickedTile = level.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case seven - S
     clickedTile = level.map.getTile(xPos, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // case eight - SW
     clickedTile = level.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
     // Ugly hack ... If this don't exist the collisions will be fucked up
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
@@ -179,13 +178,13 @@ function pogyFinish(pogy, goal){
  // If a Pogy pick up a coin
 function collectCoin(pogy, coin){
     coin.kill();
-    gui.addCoin();
+    guitoolbar.addCoin();
 }
 
 function addBuildPogys(pogy, buildImage) {
   buildImage.kill();
-  gui.buildPogy.alpha = 1;
-  gui.buildPogyText.alpha = 1;
+  guiinventory.buildPogy.alpha = 1;
+  guiinventory.buildPogyText.alpha = 1;
   level.nrOfBuildPogys += 10;
 
   // If the tutorial should been shown, show it!
@@ -197,8 +196,8 @@ function addBuildPogys(pogy, buildImage) {
 
 function addDigPogys(pogy, digImage) {
   digImage.kill();
-  gui.digPogy.alpha = 1;
-  gui.digPogyText.alpha = 1;
+  guiinventory.digPogy.alpha = 1;
+  guiinventory.digPogyText.alpha = 1;
   level.nrOfDigPogys += 10;
 
   // If the tutorial should been shown, show it!
