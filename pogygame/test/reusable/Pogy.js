@@ -39,13 +39,24 @@ Pogy.prototype = {
       if(pogy.body.onWall()) {
         
         // Det är något fishy här.. 
-        if(pogy.body.facing % 2 || pogy.body.facing == 4) {
+        if(pogy.body.facing == 1) {
           pogy.body.velocity.x = 100;
         }
-        else {
+        else if(pogy.body.facing == 2) {
           pogy.body.velocity.x = -100;
         }
+        else {
+          if(Math.random() <0.5) {
+            pogy.body.velocity.x = -100;
+          }
+          else {
+            pogy.body.velocity.x = 100;
+          }
+
+
+        }
       } 
+      console.log(pogy.body.velocity.x);
 
       // If the level is over, kill all pogys
       if(level.gameOver) {
