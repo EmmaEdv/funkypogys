@@ -1,5 +1,6 @@
 LevelOne = function(game){
 	this.game = game;
+	this.levelName = "Level One";
 	this.map = null;
 	this.groundLayer = null;
 

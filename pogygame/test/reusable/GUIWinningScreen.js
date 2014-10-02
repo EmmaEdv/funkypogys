@@ -1,11 +1,18 @@
 GUIWinningScreen = function(game){
 	this.game = game;
 
-	// Background and Tween
+	// Background
 	this.winningScreen = null;
-	this.winningScreenTween = null;
+
+	// Measures
 	this.winningScreenStartX = 250;
 	this.winningScreenStartY = 150;
+	this.spaceBetweenText = 40;
+	this.buttonsY = 250;
+	this.buttonsInBetween = 70;
+
+	// Which Level Text
+	this.levelText = null;
 
 	// Total Game Time
 	this.totalGameTimeText = null;
@@ -44,9 +51,21 @@ GUIWinningScreen.prototype = {
     this.winningScreen.scale.set(0);
     this.winningScreen.fixedToCamera = true;
 
+
+    // Total Game Time Text
+		this.levelText = game.add.text(this.winningScreenStartX+80, 
+			this.winningScreenStartY+10, 
+			level.levelName, {
+      font: "30px Arial",
+      fill: "#000",
+      align: "left"
+    });
+    this.levelText.fixedToCamera = true;
+    this.levelText.scale.set(0);
+
     // Total Game Time Text
 		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
-			this.winningScreenStartY+30, 
+			this.winningScreenStartY+this.spaceBetweenText*2, 
 			"Total Time: 0", {
       font: "17px Arial",
       fill: "#000",
@@ -58,7 +77,7 @@ GUIWinningScreen.prototype = {
     // Total number of coins
     this.totalNumberOfCoinsText = game.add.text(
     	this.winningScreenStartX+10, 
-			this.winningScreenStartY+60, 
+			this.winningScreenStartY+this.spaceBetweenText*3, 
 			"Number of coins: 0", {
       font: "17px Arial",
       fill: "#000",
@@ -69,7 +88,7 @@ GUIWinningScreen.prototype = {
 
     // Total number of Pogys
 		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+10, 
-			this.winningScreenStartY+90, 
+			this.winningScreenStartY+this.spaceBetweenText*4, 
 			"Total Number Of Pogyz: 0", {
       font: "17px Arial",
       fill: "#000",
@@ -80,7 +99,7 @@ GUIWinningScreen.prototype = {
 
     // Total score
 		this.totalScore = game.add.text(this.winningScreenStartX+10, 
-			this.winningScreenStartY+120, 
+			this.winningScreenStartY+this.spaceBetweenText*5, 
 			"Total score: 0", {
       font: "17px Arial",
       fill: "#000",
@@ -90,13 +109,13 @@ GUIWinningScreen.prototype = {
     this.totalScore.scale.set(0);
 
     // Buttons on the winningscreen
-    this.restartButton = this.game.add.button(this.winningScreenStartX+10, this.winningScreenStartY + 200, 'restartButton', function() {this.game.state.start(this.game.state.current);});
+    this.restartButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween, this.winningScreenStartY + this.buttonsY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 		this.restartButton.scale.set(0);
-		this.homeButton = this.game.add.button(this.winningScreenStartX+70, this.winningScreenStartY + 200, 'homeButton', function() {this.game.state.start('MainMenu');});
+		this.homeButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*2, this.winningScreenStartY + this.buttonsY, 'homeButton', function() {this.game.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 		this.homeButton.scale.set(0);
-		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+150, this.winningScreenStartY + 200, 'nextLevelButton', function() {
+		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*3, this.winningScreenStartY + this.buttonsY, 'nextLevelButton', function() {
 			if(this.game.state.current == 'startLevelOne') {
 				this.game.state.start('startLevelTwo');
 			}
@@ -127,11 +146,9 @@ GUIWinningScreen.prototype = {
 
 	// Open winningScreen
 	openWindow: function() {
-    if ((this.winningScreenTween && this.winningScreenTween.isRunning) || this.winningScreen.scale.x === 1) {
-        return;
-    }
     //  Create a tween that will pop-open the window, but only if it's not already tweening or open
-    this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+    this.winningScreen.scale.set(1);
+    this.levelText.scale.set(1);
     this.restartButton.scale.set(1);
     this.homeButton.scale.set(1);
     this.nextLevelButton.scale.set(1);

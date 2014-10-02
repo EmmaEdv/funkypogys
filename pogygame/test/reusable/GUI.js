@@ -71,13 +71,12 @@ GUI.prototype = {
 		toolbar.fixedToCamera = true;
 
 		// LevelText
-		this.levelText = game.add.text(200, 30 , "", {
+		this.levelText = game.add.text(200, 30 , level.levelName, {
       font: "17px Arial",
       fill: "#FFF",
       align: "left"
     });
     this.levelText.fixedToCamera = true;
-    this.setLevelText();
 
 		// The toolbar homebutton
 		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {this.game.state.start('MainMenu');});
@@ -197,16 +196,6 @@ GUI.prototype = {
 			buildpogy.active = false;
 		}
 	},
-
-	setLevelText: function() {
-		if(this.game.state.current == 'startLevelOne') {
-			this.levelText.setText("Level One");
-		}
-		else if(this.game.state.current == 'startLevelTwo') {
-			this.levelText.setText("Level Two");
-		}
-		
-	}
 };
 
 
