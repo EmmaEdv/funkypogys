@@ -45,6 +45,7 @@ startLevelTwo.prototype = {
 	},
 
 	update: function(){
+        level.update();
 		pogy.update();
         gui.update();
         camera.update();

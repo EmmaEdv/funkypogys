@@ -2,6 +2,7 @@ LevelTwo = function(game){
 	this.game = game;
 	this.levelName = "Level Two";
 	this.nextLevel = "MainMenu";
+	this.levelScore = null;
 	this.map = null;
 
 	this.groundLayer = null;
@@ -106,6 +107,8 @@ LevelTwo.prototype = {
 	},
 
 	update: function(){
+		console.log("Dis level: " + this.levelScore);
+		console.log("TOT level: " + boot.levelTwoScore);
 		if(this.levelScore > boot.levelTwoScore) {
 		 	boot.levelTwoScore = this.levelScore;
 		}
