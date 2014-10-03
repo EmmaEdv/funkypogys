@@ -37,7 +37,7 @@ Pogy.prototype = {
       }
       //If we wanna change velocity of our Pogys
       if(pogy.body.onWall()) {
-        
+        //Hannes random funktion som jag inte har någon aning om vad den gör :( 
         // Det är något fishy här.. 
         if(pogy.body.facing == 1) {
           pogy.body.velocity.x = 100;
@@ -52,8 +52,6 @@ Pogy.prototype = {
           else {
             pogy.body.velocity.x = 100;
           }
-
-
         }
       } 
 
