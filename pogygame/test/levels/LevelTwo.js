@@ -106,6 +106,9 @@ LevelTwo.prototype = {
 	},
 
 	update: function(){
+		if(this.levelScore > boot.levelTwoScore) {
+		 	boot.levelTwoScore = this.levelScore;
+		}
 	},
 
 	endGame: function(){

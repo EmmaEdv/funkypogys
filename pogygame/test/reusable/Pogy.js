@@ -103,6 +103,7 @@ Pogy.prototype = {
     var clickedTile = level.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos-1, 1, 1);
+      level.map.getTile(xPos+1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -110,6 +111,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos-1, 1, 1);
+      level.map.getTile(xPos, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -117,6 +119,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos-1, 1, 1);
+      level.map.getTile(xPos-1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -124,6 +127,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos+1, yPos);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos, 1, 1);
+      level.map.getTile(xPos+1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -131,6 +135,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos-1, yPos);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos, 1, 1);
+      level.map.getTile(xPos-1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -138,6 +143,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos+1, 1, 1);
+      level.map.getTile(xPos+1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -145,6 +151,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos+1, 1, 1);
+      level.map.getTile(xPos, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
@@ -152,6 +159,7 @@ Pogy.prototype = {
     clickedTile = level.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
+      level.map.getTile(xPos-1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 

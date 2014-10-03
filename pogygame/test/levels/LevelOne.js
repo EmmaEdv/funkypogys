@@ -2,6 +2,7 @@ LevelOne = function(game){
 	this.game = game;
 	this.levelName = "Level One";
 	this.nextLevel = "startLevelTwo";
+	this.levelScore = 0;
 
 	this.map = null;
 	this.groundLayer = null;
@@ -108,10 +109,14 @@ LevelOne.prototype = {
 	},
 
 	update: function(){
-		// Show camera tutorial
+		// Show camera tutorial in the begining
 		if(this.showTutorialCamera) {
 			this.showTutorialCamera = false;
 			tutorialscreens.openCamera();
+		}
+
+		if(this.levelScore > boot.levelOneScore) {
+		 	boot.levelOneScore = this.levelScore;
 		}
 	},
 

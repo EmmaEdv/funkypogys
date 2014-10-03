@@ -4,20 +4,20 @@ tutorialScreens = function(game){
   // Tutorial for change camera pos
   this.tutotialCamera = null;
 	this.tutotialCameraTween = null;
-	this.tutotialCameraX = 600;
-	this.tutotialCameraY = 200;
+	this.tutotialCameraX = 500;
+	this.tutotialCameraY = 100;
 
 	// Tutorial for digpogy
   this.tutotialDigPogy = null;
 	this.tutotialDigPogyTween = null;
-	this.tutotialDigPogyX = 450;
+	this.tutotialDigPogyX = 250;
 	this.tutotialDigPogyY = 550;
 
 
 	// Tutorial for buildPogy
   this.tutotialBuildPogy = null;
 	this.tutotialBuildPogyTween = null;
-	this.tutotialBuildPogyX = 350;
+	this.tutotialBuildPogyX = 150;
 	this.tutotialBuildPogyY = 550;
 
 	// Timer for how long the tutorials should been shown(in sek)
@@ -25,9 +25,9 @@ tutorialScreens = function(game){
 };
 tutorialScreens.prototype = {
 	preload: function(){
-		this.game.load.image('tutCamera', 'assets/pratbubbla.png');
-		this.game.load.image('tutDigPogy', 'assets/pratbubbla.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla.png');
+		this.game.load.image('tutCamera', 'assets/pratbubbla_left.png');
+		this.game.load.image('tutDigPogy', 'assets/pratbubbla_down.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_down.png');
 	},
 
 	create: function(){

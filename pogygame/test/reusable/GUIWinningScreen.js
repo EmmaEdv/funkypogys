@@ -171,6 +171,7 @@ GUIWinningScreen.prototype = {
 	calculateTotalScore: function() {
 		var totScore = ((level.coinsCounter * level.pogyCounter) * (level.levelTimer.duration.toFixed(1)/1000));
 		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
+		level.levelScore = totScore.toFixed(0);
 	},
 
 	// Close winningScreen
