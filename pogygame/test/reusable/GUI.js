@@ -20,6 +20,7 @@ GUI.prototype = {
 	},
 
 	create: function(){
+		
 		//Create a winningscreen (GUIWinningScreen.js)
 		guiwinningscreen.create();
 		guiinventory.create();
