@@ -32,7 +32,8 @@ DigPogy.prototype = {
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
 				clickedTile.resetCollision();
-				level.map.replace(clickedTile.index, 9, xPos, yPos, 1, 1);
+				level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1);
+				level.map.getTile(xPos, yPos).alpha = 0;
 				level.nrOfDigPogys--;
 				this.timerCheck.add(500, this.setTimerCheck, this);
 				this.digState = false;

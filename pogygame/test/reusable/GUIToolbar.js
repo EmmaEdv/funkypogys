@@ -33,7 +33,7 @@ GUIToolbar.prototype = {
 	preload: function(){
 		// Load images
 		this.game.load.image('coin', 'assets/pogyCoin.png');
-		this.game.load.image('pogy', 'assets/dudeHome.png');
+		this.game.load.image('pogy', 'assets/pogyHome.png', 4);
 		this.game.load.image('toolbar', 'assets/woodenBar.png');
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
 		this.game.load.image('homeButton', 'assets/homebutton.png');
@@ -82,7 +82,7 @@ GUIToolbar.prototype = {
     this.gameTimeText.fixedToCamera = true;
 
 		// Show how many Pogys reached home in le scoreboard
-		var homePogy = this.game.add.sprite(this.pogyX,  this.pogyY+5, 'pogy');
+		var homePogy = this.game.add.sprite(this.pogyX, this.pogyY+5, 'pogy');
 		homePogy.fixedToCamera = true;
     this.pogyText = game.add.text(this.pogyX+40, this.gameTimeTextY, "0", {
     	font: "17px Arial",
