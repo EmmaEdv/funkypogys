@@ -10,15 +10,15 @@ tutorialScreens = function(game){
 	// Tutorial for digpogy
   this.tutotialDigPogy = null;
 	this.tutotialDigPogyTween = null;
-	this.tutotialDigPogyX = 400;
-	this.tutotialDigPogyY = 80;
+	this.tutotialDigPogyX = 450;
+	this.tutotialDigPogyY = 550;
 
 
 	// Tutorial for buildPogy
   this.tutotialBuildPogy = null;
 	this.tutotialBuildPogyTween = null;
-	this.tutotialBuildPogyX = 330;
-	this.tutotialBuildPogyY = 80;
+	this.tutotialBuildPogyX = 350;
+	this.tutotialBuildPogyY = 550;
 
 	// Timer for how long the tutorials should been shown(in sek)
 	this.tutorialLength = 5;

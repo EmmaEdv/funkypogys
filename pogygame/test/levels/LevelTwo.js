@@ -1,6 +1,7 @@
 LevelTwo = function(game){
 	this.game = game;
 	this.levelName = "Level Two";
+	this.nextLevel = "MainMenu";
 	this.map = null;
 
 	this.groundLayer = null;
@@ -13,11 +14,11 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 10;
-  this.nrOfDigPogys = 2;
+  this.nrOfBuildPogys = 0;
+  this.nrOfDigPogys = 1;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = false;
+  this.hideBuildPogy = true;
   this.hideDigPogy = false;
 
   //How many is home/picked up

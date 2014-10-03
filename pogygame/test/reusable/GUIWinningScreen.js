@@ -115,14 +115,7 @@ GUIWinningScreen.prototype = {
 		this.homeButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*2, this.winningScreenStartY + this.buttonsY, 'homeButton', function() {this.game.state.start('MainMenu');});
 		this.homeButton.fixedToCamera = true;
 		this.homeButton.scale.set(0);
-		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*3, this.winningScreenStartY + this.buttonsY, 'nextLevelButton', function() {
-			if(this.game.state.current == 'startLevelOne') {
-				this.game.state.start('startLevelTwo');
-			}
-			if(this.game.state.current == 'startLevelTwo') {
-				this.game.state.start('MainMenu');
-			}
-		});
+		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*3, this.winningScreenStartY + this.buttonsY, 'nextLevelButton', function() {this.game.state.start(level.nextLevel)});
 		this.nextLevelButton.fixedToCamera = true;
 		this.nextLevelButton.scale.set(0);
 	},
