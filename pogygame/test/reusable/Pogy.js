@@ -25,7 +25,7 @@ Pogy.prototype = {
 		//Add collision to all
     this.pogygroup.forEach(function(pogy)
     { 
-      // Trying to set collision for build tiles - callbackFunc should make pogys climb
+      // Trying to set collision for build tiles - callbackFunc should make pogys climb and jump off
       level.map.setTileIndexCallback(buildpogy.tileIndex, climbs, this, level.groundLayer);
       level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimbing, this, level.groundLayer);
 
