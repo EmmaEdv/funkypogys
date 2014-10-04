@@ -15,11 +15,11 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 0;
-  this.nrOfDigPogys = 1;
+  this.nrOfBuildPogys = 10;
+  this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = true;
+  this.hideBuildPogy = false;
   this.hideDigPogy = false;
 
   //How many is home/picked up
@@ -80,7 +80,6 @@ LevelTwo.prototype = {
 		// Set Collision
 		this.map.setCollision(32);
 		this.map.setCollision(34);
-		this.map.setCollision(136);
 
 		// Debug
 		// this.groundLayer.debug = true;
@@ -107,15 +106,13 @@ LevelTwo.prototype = {
 	},
 
 	update: function(){
-		console.log("Dis level: " + this.levelScore);
-		console.log("TOT level: " + boot.levelTwoScore);
 		if(this.levelScore > boot.levelTwoScore) {
 		 	boot.levelTwoScore = this.levelScore;
 		}
 	},
 
 	endGame: function(){
-		guiwinningscreen.openWindow();
+		guiendgamescreen.openWindow();
 		level.levelTimer.pause();
 		level.gameOver = true;
 	},

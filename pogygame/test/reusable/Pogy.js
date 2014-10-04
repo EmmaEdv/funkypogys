@@ -26,8 +26,8 @@ Pogy.prototype = {
     this.pogygroup.forEach(function(pogy)
     { 
       // Trying to set collision for build tiles - callbackFunc should make pogys climb
-      level.map.setTileIndexCallback(buildpogy.tileIndex, climb, this, level.groundLayer);
-      level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimb, this, level.groundLayer);
+      level.map.setTileIndexCallback(buildpogy.tileIndex, climbs, this, level.groundLayer);
+      level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimbing, this, level.groundLayer);
 
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
@@ -35,16 +35,21 @@ Pogy.prototype = {
       else {
         pogy.animations.play('left');
       }
-      //If we wanna change velocity of our Pogys
+      //If a Pogy hit a wall
       if(pogy.body.onWall()) {
-        //Hannes random funktion som jag inte har någon aning om vad den gör :( 
-        // Det är något fishy här.. 
+        // Facing left - change velocity to right
         if(pogy.body.facing == 1) {
           pogy.body.velocity.x = 100;
         }
+        // Facing right - change velocity to left
         else if(pogy.body.facing == 2) {
           pogy.body.velocity.x = -100;
         }
+        // Here comes the fishy ...
+        // Else the pogy facing up or down.
+        // The pogy hit a wall when it's in the air.
+        // 50% send back the pogy to the left, 50% to the right.
+        // If it's the wrong direction it will have a new try next frame.
         else {
           if(Math.random() <0.5) {
             pogy.body.velocity.x = -100;
@@ -213,13 +218,14 @@ function addDigPogys(pogy, digImage) {
   }
 }
 
-function climb(pogys){
+function climbs(pogys){
+  console.log("Begin climb");
+
   pogys.body.gravity.y  = 0;
   pogys.body.velocity.y = -100;
   if((pogys.body.velocity.x == 100) || (pogys.body.velocity.x == -100)) {
     pogys.body.velocity.x *= 0.00000001;
   }
-
 
   /**  Check if pogy reaches          **
    **  the roof when climing          **
@@ -254,7 +260,8 @@ function climb(pogys){
   }
 }
 
-function stopClimb(pogys){
+function stopClimbing(pogys){
+  console.log("Stop climbing");
   pogys.body.velocity.y = 0;
   if((pogys.body.velocity.x <  1) && (pogys.body.velocity.x > -1)) {
     pogys.body.velocity.x *= 100000000;

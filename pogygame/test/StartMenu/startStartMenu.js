@@ -5,19 +5,19 @@ startStartMenu = function(game){
 startStartMenu.prototype = {
 	preload: function(){
 
-		level = new StartMenu(this.game);
-		level.preload();
-		pogy = new startPogy(this.game);
-		pogy.preload();
+		startmenu = new StartMenu(this.game);
+		startmenu.preload();
+		startPogy = new startPogy(this.game);
+		startPogy.preload();
 	},
 
 	create: function(){
-		level.create();
-		pogy.create();
+		startmenu.create();
+		startPogy.create();
 	},
 
 	update: function(){
-		level.update();
-		pogy.update();
+		startmenu.update();
+		startPogy.update();
 	},
 };
