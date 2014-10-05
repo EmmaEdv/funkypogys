@@ -1,23 +1,23 @@
 startStartMenu = function(game){
-	this.game = game;
+	this.game = boot.game;
 };
 
 startStartMenu.prototype = {
 	preload: function(){
-
 		startmenu = new StartMenu(this.game);
 		startmenu.preload();
-		startPogy = new startPogy(this.game);
-		startPogy.preload();
+		
+		startpogy = new startPogy(this.game);
+		startpogy.preload();
 	},
 
 	create: function(){
 		startmenu.create();
-		startPogy.create();
+		startpogy.create();
 	},
 
 	update: function(){
 		startmenu.update();
-		startPogy.update();
+		startpogy.update();
 	},
 };

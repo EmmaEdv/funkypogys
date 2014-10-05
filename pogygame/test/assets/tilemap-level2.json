@@ -32,7 +32,7 @@
                  "ellipse":true,
                  "height":16,
                  "name":"",
-                 "gid": 1001,
+                 "gid": 1002,
                  "properties":
                     {
 
@@ -42,7 +42,7 @@
                  "visible":true,
                  "width":17,
                  "x":663,
-                 "y":468
+                 "y":490
                 }],
          "opacity":1,
          "type":"objectgroup",
