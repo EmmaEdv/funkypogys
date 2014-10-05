@@ -20,9 +20,6 @@ StartMenu.prototype = {
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('kenney', 'assets/kenney.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
-
-	  pogy = new Pogy(this.game);
-    pogy.preload();
 	},
 
 	create: function(){
@@ -56,12 +53,9 @@ StartMenu.prototype = {
 		// Level highscore texts
 		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});
 		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Arial",fill: "#FFF",align: "left"});
-
-		pogy.create();
 	},
 
 	update: function(){
-		pogy.update();
 	}
 };
 

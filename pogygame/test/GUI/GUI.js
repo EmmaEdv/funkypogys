@@ -9,8 +9,8 @@ GUI.prototype = {
 		this.game.load.image('transparentL', 'assets/transparentLeft.png');
 
 
-		guiwinningscreen = new GUIWinningScreen(this.game);
-    guiwinningscreen.preload();
+		guiendgamescreen = new GUIEndGameScreen(this.game);
+    guiendgamescreen.preload();
 
     guiinventory = new GUIinventory(this.game);
     guiinventory.preload();
@@ -21,8 +21,8 @@ GUI.prototype = {
 
 	create: function(){
 		
-		//Create a winningscreen (GUIWinningScreen.js)
-		guiwinningscreen.create();
+		//Create a winningscreen (guiendgamescreen.js)
+		guiendgamescreen.create();
 		guiinventory.create();
 		guitoolbar.create();
 
@@ -34,7 +34,7 @@ GUI.prototype = {
 	},
 
 	update: function(){
-		guiwinningscreen.update();
+		guiendgamescreen.update();
 		guiinventory.update();
 		guitoolbar.update();
 	},

@@ -11,18 +11,19 @@ startPogy.prototype = {
 
 	create: function(){
     this.pogygroup = this.game.add.group();
-    this.game.time.events.repeat(Phaser.Timer.SECOND, level.nrOfPogys, this.createPogy, this);
+    this.game.time.events.repeat(Phaser.Timer.SECOND, startmenu.nrOfPogys, this.createPogy, this);
 	},
 
 	update: function(){
     //Collision towards ground
-	  this.game.physics.arcade.collide(this.pogygroup, level.groundLayer);
+	  this.game.physics.arcade.collide(this.pogygroup, startmenu.groundLayer);
 
 		//Add collision to all
     this.pogygroup.forEach(function(pogy) { 
+
       // Trying to set collision for build tiles - callbackFunc should make pogys climb
-      level.map.setTileIndexCallback(136, climb, this, level.groundLayer);
-      level.map.setTileIndexCallback(113, stopClimb, this, level.groundLayer);
+      startmenu.map.setTileIndexCallback(136, climb, this, startmenu.groundLayer);
+      startmenu.map.setTileIndexCallback(113, stopClimb, this, startmenu.groundLayer);
 
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
@@ -32,16 +33,24 @@ startPogy.prototype = {
       }
       //If we wanna change velocity of our Pogys
       if(pogy.body.onWall()) {
-        //Hannes random funktion som jag inte har någon aning om vad den gör :( 
-        // Det är något fishy här.. 
+
+        // If the pogy facing left
         if(pogy.body.facing == 1) {
           pogy.body.velocity.x = 100;
         }
+        // If the pogy facing right
         else if(pogy.body.facing == 2) {
           pogy.body.velocity.x = -100;
         }
+        // Here comes the fishy ...
+        // Else the pogy facing up or down.
+        // The pogy hit a wall when it's in the air.
+        // 50% send back the pogy to the left, 50% to the right.
+        // If it's the wrong direction it will have a new try next frame.
         else {
-          if(Math.random() <0.5) {
+
+          // Math.random() returns a number between 0-1
+          if(Math.random() < 0.5) {
             pogy.body.velocity.x = -100;
           }
           else {
@@ -55,7 +64,7 @@ startPogy.prototype = {
   // Create new pogys and add to pogy group
   createPogy: function() {
     //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
-    var pogy = this.game.add.sprite(0, this.game.world.height-level.startYpos, 'dude');
+    var pogy = this.game.add.sprite(0, this.game.world.height-startmenu.startYpos, 'dude');
     this.game.physics.arcade.enable(pogy);
     pogy.body.collideWorldBounds = true;
     pogy.body.gravity.y = 200;
@@ -73,8 +82,8 @@ startPogy.prototype = {
 
   blastPogy: function() {
     // Get X and Y postision of the tile
-    var xPos = Math.floor(this.pogy.x/level.tileSize);
-    var yPos = Math.floor(this.pogy.y/level.tileSize);
+    var xPos = Math.floor(this.pogy.x/startmenu.tileSize);
+    var yPos = Math.floor(this.pogy.y/startmenu.tileSize);
 
     //Add an explosion where the pogy
     var explosion = pogy.game.add.sprite(this.pogy.x-100, this.pogy.y-100, 'explosion');
@@ -89,72 +98,72 @@ startPogy.prototype = {
     ****/
 
     // case one - NE
-    var clickedTile = level.map.getTile(xPos+1, yPos-1);
+    var clickedTile = startmenu.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos-1, 1, 1);
-      level.map.getTile(xPos+1, yPos-1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos-1, 1, 1);
+      startmenu.map.getTile(xPos+1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case two - N
-    clickedTile = level.map.getTile(xPos, yPos-1);
+    clickedTile = startmenu.map.getTile(xPos, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos, yPos-1, 1, 1);
-      level.map.getTile(xPos, yPos-1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos, yPos-1, 1, 1);
+      startmenu.map.getTile(xPos, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case three - NW
-    clickedTile = level.map.getTile(xPos-1, yPos-1);
+    clickedTile = startmenu.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos-1, 1, 1);
-      level.map.getTile(xPos-1, yPos-1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos-1, 1, 1);
+      startmenu.map.getTile(xPos-1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case four - E
-    clickedTile = level.map.getTile(xPos+1, yPos);
+    clickedTile = startmenu.map.getTile(xPos+1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos, 1, 1);
-      level.map.getTile(xPos+1, yPos).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos, 1, 1);
+      startmenu.map.getTile(xPos+1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case five - W
-    clickedTile = level.map.getTile(xPos-1, yPos);
+    clickedTile = startmenu.map.getTile(xPos-1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos, 1, 1);
-      level.map.getTile(xPos-1, yPos).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos, 1, 1);
+      startmenu.map.getTile(xPos-1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case six - SE
-    clickedTile = level.map.getTile(xPos+1, yPos+1);
+    clickedTile = startmenu.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos+1, yPos+1, 1, 1);
-      level.map.getTile(xPos+1, yPos+1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos+1, 1, 1);
+      startmenu.map.getTile(xPos+1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case seven - S
-    clickedTile = level.map.getTile(xPos, yPos+1);
+    clickedTile = startmenu.map.getTile(xPos, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos, yPos+1, 1, 1);
-      level.map.getTile(xPos, yPos+1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos, yPos+1, 1, 1);
+      startmenu.map.getTile(xPos, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // case eight - SW
-    clickedTile = level.map.getTile(xPos-1, yPos+1);
+    clickedTile = startmenu.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
-      level.map.getTile(xPos-1, yPos+1).alpha = 0;
+      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      startmenu.map.getTile(xPos-1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // Ugly hack ... If this don't exist the collisions will be fucked up
     if(clickedTile){
-      level.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
@@ -163,8 +172,12 @@ startPogy.prototype = {
 };
 
 function climb(pogys){
+  // Set the gravity to 0
   pogys.body.gravity.y  = 0;
+
+  // Set velocity to -100
   pogys.body.velocity.y = -100;
+
   if((pogys.body.velocity.x == 100) || (pogys.body.velocity.x == -100)) {
     pogys.body.velocity.x *= 0.00000001;
   }
@@ -175,13 +188,13 @@ function climb(pogys){
    **  on the ladder                  **/
 
   // Get X and Y postision of the tile where the pogy is
-  var xPos = Math.floor(pogys.x/level.tileSize);
-  var yPos = Math.floor((pogys.y + (level.tileSize - 1))/level.tileSize);
+  var xPos = Math.floor(pogys.x/startmenu.tileSize);
+  var yPos = Math.floor((pogys.y + (startmenu.tileSize - 1))/startmenu.tileSize);
 
   // Checks if the pogy reaches a roof and came from the right side of the ladder
   // Sends back the pogy to the left
   var right = (pogys.body.velocity.x == 0.000001);
-  var checkTileLeft = level.map.getTile(xPos, yPos-1);
+  var checkTileLeft = startmenu.map.getTile(xPos, yPos-1);
   if(right && checkTileLeft && (checkTileLeft.index == 34 || checkTileLeft.index == 32)) {
     console.log("Jump left");
     pogys.body.x -= 10;
@@ -191,13 +204,13 @@ function climb(pogys){
 
   // Checks if the pogy reaches a roof and came from the right side of the ladder
   // Sends back the pogy to the right
-  var xPos = Math.ceil(pogys.x/level.tileSize);
+  var xPos = Math.ceil(pogys.x/startmenu.tileSize);
   var left = (pogys.body.velocity.x == -0.000001);
-  var checkTileRight = level.map.getTile(xPos, yPos-1);
+  var checkTileRight = startmenu.map.getTile(xPos, yPos-1);
 
   if(left && checkTileRight && (checkTileLeft.index == 34 || checkTileLeft.index == 32)) {
     console.log("Jump right");
-    pogys.body.x += 10
+    pogys.body.x += 10;
     pogys.body.velocity.x = 100;
     pogys.body.gravity.y = 200;
   }

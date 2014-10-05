@@ -121,7 +121,7 @@ LevelOne.prototype = {
 	},
 
 	endGame: function(){
-		guiwinningscreen.openWindow();
+		guiendgamescreen.openWindow();
 		level.levelTimer.pause();
 		level.gameOver = true;
 	},

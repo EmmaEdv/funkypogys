@@ -1,4 +1,4 @@
-GUIWinningScreen = function(game){
+GUIEndGameScreen = function(game){
 	this.game = game;
 
 	// Background
@@ -13,6 +13,9 @@ GUIWinningScreen = function(game){
 
 	// Which Level Text
 	this.levelText = null;
+
+	// Losingtext
+	this.losingText = null;
 
 	// Total Game Time
 	this.totalGameTimeText = null;
@@ -36,7 +39,7 @@ GUIWinningScreen = function(game){
 	this.nextLevelButton = null;
 };
 
-GUIWinningScreen.prototype = {
+GUIEndGameScreen.prototype = {
 	preload: function(){
 		// Upload background
 		this.game.load.image('winningScreen', 'assets/winningScreen.png');
@@ -44,6 +47,7 @@ GUIWinningScreen.prototype = {
 	},
 
 	create: function(){
+
 		// The WinningScreen, background
 		this.winningScreen = game.add.sprite(this.winningScreenStartX, this.winningScreenStartY, 'winningScreen');
     this.winningScreen.alpha = 0.7;
@@ -62,6 +66,17 @@ GUIWinningScreen.prototype = {
     });
     this.levelText.fixedToCamera = true;
     this.levelText.scale.set(0);
+
+    // Total Game Time Text
+		this.losingText = game.add.text(this.winningScreenStartX+80, 
+			this.winningScreenStartY+70, 
+			"Sorry, no pogy came home \n Try again!", {
+      font: "12px Arial",
+      fill: "#000",
+      align: "left"
+    });
+    this.losingText.fixedToCamera = true;
+    this.losingText.scale.set(0);
 
     // Total Game Time Text
 		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
@@ -108,7 +123,7 @@ GUIWinningScreen.prototype = {
     this.totalScore.fixedToCamera = true;
     this.totalScore.scale.set(0);
 
-    // Buttons on the winningscreen
+    // Buttons on the winningscreen. Set these fixedToCamera and to scale zero.
     this.restartButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween, this.winningScreenStartY + this.buttonsY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 		this.restartButton.scale.set(0);
@@ -130,7 +145,7 @@ GUIWinningScreen.prototype = {
 		// Update the Number of Pogys
 		this.totalNumberOfPogys.setText("Total number of Pogys: " + level.pogyCounter);
 
-		// Show the screen when all pogys are home
+		// Show the screen when all pogys are home or if all pogys are dead
 		if(level.pogyCounter == level.nrOfPogys || level.pogysLeft == 0) {
 			this.openWindow();
 			level.levelTimer.pause();
@@ -139,15 +154,26 @@ GUIWinningScreen.prototype = {
 
 	// Open winningScreen
 	openWindow: function() {
+
     //  Create a tween that will pop-open the window, but only if it's not already tweening or open
     this.winningScreen.scale.set(1);
     this.levelText.scale.set(1);
+
     this.restartButton.scale.set(1);
     this.homeButton.scale.set(1);
-    this.nextLevelButton.scale.set(1);
-    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
+    
+    // If more than zero pogy reach the homre
+    if(level.pogyCounter != 0) {
+    	// Show new level buttom and show total time in 1sec
+    	this.nextLevelButton.scale.set(1);
+    	this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
+    } else {
+    	// Show the text about losing
+    	this.losingText.scale.set(1);
+    }
 	},
 
+	// Next four functions happends after eachother. One secound in between
 	showTotalTimeText: function() {
 		this.totalGameTimeTextTween = this.game.add.tween(this.totalGameTimeText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
     this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalNumberOfCoinsText, this);
@@ -173,13 +199,4 @@ GUIWinningScreen.prototype = {
 		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
 		level.levelScore = totScore.toFixed(0);
 	},
-
-	// Close winningScreen
-	closeWindow: function() {
-    if (this.winningScreenTween.isRunning || this.winningScreenTween.scale.x === 0) {
-        return;
-    }
-    //  Create a tween that will close the window, but only if it's not already tweening or closed
-    this.winningScreenTween = this.game.add.tween(this.winningScreen.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
-	}
 };
