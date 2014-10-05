@@ -50,7 +50,7 @@ LevelOne.prototype = {
 	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('kenney', 'assets/kenney.png');
-	  this.game.load.image('background', 'assets/background.png');
+	  this.game.load.image('background', 'assets/bgMorning.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
 	  this.game.load.image('ladder', 'assets/build.png');
