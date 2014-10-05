@@ -27,6 +27,8 @@ GUIinventory.prototype = {
 
 		//Buttons and counter for BuildPogy
     this.buildPogy = this.game.add.button(this.buttonX, this.buttonY, 'ladder', this.buildCallback);
+    var buildPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
+    buildPogyKey.onDown.add(this.buildCallback, this);
     this.buildPogy.fixedToCamera = true;
     this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
     this.buildPogyText.fixedToCamera = true;
@@ -37,6 +39,8 @@ GUIinventory.prototype = {
 
     //Buttons and counter for DigPogy
     this.digPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'spade', this.digCallback);
+    var digPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+    digPogyKey.onDown.add(this.digCallback, this);
     this.digPogy.fixedToCamera = true;
     this.digPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
     this.digPogyText.fixedToCamera = true;
