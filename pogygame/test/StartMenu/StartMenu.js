@@ -63,7 +63,7 @@ StartMenu.prototype = {
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
-		this.themeSong.play();
+		//this.themeSong.play();
 	},
 
 	update: function(){
