@@ -14,7 +14,7 @@ StartMenu = function(game){
 
 StartMenu.prototype = {
 	preload: function(){
-		this.game.load.image('backgroundPicture', 'assets/background.png');
+		this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
 		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
