@@ -8,7 +8,7 @@ StartMenu = function(game){
 	this.levelFourButton = null;
 
   //Startposition for our pogys
-  this.startYpos = 50;
+  this.startYpos = 150;
   this.nrOfPogys = 10;
 };
 
@@ -18,8 +18,8 @@ StartMenu.prototype = {
 		this.game.load.spritesheet('button', 'assets/button_sprite_sheet.png', 193, 71);
 
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('kenney', 'assets/kenney.png');
-	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
+	  this.game.load.image('kenneySmall', 'assets/kenney.png');
+	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
 	},
 
 	create: function(){
@@ -31,13 +31,13 @@ StartMenu.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 800, 640);
+		this.game.world.setBounds(0, 0, 800, 630);
 
 		// Create the map
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenney');
+		this.map.addTilesetImage('kenneySmall');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');

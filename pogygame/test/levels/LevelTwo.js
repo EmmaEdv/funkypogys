@@ -28,7 +28,7 @@ LevelTwo = function(game){
 	this.pogysLeft = this.nrOfPogys;
 
 	// Tilemap size
-  this.tileSize = 70;
+  this.tileSize = 35;
 
   //Startposition for our pogys
   this.startYpos = 200;
@@ -47,10 +47,10 @@ LevelTwo.prototype = {
 	preload: function(){
 	  this.game.load.tilemap('map', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('kenney', 'assets/kenney.png');
+	  this.game.load.image('kenneySmall', 'assets/kenney.png');
 	  this.game.load.image('sky', 'assets/background.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
-	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
+	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
 	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
 	},
@@ -63,7 +63,7 @@ LevelTwo.prototype = {
     this.levelTimer.start();
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 1750, 640);
+		this.game.world.setBounds(0, 0, 1750, 630);
 
 		// Set background
 		 this.game.add.sprite(0,0,'sky');
@@ -72,7 +72,7 @@ LevelTwo.prototype = {
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenney');
+		this.map.addTilesetImage('kenneySmall');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');

@@ -9,7 +9,7 @@ GUIinventory = function(game){
 
 	// Positions
 	this.buttonX = 370;
-	this.buttonY = 640; 
+	this.buttonY = 570; 
 	this.buttonTextInBetween = 40;
 	this.buttonInBetween = 100;
 };
@@ -20,9 +20,9 @@ GUIinventory.prototype = {
 	},
 
 	create: function(){
-		var inventoryBackground = this.game.add.sprite(0, 625, 'inventoryBackground');
+		var inventoryBackground = this.game.add.sprite(0, 555, 'inventoryBackground');
 		inventoryBackground.fixedToCamera = true;
-		var inventoryText = game.add.text( 50, 645, "- Inventory -", {font: "30px Arial",fill: "#FFF",align: "left"});
+		var inventoryText = game.add.text( 50, 575, "- Inventory -", {font: "30px Arial",fill: "#FFF",align: "left"});
     inventoryText.fixedToCamera = true;
 
 		//Buttons and counter for BuildPogy
