@@ -7,6 +7,11 @@ Pogy = function(game){
 Pogy.prototype = {
 	preload: function(){
     this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
+    
+    // Soundeffects
+    this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
+    this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
+    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
 	},
 
 	create: function(){
@@ -49,7 +54,7 @@ Pogy.prototype = {
         // Else the pogy facing up or down.
         // The pogy hit a wall when it's in the air.
         // 50% send back the pogy to the left, 50% to the right.
-        // If it's the wrong direction it will have a new try next frame.
+        // If it's the wrong direction it will have a new try next frame and hopefully the right direction
         else {
           if(Math.random() <0.5) {
             pogy.body.velocity.x = -100;
@@ -61,6 +66,7 @@ Pogy.prototype = {
       } 
 
       // If the level is over, kill all pogys
+      // TODO: make a function
       if(level.gameOver) {
         pogy.kill()
       }
@@ -69,14 +75,12 @@ Pogy.prototype = {
 
   // Create new pogys and add to pogy group
   createPogy: function() {
-    //THE Y-VALUE OF POGYS STARTPOS IS HARDCODED (Y), FIX WHEN TILEMAP IS BETTER!!!
     var pogy = this.game.add.sprite(0, this.game.world.height-level.startYpos, 'dude');
     this.game.physics.arcade.enable(pogy);
     pogy.body.collideWorldBounds = true;
     pogy.body.gravity.y = 200;
-    //pogy.finished = false;
     pogy.inputEnabled = true;
-    pogy.events.onInputDown.add(this.blastPogy, {pogy: pogy});
+    pogy.events.onInputDown.add(this.prepareBlast, {pogy: pogy});
 
     // Animations for the pogys
     pogy.animations.add('left', [0, 1, 2, 3], 5, true);
@@ -87,13 +91,24 @@ Pogy.prototype = {
     this.pogygroup.add(pogy);  
   },
 
+  // Prepare Pogy to explde 
+  // Should be a animation here!
+  prepareBlast: function() {
+    this.pogy.body.velocity.x = 0;
+    this.pogy.body.velocity.y = 0;
+    this.pogy.animations.paused = true;
+    var timeToExplode = 2; // Sec
+    pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, this.pogy);
+  },
+
   blastPogy: function() {
+    // this = the pogy
     // Get X and Y postision of the tile
-    var xPos = Math.floor(this.pogy.x/level.tileSize);
-    var yPos = Math.floor(this.pogy.y/level.tileSize);
+    var xPos = Math.floor(this.x/level.tileSize);
+    var yPos = Math.floor(this.y/level.tileSize);
 
     //Add an explosion where the pogy
-    var explosion = pogy.game.add.sprite(this.pogy.x-100, this.pogy.y-100, 'explosion');
+    var explosion = pogy.game.add.sprite(this.x-100, this.y-100, 'explosion');
     explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47], 60, false);
     explosion.animations.play('explodes');
 
@@ -101,7 +116,7 @@ Pogy.prototype = {
     pogy.game.time.events.add((Phaser.Timer.SECOND/60)*49 , function(){explosion.kill();}, {explosion: explosion});
     
     /***
-    **** Eight different cases of erase tile
+    **** Eight different cases of erase tiles
     ****/
 
     // case one - NE
@@ -173,8 +188,10 @@ Pogy.prototype = {
       level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
+    var sound = level.game.add.audio('explosionSound',1,false);
+    sound.play();
 
-    this.pogy.kill();
+    this.kill();
     level.pogysLeft--;
   },
 };
@@ -190,6 +207,8 @@ function pogyFinish(pogy, goal){
 function collectCoin(pogy, coin){
     coin.kill();
     guitoolbar.addCoin();
+    var sound = level.game.add.audio('pickUpCoin',1,false);
+    sound.play();
 }
 
 function addBuildPogys(pogy, buildImage) {
@@ -203,6 +222,9 @@ function addBuildPogys(pogy, buildImage) {
     level.showTutorialBuild = false;
     tutorialscreens.openBuildPogy();
   }
+  // Play sound effect
+  var sound = level.game.add.audio('pickUpObject',1,false);
+  sound.play();
 }
 
 function addDigPogys(pogy, digImage) {
@@ -216,6 +238,9 @@ function addDigPogys(pogy, digImage) {
     level.showTutorialDig = false;
     tutorialscreens.openDigPogy();
   }
+  // Play sound effect
+  var sound = level.game.add.audio('pickUpObject',1,false);
+  sound.play();
 }
 
 function climbs(pogys){

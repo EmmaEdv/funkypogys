@@ -28,7 +28,7 @@ LevelOne = function(game){
 	this.pogysLeft = this.nrOfPogys;
 
 	// Tilemap size
-  this.tileSize = 70;
+  this.tileSize = 35;
 
   //Startposition for our pogys
   this.startYpos = 550;
@@ -60,6 +60,7 @@ LevelOne.prototype = {
 	},
 
 	create: function(){
+		// Set physics to Arcade
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//  Create our Timer
@@ -77,9 +78,8 @@ LevelOne.prototype = {
 		// Create the map
 		this.map = this.game.add.tilemap('map');
 
-		// Add Tileset
+		// Add Tileset 
 		this.map.addTilesetImage('tileMap');
-
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 

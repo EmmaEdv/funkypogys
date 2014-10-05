@@ -8,8 +8,11 @@ StartMenu = function(game){
 	this.levelFourButton = null;
 
   //Startposition for our pogys
-  this.startYpos = 50;
+  this.startYpos = 150;
   this.nrOfPogys = 10;
+
+  // Themesong
+  this.themeSong = null;
 };
 
 StartMenu.prototype = {
@@ -20,8 +23,11 @@ StartMenu.prototype = {
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
 
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('kenney', 'assets/kenney.png');
-	  this.game.load.spritesheet('dude', 'assets/pogy.png', 33, 43);
+	  this.game.load.image('kenneySmall', 'assets/kenney.png');
+	  //this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
+	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
+
+	  this.game.load.audio('theme', 'Sounds/theme.mp3');
 	},
 
 	create: function(){
@@ -33,13 +39,13 @@ StartMenu.prototype = {
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 800, 640);
+		this.game.world.setBounds(0, 0, 800, 630);
 
 		// Create the map
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenney');
+		this.map.addTilesetImage('kenneySmall');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
@@ -55,6 +61,10 @@ StartMenu.prototype = {
 		// Level highscore texts
 		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});
 		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Arial",fill: "#FFF",align: "left"});
+	
+		// Play the Theme Song
+		this.themeSong = this.game.add.audio('theme',1,true);
+		this.themeSong.play();
 	},
 
 	update: function(){
