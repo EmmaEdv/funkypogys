@@ -81,7 +81,7 @@ GUIToolbar.prototype = {
     });
     this.gameTimeText.fixedToCamera = true;
 
-		// Show how many Pogys reached home in le scoreboard
+		// Show how many Pogys reached home in the scoreboard
 		var homePogy = this.game.add.sprite(this.pogyX, this.pogyY+5, 'pogy');
 		homePogy.fixedToCamera = true;
     this.pogyText = game.add.text(this.pogyX+40, this.gameTimeTextY, "0", {

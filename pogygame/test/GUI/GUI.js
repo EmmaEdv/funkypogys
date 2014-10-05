@@ -8,7 +8,6 @@ GUI.prototype = {
 		this.game.load.image('transparentR', 'assets/transparentRight.png');
 		this.game.load.image('transparentL', 'assets/transparentLeft.png');
 
-
 		guiendgamescreen = new GUIEndGameScreen(this.game);
     guiendgamescreen.preload();
 
@@ -20,7 +19,6 @@ GUI.prototype = {
 	},
 
 	create: function(){
-		
 		//Create a winningscreen (guiendgamescreen.js)
 		guiendgamescreen.create();
 		guiinventory.create();
