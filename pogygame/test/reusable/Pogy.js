@@ -80,6 +80,8 @@ Pogy.prototype = {
     pogy.body.collideWorldBounds = true;
     pogy.body.gravity.y = 200;
     pogy.inputEnabled = true;
+
+    // If you push on the pogy - it should explode
     pogy.events.onInputDown.add(this.prepareBlast, {pogy: pogy});
 
     // Animations for the pogys
@@ -92,15 +94,21 @@ Pogy.prototype = {
   },
 
   // Prepare Pogy to explde 
-  // Should be a animation here!
+  // TODO: Should be a animation here!
   prepareBlast: function() {
+
+    // Set pogys velocitys to zero
+    // TODO: when pogy is in the air/ladder?
     this.pogy.body.velocity.x = 0;
     this.pogy.body.velocity.y = 0;
+
+    // Pause the animation. (Should be another animation here)
     this.pogy.animations.paused = true;
     var timeToExplode = 2; // Sec
     pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, this.pogy);
   },
 
+  // Blast the pogy and all eight tiles around it
   blastPogy: function() {
     // this = the pogy
     // Get X and Y postision of the tile

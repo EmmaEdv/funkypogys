@@ -18,7 +18,9 @@ StartMenu = function(game){
 StartMenu.prototype = {
 	preload: function(){
 		this.game.load.image('backgroundPicture', 'assets/background.png');
-		this.game.load.spritesheet('button', 'assets/button_sprite_sheet.png', 193, 71);
+		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
+		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
+		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
 
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('kenneySmall', 'assets/kenney.png');
@@ -52,8 +54,8 @@ StartMenu.prototype = {
 		this.map.setCollision(34);
 
 		// Levelbutton
-		this.levelOneButton = this.game.add.button(200, 200, 'button', levelOne, this, 2);
-		this.levelTwoButton = this.game.add.button(400, 200, 'button', levelTwo, this, 2);
+		this.levelOneButton = this.game.add.button(200, 200, 'buttonOne', levelOne, this, 2);
+		this.levelTwoButton = this.game.add.button(400, 200, 'buttonTwo', levelTwo, this, 2);
 
 		// Level highscore texts
 		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});

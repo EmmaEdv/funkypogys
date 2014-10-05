@@ -46,11 +46,13 @@ LevelOne = function(game){
 };
 
 LevelOne.prototype = {
-	preload: function(){ 
-	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
+	preload: function(){
+	  //this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
+	  this.game.load.tilemap('map', 'assets/TM_Level1_2.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('kenneySmall', 'assets/kenney.png');
-	  this.game.load.image('background', 'assets/background.png');
+	  //this.game.load.image('kenney', 'assets/kenney.png');
+	  this.game.load.image('tileMap', 'assets/tileMap.png');
+	  this.game.load.image('background', 'assets/bgMorning.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  
 	  this.game.load.image('ladder', 'assets/build.png');
@@ -67,7 +69,7 @@ LevelOne.prototype = {
     this.levelTimer.start();
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 1750, 630);
+		this.game.world.setBounds(0, 0, 1750, 700);
 
 		// Set background
 		this.game.add.sprite(0,0,'background');
@@ -76,14 +78,15 @@ LevelOne.prototype = {
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenneySmall');
+		this.map.addTilesetImage('tileMap');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 
 		// Set Collision
-		this.map.setCollision(32);
-		this.map.setCollision(34);
+		//this.map.setCollision(32);
+		//this.map.setCollision(34);
+		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Debug
 		//this.groundLayer.debug = true;
