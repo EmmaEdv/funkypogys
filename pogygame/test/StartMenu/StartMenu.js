@@ -10,6 +10,9 @@ StartMenu = function(game){
   //Startposition for our pogys
   this.startYpos = 150;
   this.nrOfPogys = 10;
+
+  // Themesong
+  this.themeSong = null;
 };
 
 StartMenu.prototype = {
@@ -20,6 +23,8 @@ StartMenu.prototype = {
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('kenneySmall', 'assets/kenney.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
+
+	  this.game.load.audio('theme', 'Sounds/theme.mp3');
 	},
 
 	create: function(){
@@ -53,6 +58,10 @@ StartMenu.prototype = {
 		// Level highscore texts
 		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});
 		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Arial",fill: "#FFF",align: "left"});
+	
+		// Play the Theme Song
+		this.themeSong = this.game.add.audio('theme',1,true);
+		this.themeSong.play();
 	},
 
 	update: function(){

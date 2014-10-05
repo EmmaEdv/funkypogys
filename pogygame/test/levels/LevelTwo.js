@@ -106,11 +106,13 @@ LevelTwo.prototype = {
 	},
 
 	update: function(){
+		// If a new highscore is set on the game, update the global variable
 		if(this.levelScore > boot.levelTwoScore) {
 		 	boot.levelTwoScore = this.levelScore;
 		}
 	},
 
+	// If the game is over
 	endGame: function(){
 		guiendgamescreen.openWindow();
 		level.levelTimer.pause();

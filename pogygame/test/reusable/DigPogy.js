@@ -11,15 +11,18 @@ DigPogy = function(game){
 DigPogy.prototype = {
 	preload: function(){
 		this.timerCheck = game.time.create(false);
+		this.game.load.audio('digTile', 'Sounds/dig.wav');
 	},
 
 	create: function(){
-		
 	},
 
 	update: function(){
 		if(this.game.input.mousePointer.isDown){
-			//console.log("X:" + this.game.input.mousePointer.x + ", Y: " + this.game.input.mousePointer.y);
+
+			// Create digging sound
+			var sound = level.game.add.audio('digTile',1,false);
+
 			//x and y positions in tile units:
 			var xPos = Math.floor((this.game.input.mousePointer.x+this.game.camera.x)/level.tileSize);
 			var yPos = Math.floor(this.game.input.mousePointer.y/level.tileSize);
@@ -34,7 +37,10 @@ DigPogy.prototype = {
 				clickedTile.resetCollision();
 				level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1);
 				level.map.getTile(xPos, yPos).alpha = 0;
-				level.nrOfDigPogys--;
+				level.nrOfDigPogys--; // Decrease No. Of Pogys
+				sound.play();					// Play soundeffect
+
+				// Set timer - dig next time
 				this.timerCheck.add(500, this.setTimerCheck, this);
 				this.digState = false;
     		this.timerCheck.start();

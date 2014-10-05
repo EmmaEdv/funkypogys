@@ -20,34 +20,38 @@ GUIinventory.prototype = {
 	},
 
 	create: function(){
+		// Set background and text to the inventory toolbar
 		var inventoryBackground = this.game.add.sprite(0, 555, 'inventoryBackground');
 		inventoryBackground.fixedToCamera = true;
 		var inventoryText = game.add.text( 50, 575, "- Inventory -", {font: "30px Arial",fill: "#FFF",align: "left"});
     inventoryText.fixedToCamera = true;
 
-		//Buttons and counter for BuildPogy
-    this.buildPogy = this.game.add.button(this.buttonX, this.buttonY, 'ladder', this.buildCallback);
-    var buildPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.L);
-    buildPogyKey.onDown.add(this.buildCallback, this);
+		// BuildPogy button //
+    this.buildPogy = this.game.add.button(this.buttonX, this.buttonY, 'ladder', this.buildCallback); // Add a button
     this.buildPogy.fixedToCamera = true;
-    this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
+    this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"}); // Set text
     this.buildPogyText.fixedToCamera = true;
+    // If we want to hide the button
     if(level.hideBuildPogy) {
     	this.buildPogy.alpha = 0;
     	this.buildPogyText.alpha = 0;
     }
+    var buildPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.L); // Hotkey for the buildCallback functon if L is pressed
+    buildPogyKey.onDown.add(this.buildCallback, this);
 
-    //Buttons and counter for DigPogy
-    this.digPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'spade', this.digCallback);
-    var digPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
-    digPogyKey.onDown.add(this.digCallback, this);
+    // Digpogy button //
+    this.digPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'spade', this.digCallback); // Add button
     this.digPogy.fixedToCamera = true;
     this.digPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
     this.digPogyText.fixedToCamera = true;
+    // If we wanna hide the button
     if(level.hideDigPogy) {
     	this.digPogy.alpha = 0;
     	this.digPogyText.alpha = 0;
     }
+    // Hotkey for the digCallback functon if D is pressed
+    var digPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.D); 
+    digPogyKey.onDown.add(this.digCallback, this);
 	},
 
 	update: function(){

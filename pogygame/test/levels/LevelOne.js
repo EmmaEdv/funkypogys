@@ -46,7 +46,7 @@ LevelOne = function(game){
 };
 
 LevelOne.prototype = {
-	preload: function(){
+	preload: function(){ 
 	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('kenneySmall', 'assets/kenney.png');
@@ -58,6 +58,7 @@ LevelOne.prototype = {
 	},
 
 	create: function(){
+		// Set physics to Arcade
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		//  Create our Timer
