@@ -49,7 +49,6 @@ LevelTwo.prototype = {
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.image('sky', 'assets/background.png');
-	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
 	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
