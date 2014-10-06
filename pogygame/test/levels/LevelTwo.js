@@ -47,7 +47,7 @@ LevelTwo.prototype = {
 	preload: function(){
 	  this.game.load.tilemap('map', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('kenneySmall', 'assets/kenney.png');
+	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.image('sky', 'assets/background.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
@@ -72,14 +72,13 @@ LevelTwo.prototype = {
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenneySmall');
+		this.map.addTilesetImage('tileMap');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 
 		// Set Collision
-		this.map.setCollision(32);
-		this.map.setCollision(34);
+		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Debug
 		// this.groundLayer.debug = true;

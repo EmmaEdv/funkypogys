@@ -3,8 +3,8 @@ BuildPogy = function(game){
 	this.buildpogy = null;
   //this.nrOfBuildPogys = 1;
   this.active = false;
-  this.tileIndex = 136;
-  this.tileAbove = 113;
+  this.tileIndex = 21;
+  this.tileAbove = 26;
   this.buildTile = null;
 };
 

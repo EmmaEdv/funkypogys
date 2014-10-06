@@ -48,9 +48,8 @@ LevelOne = function(game){
 LevelOne.prototype = {
 	preload: function(){
 	  //this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.tilemap('map', 'assets/TM_Level1_2.json', null, Phaser.Tilemap.TILED_JSON);
+	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  //this.game.load.image('kenney', 'assets/kenney.png');
 	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.image('background', 'assets/bgMorning.png');
 	  this.game.load.image('home', 'assets/dudeHome.png');

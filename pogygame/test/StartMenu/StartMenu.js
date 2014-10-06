@@ -23,7 +23,7 @@ StartMenu.prototype = {
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
 
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('kenneySmall', 'assets/kenney.png');
+	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
 
 	  this.game.load.audio('theme', 'Sounds/theme.mp3');
@@ -44,14 +44,13 @@ StartMenu.prototype = {
 		this.map = this.game.add.tilemap('map');
 
 		// Add Tileset
-		this.map.addTilesetImage('kenneySmall');
+		this.map.addTilesetImage('tileMap');
 
 		// Add Create Layer
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 
 		// Set Collision
-		this.map.setCollision(32);
-		this.map.setCollision(34);
+		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Levelbutton
 		this.levelOneButton = this.game.add.button(200, 200, 'buttonOne', levelOne, this, 2);
