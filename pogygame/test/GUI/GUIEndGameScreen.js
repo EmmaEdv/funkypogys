@@ -60,7 +60,7 @@ GUIEndGameScreen.prototype = {
 		this.levelText = game.add.text(this.winningScreenStartX+80, 
 			this.winningScreenStartY+10, 
 			level.levelName, {
-      font: "30px Arial",
+      font: "30px Chalkduster",
       fill: "#000",
       align: "left"
     });
@@ -71,7 +71,7 @@ GUIEndGameScreen.prototype = {
 		this.losingText = game.add.text(this.winningScreenStartX+80, 
 			this.winningScreenStartY+70, 
 			"Sorry, no pogy came home \n Try again!", {
-      font: "12px Arial",
+      font: "12px Chalkduster",
       fill: "#000",
       align: "left"
     });
@@ -82,7 +82,7 @@ GUIEndGameScreen.prototype = {
 		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+this.spaceBetweenText*2, 
 			"Total Time: 0", {
-      font: "17px changetomorrowtoday",
+      font: "17px Chalkduster",
       fill: "#000",
       align: "left"
     });
@@ -94,7 +94,7 @@ GUIEndGameScreen.prototype = {
     	this.winningScreenStartX+10, 
 			this.winningScreenStartY+this.spaceBetweenText*3, 
 			"Number of coins: 0", {
-      font: "17px changetomorrowtoday",
+      font: "17px Chalkduster",
       fill: "#000",
       align: "left"
     });
@@ -105,7 +105,7 @@ GUIEndGameScreen.prototype = {
 		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+this.spaceBetweenText*4, 
 			"Total Number Of Pogyz: 0", {
-      font: "17px changetomorrowtoday",
+      font: "17px Chalkduster",
       fill: "#000",
       align: "left"
     });
@@ -116,7 +116,7 @@ GUIEndGameScreen.prototype = {
 		this.totalScore = game.add.text(this.winningScreenStartX+10, 
 			this.winningScreenStartY+this.spaceBetweenText*5, 
 			"Total score: 0", {
-      font: "17px changetomorrowtoday",
+      font: "17px Chalkduster",
       fill: "#000",
       align: "left"
     });

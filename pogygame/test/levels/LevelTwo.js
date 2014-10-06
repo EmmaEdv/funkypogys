@@ -32,6 +32,7 @@ LevelTwo = function(game){
 
   //Startposition for our pogys
   this.startYpos = 200;
+  this.startXpos = 0;
 
   // Timer for the level
   this.levelDuration = 60 // In sec

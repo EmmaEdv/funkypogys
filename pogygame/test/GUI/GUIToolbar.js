@@ -48,7 +48,7 @@ GUIToolbar.prototype = {
 
 		// LevelText
 		this.levelText = game.add.text(200, 30 , level.levelName, {
-      font: "17px Arial",
+      font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
     });
@@ -75,7 +75,7 @@ GUIToolbar.prototype = {
 
 		// TimeText in the game
 		this.gameTimeText = game.add.text(this.gameTimeTextX, this.gameTimeTextY , "Time: 0.0", {
-      font: "17px Arial",
+      font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
     });
@@ -85,7 +85,7 @@ GUIToolbar.prototype = {
 		var homePogy = this.game.add.sprite(this.pogyX, this.pogyY+5, 'pogy');
 		homePogy.fixedToCamera = true;
     this.pogyText = game.add.text(this.pogyX+40, this.gameTimeTextY, "0", {
-    	font: "17px Arial",
+    	font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
     });

@@ -23,13 +23,13 @@ GUIinventory.prototype = {
 		// Set background and text to the inventory toolbar
 		var inventoryBackground = this.game.add.sprite(0, 555, 'inventoryBackground');
 		inventoryBackground.fixedToCamera = true;
-		var inventoryText = game.add.text( 50, 575, "- Inventory -", {font: "30px Arial",fill: "#FFF",align: "left"});
+		var inventoryText = game.add.text( 50, 575, "- Inventory -", {font: "30px Chalkduster",fill: "#FFF",align: "left"});
     inventoryText.fixedToCamera = true;
 
 		// BuildPogy button //
     this.buildPogy = this.game.add.button(this.buttonX, this.buttonY, 'ladder', this.buildCallback); // Add a button
     this.buildPogy.fixedToCamera = true;
-    this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"}); // Set text
+    this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"}); // Set text
     this.buildPogyText.fixedToCamera = true;
     // If we want to hide the button
     if(level.hideBuildPogy) {
@@ -42,7 +42,7 @@ GUIinventory.prototype = {
     // Digpogy button //
     this.digPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'spade', this.digCallback); // Add button
     this.digPogy.fixedToCamera = true;
-    this.digPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Arial",fill: "#FFF",align: "left"});
+    this.digPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
     this.digPogyText.fixedToCamera = true;
     // If we wanna hide the button
     if(level.hideDigPogy) {

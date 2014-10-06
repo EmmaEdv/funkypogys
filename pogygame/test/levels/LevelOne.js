@@ -31,7 +31,8 @@ LevelOne = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 550;
+  this.startYpos = 240;
+  this.startXpos = 25;
 
   // Timer for the level
   this.levelTimer = null;
@@ -70,7 +71,7 @@ LevelOne.prototype = {
 
 		// Set bounds to the world
 		//this.game.world.setBounds(0, 0, 1750, 640);
-		this.game.world.setBounds(0, 0, 1750, 700);
+		this.game.world.setBounds(0, 0, 1750, 630);
 
 		// Set background
 		this.game.add.sprite(0,0,'background');

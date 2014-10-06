@@ -59,12 +59,12 @@ StartMenu.prototype = {
 		this.levelTwoButton = this.game.add.button(400, 200, 'buttonTwo', levelTwo, this, 2);
 
 		// Level highscore texts
-		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});
-		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Arial",fill: "#FFF",align: "left"});
+		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
-		this.themeSong.play();
+		//this.themeSong.play();
 	},
 
 	update: function(){

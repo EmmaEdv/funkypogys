@@ -75,7 +75,7 @@ Pogy.prototype = {
 
   // Create new pogys and add to pogy group
   createPogy: function() {
-    var pogy = this.game.add.sprite(0, this.game.world.height-level.startYpos, 'dude');
+    var pogy = this.game.add.sprite(level.startXpos, this.game.world.height-level.startYpos, 'dude');
     this.game.physics.arcade.enable(pogy);
     pogy.body.collideWorldBounds = true;
     pogy.body.gravity.y = 200;
