@@ -31,7 +31,8 @@ LevelOne = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 550;
+  this.startYpos = 240;
+  this.startXpos = 25;
 
   // Timer for the level
   this.levelTimer = null;
@@ -51,7 +52,8 @@ LevelOne.prototype = {
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.image('background', 'assets/bgMorning.png');
-	  
+
+	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
 	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
 	},
@@ -66,7 +68,8 @@ LevelOne.prototype = {
     this.levelTimer.start();
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 1750, 700);
+		//this.game.world.setBounds(0, 0, 1750, 640);
+		this.game.world.setBounds(0, 0, 1750, 630);
 
 		// Set background
 		this.game.add.sprite(0,0,'background');

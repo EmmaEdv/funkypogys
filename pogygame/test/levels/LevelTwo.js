@@ -32,6 +32,7 @@ LevelTwo = function(game){
 
   //Startposition for our pogys
   this.startYpos = 200;
+  this.startXpos = 0;
 
   // Timer for the level
   this.levelDuration = 60 // In sec
@@ -49,7 +50,8 @@ LevelTwo.prototype = {
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('tileMap', 'assets/tileMap.png');
 	  this.game.load.image('sky', 'assets/background.png');
-	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
+
+	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
 	  this.game.load.image('ladder', 'assets/build.png');
 		this.game.load.image('spade', 'assets/spade.png');
 	},

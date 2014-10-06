@@ -17,15 +17,13 @@ StartMenu = function(game){
 
 StartMenu.prototype = {
 	preload: function(){
-		this.game.load.image('backgroundPicture', 'assets/background.png');
+		this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
 		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
-
 		this.game.load.tilemap('map', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 	  this.game.load.image('tileMap', 'assets/tileMap.png');
-	  this.game.load.spritesheet('dude', 'assets/pogy.png', 27, 35);
-
+	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
 	  this.game.load.audio('theme', 'Sounds/theme.mp3');
 	},
 
@@ -57,8 +55,8 @@ StartMenu.prototype = {
 		this.levelTwoButton = this.game.add.button(400, 200, 'buttonTwo', levelTwo, this, 2);
 
 		// Level highscore texts
-		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Arial",fill: "#FFF",align: "left"});
-		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Arial",fill: "#FFF",align: "left"});
+		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
