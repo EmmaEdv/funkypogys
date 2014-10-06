@@ -28,7 +28,7 @@ BuildPogy.prototype = {
 			var clickedTile = level.map.getTile(xPos, yPos);
 			var underClicked = level.map.getTile(xPos, yPos+1);
 			//MEN HALLÅ, VADÅ 32??????? :(
-			if(underClicked && (underClicked.index == this.tileIndex || underClicked.index == 1 || underClicked.index == 2|| underClicked.index == 5|| underClicked.index == 6|| underClicked.index == 15 )){
+			if(underClicked && (underClicked.index == this.tileIndex || underClicked.index == 1 || underClicked.index == 2 || underClicked.index == 6 || underClicked.index == 7 || underClicked.index == 15 )){
 				var sound = level.game.add.audio('buildTile',1,false);
 
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
