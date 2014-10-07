@@ -31,8 +31,8 @@ LevelTwo = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 200;
-  this.startXpos = 0;
+  this.startYpos = 140;
+  this.startXpos = 25;
 
   // Timer for the level
   this.levelDuration = 60 // In sec

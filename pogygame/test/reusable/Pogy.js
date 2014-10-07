@@ -22,8 +22,7 @@ Pogy.prototype = {
     this.game.physics.arcade.overlap(this.pogygroup, level.digPogys, addDigPogys, null, this);
 
 		//Add collision to all
-    this.pogygroup.forEach(function(pogy)
-    { 
+    this.pogygroup.forEach(function(pogy){ 
       // Trying to set collision for build tiles - callbackFunc should make pogys climb and jump off
       level.map.setTileIndexCallback(boot.tileLadder, climbs, this, level.groundLayer);
       level.map.setTileIndexCallback(boot.tileAboveLadder, stopClimbing, this, level.groundLayer);

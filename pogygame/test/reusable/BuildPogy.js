@@ -14,7 +14,6 @@ BuildPogy.prototype = {
 
 	update: function(){
 		if(this.game.input.mousePointer.isDown){	
-
 			// Create sound effect
 			var sound = level.game.add.audio('buildTile',1,false);
 
@@ -29,7 +28,6 @@ BuildPogy.prototype = {
 				var sound = level.game.add.audio('buildTile',1,false);
 
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
-					
 					//If it's soild ground above, don't build an tile above
 					if(aboveClicked) {
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
