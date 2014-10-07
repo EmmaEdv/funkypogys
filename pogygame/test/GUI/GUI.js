@@ -19,16 +19,16 @@ GUI.prototype = {
 	},
 
 	create: function(){
-		//Create a winningscreen (guiendgamescreen.js)
-		guiendgamescreen.create();
-		guiinventory.create();
-		guitoolbar.create();
-
 		// Transparent picture on right and left handside
 		var transparentR = this.game.add.sprite(720, 75, 'transparentR');
 		var transparentL = this.game.add.sprite(0, 75, 'transparentL');
 		transparentR.fixedToCamera = true;
 		transparentL.fixedToCamera = true;
+
+		//Create a winningscreen (guiendgamescreen.js)
+		guiendgamescreen.create();
+		guiinventory.create();
+		guitoolbar.create();
 	},
 
 	update: function(){

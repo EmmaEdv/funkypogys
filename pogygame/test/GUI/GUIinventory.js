@@ -16,12 +16,11 @@ GUIinventory = function(game){
 
 GUIinventory.prototype = {
 	preload: function(){
-		this.game.load.image('inventoryBackground', 'assets/woodenBar.png');
 	},
 
 	create: function(){
 		// Set background and text to the inventory toolbar
-		var inventoryBackground = this.game.add.sprite(0, 555, 'inventoryBackground');
+		var inventoryBackground = this.game.add.sprite(0, 555, 'toolbar');
 		inventoryBackground.fixedToCamera = true;
 		var inventoryText = game.add.text( 50, 575, "- Inventory -", {font: "30px Chalkduster",fill: "#FFF",align: "left"});
     inventoryText.fixedToCamera = true;
