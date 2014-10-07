@@ -10,8 +10,8 @@ Pogy.prototype = {
     
     // Soundeffects
     this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-    this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
-    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
+    this.game.load.audio('pickUpCoin', 'Sounds/coin.wav');
+    this.game.load.audio('pickUpObject', 'Sounds/collect.wav');
 	},
 
 	create: function(){

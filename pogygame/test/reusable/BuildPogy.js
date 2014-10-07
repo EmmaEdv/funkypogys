@@ -36,14 +36,14 @@ BuildPogy.prototype = {
 					if(aboveClicked) {
 						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
-    				//sound.play(); // Play sound effect
+    				sound.play(); // Play sound effect
 					} 
 					else {
 						//Byt ut första parametern till en byggtile och den ovanför till en tileAbove:)
 						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
 						level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
-    				//sound.play(); // Play sound effect
+    				sound.play(); // Play sound effect
 					}
 
 				}
@@ -54,13 +54,13 @@ BuildPogy.prototype = {
 					if(aboveClicked) {
 						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
-    				//sound.play(); // Play sound effect
+    				sound.play(); // Play sound effect
 					}
 					else {
 						level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1, level.groundLayer);
 						level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
-    				//sound.play(); // Play sound effect
+    				sound.play(); // Play sound effect
 					}
 				}
 			}
