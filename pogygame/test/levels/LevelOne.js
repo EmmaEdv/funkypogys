@@ -31,7 +31,7 @@ LevelOne = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 240;
+  this.startYpos = 290;
   this.startXpos = 25;
 
   // Timer for the level
@@ -48,14 +48,45 @@ LevelOne = function(game){
 
 LevelOne.prototype = {
 	preload: function(){
-	  this.game.load.tilemap('map', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('tileMap', 'assets/tileMap.png');
-	  this.game.load.image('background', 'assets/bgMorning.png');
+		// TileMaps
+		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 
-	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
-	  this.game.load.image('ladder', 'assets/build.png');
+		// TileSets
+		this.game.load.image('tileMap', 'assets/tileMap.png');
+
+		// Images
 		this.game.load.image('spade', 'assets/spade.png');
+		this.game.load.image('ladder', 'assets/build.png');
+	  this.game.load.image('coin', 'assets/pogyCoin.png');
+	  this.game.load.image('pogy', 'assets/pogyHome.png', 4);
+	  this.game.load.image('toolbar', 'assets/woodenBar.png');
+	  this.game.load.image('background', 'assets/bgMorning.png');
+	  this.game.load.image('homeButton', 'assets/homebutton.png');
+	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
+	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
+	  this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
+	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
+	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
+	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
+	  this.game.load.image('restartButton', 'assets/restartbutton.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
+		
+		// Spritesheet
+		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
+		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
+		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
+		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
+		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
+
+		//Sounds
+		this.game.load.audio('digTile', 'Sounds/dig.wav');
+		this.game.load.audio('theme', 'Sounds/theme.mp3');
+		this.game.load.audio('buildTile', 'Sounds/build.wav');
+		this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
+		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
+    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
 	},
 
 	create: function(){
@@ -75,7 +106,7 @@ LevelOne.prototype = {
 		this.game.add.sprite(0,0,'background');
 
 		// Create the map
-		this.map = this.game.add.tilemap('map');
+		this.map = this.game.add.tilemap('map1');
 
 		// Add Tileset
 		this.map.addTilesetImage('tileMap');

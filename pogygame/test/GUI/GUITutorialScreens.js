@@ -25,9 +25,6 @@ tutorialScreens = function(game){
 };
 tutorialScreens.prototype = {
 	preload: function(){
-		this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
-		this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
 	},
 
 	create: function(){

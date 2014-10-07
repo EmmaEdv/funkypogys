@@ -41,9 +41,6 @@ GUIEndGameScreen = function(game){
 
 GUIEndGameScreen.prototype = {
 	preload: function(){
-		// Upload background
-		this.game.load.image('winningScreen', 'assets/winningScreen.png');
-		this.game.load.image('nextLevelButton', 'assets/nextButton.png');
 	},
 
 	create: function(){

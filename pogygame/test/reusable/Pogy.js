@@ -6,12 +6,6 @@ Pogy = function(game){
 
 Pogy.prototype = {
 	preload: function(){
-    this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
-    
-    // Soundeffects
-    this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-    this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
-    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
 	},
 
 	create: function(){
@@ -31,8 +25,8 @@ Pogy.prototype = {
     this.pogygroup.forEach(function(pogy)
     { 
       // Trying to set collision for build tiles - callbackFunc should make pogys climb and jump off
-      level.map.setTileIndexCallback(buildpogy.tileIndex, climbs, this, level.groundLayer);
-      level.map.setTileIndexCallback(buildpogy.tileAbove, stopClimbing, this, level.groundLayer);
+      level.map.setTileIndexCallback(boot.tileLadder, climbs, this, level.groundLayer);
+      level.map.setTileIndexCallback(boot.tileAboveLadder, stopClimbing, this, level.groundLayer);
 
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
@@ -130,7 +124,7 @@ Pogy.prototype = {
     // case one - NE
     var clickedTile = level.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos-1, 1, 1);
       level.map.getTile(xPos+1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -138,7 +132,7 @@ Pogy.prototype = {
     // case two - N
     clickedTile = level.map.getTile(xPos, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos-1, 1, 1);
       level.map.getTile(xPos, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -146,7 +140,7 @@ Pogy.prototype = {
     // case three - NW
     clickedTile = level.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos-1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos-1, 1, 1);
       level.map.getTile(xPos-1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -154,7 +148,7 @@ Pogy.prototype = {
     // case four - E
     clickedTile = level.map.getTile(xPos+1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos, 1, 1);
       level.map.getTile(xPos+1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -162,7 +156,7 @@ Pogy.prototype = {
     // case five - W
     clickedTile = level.map.getTile(xPos-1, yPos);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos, 1, 1);
       level.map.getTile(xPos-1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -170,7 +164,7 @@ Pogy.prototype = {
     // case six - SE
     clickedTile = level.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos+1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos+1, 1, 1);
       level.map.getTile(xPos+1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -178,7 +172,7 @@ Pogy.prototype = {
     // case seven - S
     clickedTile = level.map.getTile(xPos, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos+1, 1, 1);
       level.map.getTile(xPos, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -186,14 +180,14 @@ Pogy.prototype = {
     // case eight - SW
     clickedTile = level.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos+1, 1, 1);
       level.map.getTile(xPos-1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // Ugly hack ... If this don't exist the collisions will be fucked up
     if(clickedTile){
-      level.map.replace(clickedTile.index, digpogy.tileIndex, xPos-1, yPos+1, 1, 1);
+      level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
     var sound = level.game.add.audio('explosionSound',1,false);
@@ -272,7 +266,7 @@ function climbs(pogys){
   // Sends back the pogy to the left
   var right = (pogys.body.velocity.x == 0.000001);
   var checkTileLeft = level.map.getTile(xPos, yPos-1);
-  if(right && checkTileLeft && checkTileLeft.index == 34) {
+  if(right && checkTileLeft && checkTileLeft.index == boot.tileGround) {
     console.log("Jump left");
     pogys.body.x -= 10;
     pogys.body.velocity.x = -100;
@@ -285,7 +279,7 @@ function climbs(pogys){
   var left = (pogys.body.velocity.x == -0.000001);
   var checkTileRight = level.map.getTile(xPos, yPos-1);
 
-  if(left && checkTileRight && checkTileRight.index == 34) {
+  if(left && checkTileRight && checkTileRight.index == boot.tileGround) {
     console.log("Jump right");
     pogys.body.x += 10
     pogys.body.velocity.x = 100;

@@ -31,14 +31,6 @@ GUIToolbar = function(game){
 
 GUIToolbar.prototype = {
 	preload: function(){
-		// Load images
-		this.game.load.image('coin', 'assets/pogyCoin.png');
-		this.game.load.image('pogy', 'assets/pogyHome.png', 4);
-		this.game.load.image('toolbar', 'assets/woodenBar.png');
-		this.game.load.image('winningScreen', 'assets/winningScreen.png');
-		this.game.load.image('homeButton', 'assets/homebutton.png');
-		this.game.load.image('restartButton', 'assets/restartbutton.png');
-		this.game.load.image('pauseButton', 'assets/pausebutton.png');
 	},
 
 	create: function(){
