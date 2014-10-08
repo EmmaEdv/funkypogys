@@ -1,4 +1,4 @@
-LevelTwo = function(game){
+LevelThree = function(game){
 	this.game = game;
 	this.levelName = "Level Three";
 	this.nextLevel = "MainMenu";
@@ -31,7 +31,7 @@ LevelTwo = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 140;
+  this.startYpos = 300;
   this.startXpos = 25;
 
   // Timer for the level
@@ -44,7 +44,7 @@ LevelTwo = function(game){
   this.showTutorialBuild = false;
 };
 
-LevelTwo.prototype = {
+LevelThree.prototype = {
 	preload: function(){
 		// TileMaps
 		/*
@@ -137,8 +137,8 @@ LevelTwo.prototype = {
 
 	update: function(){
 		// If a new highscore is set on the game, update the global variable
-		if(this.levelScore > boot.levelTwoScore) {
-		 	boot.levelTwoScore = this.levelScore;
+		if(this.levelScore > boot.levelThreeScore) {
+		 	boot.levelThreeScore = this.levelScore;
 		}
 	},
 
