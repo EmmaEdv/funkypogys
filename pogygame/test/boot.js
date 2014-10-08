@@ -8,6 +8,7 @@ boot = function(game){
 	// Score for each level
 	this.levelOneScore = 0;
 	this.levelTwoScore = 0;
+	this.levelThreeScore = 0;
 
 	// Tilesettings
 	this.tileAboveLadder = 18;
@@ -25,6 +26,7 @@ boot.prototype = {
 		game.state.add('MainMenu',startStartMenu, true);
 		game.state.add('startLevelOne',startLevelOne);
 		game.state.add('startLevelTwo',startLevelTwo);
+		game.state.add('startLevelThree',startLevelThree);
 	},
 
 	create: function(){
