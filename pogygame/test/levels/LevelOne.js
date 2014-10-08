@@ -62,6 +62,7 @@ LevelOne.prototype = {
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('pogy', 'assets/pogyHome.png', 4);
 	  this.game.load.image('toolbar', 'assets/woodenBar.png');
+	  this.game.load.image('levelPogy', 'assets/level_pogy.png');
 	  this.game.load.image('background', 'assets/bgMorning.png');
 	  this.game.load.image('homeButton', 'assets/homebutton.png');
 	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
@@ -72,14 +73,13 @@ LevelOne.prototype = {
 	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 	  this.game.load.image('restartButton', 'assets/restartbutton.png');
 		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
-		this.game.load.image('levelPogy', 'assets/level_pogy.png');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
 		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
 		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
-		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
+		this.game.load.spritesheet('explosion', 'assets/explosion320.png', 64, 64);
 	},
 
 	create: function(){

@@ -54,20 +54,20 @@ GUIEndGameScreen.prototype = {
 
 
     // Total Game Time Text
-		this.levelText = game.add.text(this.winningScreenStartX+80, 
+		this.levelText = game.add.text(this.winningScreenStartX+70, 
 			this.winningScreenStartY+10, 
 			level.levelName, {
       font: "30px Chalkduster",
       fill: "#000",
-      align: "left"
+      align: "center"
     });
     this.levelText.fixedToCamera = true;
     this.levelText.scale.set(0);
 
     // Total Game Time Text
-		this.losingText = game.add.text(this.winningScreenStartX+80, 
+		this.losingText = game.add.text(this.winningScreenStartX+60, 
 			this.winningScreenStartY+70, 
-			"Sorry, no pogy came home \n Try again!", {
+			"Sorry, no pogy came home \n\n\n          Try again!", {
       font: "12px Chalkduster",
       fill: "#000",
       align: "left"
@@ -146,7 +146,6 @@ GUIEndGameScreen.prototype = {
 		if(level.pogyCounter == level.nrOfPogys || level.pogysLeft == 0) {
 			this.openWindow();
 			level.levelTimer.pause();
-			this.game.add.image(30, 100, 'levelPogy');
 		}
 	},
 
@@ -164,6 +163,7 @@ GUIEndGameScreen.prototype = {
     if(level.pogyCounter != 0) {
     	// Show new level buttom and show total time in 1sec
     	this.nextLevelButton.scale.set(1);
+    	this.game.add.image(30, 100, 'levelPogy');
     	this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
     } else {
     	// Show the text about losing
