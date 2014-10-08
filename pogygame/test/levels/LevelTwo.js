@@ -1,7 +1,7 @@
 LevelTwo = function(game){
 	this.game = game;
 	this.levelName = "Level Two";
-	this.nextLevel = "MainMenu";
+	this.nextLevel = "startLevelThree";
 	this.levelScore = null;
 	this.map = null;
 
@@ -14,12 +14,12 @@ LevelTwo = function(game){
   this.digPogys = null;
 
   // Counter for our Pogys
-  this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 10;
+  this.nrOfPogys = 10;
+  this.nrOfBuildPogys = 0;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = false;
+  this.hideBuildPogy = true;
   this.hideDigPogy = false;
 
   //How many is home/picked up
@@ -31,8 +31,8 @@ LevelTwo = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 200;
-  this.startXpos = 0;
+  this.startYpos = 100;
+  this.startXpos = 45;
 
   // Timer for the level
   this.levelDuration = 60 // In sec
@@ -46,14 +46,38 @@ LevelTwo = function(game){
 
 LevelTwo.prototype = {
 	preload: function(){
-	  this.game.load.tilemap('map', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
-	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('tileMap', 'assets/tileMap.png');
-	  this.game.load.image('sky', 'assets/background.png');
+		// TileMaps
+		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 
-	  this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
-	  this.game.load.image('ladder', 'assets/build.png');
+		// TileSets
+		this.game.load.image('tileMap', 'assets/tileMap.png');
+
+		// Images
 		this.game.load.image('spade', 'assets/spade.png');
+		this.game.load.image('ladder', 'assets/build.png');
+	  this.game.load.image('coin', 'assets/pogyCoin.png');
+	  this.game.load.image('pogy', 'assets/pogyHome.png', 4);
+	  this.game.load.image('toolbar', 'assets/woodenBar.png');
+	  this.game.load.image('background', 'assets/bgMorning.png');
+	  this.game.load.image('homeButton', 'assets/homebutton.png');
+	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
+	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
+	  this.game.load.image('tutCamera', 'assets/pratbubbla_shaded.png');
+	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
+	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_shovel.png');
+	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
+	  this.game.load.image('restartButton', 'assets/restartbutton.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
+		this.game.load.image('levelPogy', '');
+		
+		// Spritesheet
+		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
+		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
+		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
+		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
+		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
 	},
 
 	create: function(){
@@ -64,13 +88,13 @@ LevelTwo.prototype = {
     this.levelTimer.start();
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 1750, 630);
+		this.game.world.setBounds(0, 0, 1750, 560);
 
-		// Set background
-		 this.game.add.sprite(0,0,'sky');
+		// Backgroundpicture
+		this.game.add.sprite(0,0,'background');
 
 		// Create the map
-		this.map = this.game.add.tilemap('map');
+		this.map = this.game.add.tilemap('map2');
 
 		// Add Tileset
 		this.map.addTilesetImage('tileMap');

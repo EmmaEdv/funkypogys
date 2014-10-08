@@ -17,11 +17,11 @@ Camera.prototype = {
 		this.cameraSprite.x = game.input.mousePointer.x + this.game.camera.x;
 
 		// If the cameraSprite will go outside the deadzone to the right
-		if (this.cameraSprite.x > this.game.camera.x + 700) {
+		if (this.cameraSprite.x > this.game.camera.x + 740) {
 			this.game.camera.x += this.speedOfCamera;
 
 		// If the cameraSprite will go outside the deadzone to the left
-		} else if (this.cameraSprite.x < this.game.camera.x + 100) {
+		} else if (this.cameraSprite.x < this.game.camera.x + 60) {
 			this.game.camera.x -= this.speedOfCamera;
 		}
 	}

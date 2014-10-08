@@ -2,11 +2,11 @@ startPogy = function(game){
 	this.game = game;
 	this.pogysprite = null;
 	this.pogygroup = null;
+
 };
 
 startPogy.prototype = {
 	preload: function(){
-    this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
 	},
 
 	create: function(){
@@ -22,8 +22,8 @@ startPogy.prototype = {
     this.pogygroup.forEach(function(pogy) { 
 
       // Trying to set collision for build tiles - callbackFunc should make pogys climb
-      startmenu.map.setTileIndexCallback(136, climb, this, startmenu.groundLayer);
-      startmenu.map.setTileIndexCallback(113, stopClimb, this, startmenu.groundLayer);
+      startmenu.map.setTileIndexCallback(boot.tileLadder, climb, this, startmenu.groundLayer);
+      startmenu.map.setTileIndexCallback(boot.tileAboveLadder, stopClimb, this, startmenu.groundLayer);
 
       if(pogy.body.velocity.x >= 0) {
         pogy.animations.play('right');
@@ -100,7 +100,7 @@ startPogy.prototype = {
     // case one - NE
     var clickedTile = startmenu.map.getTile(xPos+1, yPos-1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos-1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos-1, 1, 1);
       startmenu.map.getTile(xPos+1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -108,7 +108,7 @@ startPogy.prototype = {
     // case two - N
     clickedTile = startmenu.map.getTile(xPos, yPos-1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos, yPos-1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos-1, 1, 1);
       startmenu.map.getTile(xPos, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -116,7 +116,7 @@ startPogy.prototype = {
     // case three - NW
     clickedTile = startmenu.map.getTile(xPos-1, yPos-1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos-1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos-1, 1, 1);
       startmenu.map.getTile(xPos-1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -124,7 +124,7 @@ startPogy.prototype = {
     // case four - E
     clickedTile = startmenu.map.getTile(xPos+1, yPos);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos, 1, 1);
       startmenu.map.getTile(xPos+1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -132,7 +132,7 @@ startPogy.prototype = {
     // case five - W
     clickedTile = startmenu.map.getTile(xPos-1, yPos);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos, 1, 1);
       startmenu.map.getTile(xPos-1, yPos).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -140,7 +140,7 @@ startPogy.prototype = {
     // case six - SE
     clickedTile = startmenu.map.getTile(xPos+1, yPos+1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos+1, yPos+1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos+1, 1, 1);
       startmenu.map.getTile(xPos+1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -148,7 +148,7 @@ startPogy.prototype = {
     // case seven - S
     clickedTile = startmenu.map.getTile(xPos, yPos+1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos, yPos+1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos+1, 1, 1);
       startmenu.map.getTile(xPos, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
@@ -156,14 +156,14 @@ startPogy.prototype = {
     // case eight - SW
     clickedTile = startmenu.map.getTile(xPos-1, yPos+1);
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos+1, 1, 1);
       startmenu.map.getTile(xPos-1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
     }
 
     // Ugly hack ... If this don't exist the collisions will be fucked up
     if(clickedTile){
-      startmenu.map.replace(clickedTile.index, 9, xPos-1, yPos+1, 1, 1);
+      startmenu.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos+1, 1, 1);
       clickedTile.resetCollision();
     }
 
@@ -195,7 +195,7 @@ function climb(pogys){
   // Sends back the pogy to the left
   var right = (pogys.body.velocity.x == 0.000001);
   var checkTileLeft = startmenu.map.getTile(xPos, yPos-1);
-  if(right && checkTileLeft && (checkTileLeft.index == 34 || checkTileLeft.index == 32)) {
+  if(right && checkTileLeft && checkTileLeft.index == boot.tileGround) {
     console.log("Jump left");
     pogys.body.x -= 10;
     pogys.body.velocity.x = -100;
@@ -208,7 +208,7 @@ function climb(pogys){
   var left = (pogys.body.velocity.x == -0.000001);
   var checkTileRight = startmenu.map.getTile(xPos, yPos-1);
 
-  if(left && checkTileRight && (checkTileLeft.index == 34 || checkTileLeft.index == 32)) {
+  if(left && checkTileRight && checkTileLeft.index == boot.tileGround) {
     console.log("Jump right");
     pogys.body.x += 10;
     pogys.body.velocity.x = 100;

@@ -1,16 +1,12 @@
 BuildPogy = function(game){
 	this.game = game;
 	this.buildpogy = null;
-  //this.nrOfBuildPogys = 1;
   this.active = false;
-  this.tileIndex = 21;
-  this.tileAbove = 26;
   this.buildTile = null;
 };
 
 BuildPogy.prototype = {
 	preload: function(){
-		this.game.load.audio('buildTile', 'Sounds/build.wav');
 	},
 
 	create: function(){
@@ -18,7 +14,6 @@ BuildPogy.prototype = {
 
 	update: function(){
 		if(this.game.input.mousePointer.isDown){	
-
 			// Create sound effect
 			var sound = level.game.add.audio('buildTile',1,false);
 
@@ -28,39 +23,42 @@ BuildPogy.prototype = {
 			var aboveClicked = level.map.getTile(xPos, yPos-1);
 			var clickedTile = level.map.getTile(xPos, yPos);
 			var underClicked = level.map.getTile(xPos, yPos+1);
-
-			if(underClicked && (underClicked.index == this.tileIndex || underClicked.index == 32)){
+			
+			if(underClicked && (underClicked.index == boot.tileLadder || underClicked.index == boot.tileGround)){
 				var sound = level.game.add.audio('buildTile',1,false);
 
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
-					
 					//If it's soild ground above, don't build an tile above
 					if(aboveClicked) {
-						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
+						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					} 
 					else {
 						//Byt ut första parametern till en byggtile och den ovanför till en tileAbove:)
-						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
-						level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
+						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
+						level.map.putTile(boot.tileAboveLadder, xPos, yPos-1, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					}
 
 				}
 				//Om klickad tile är en som redan är grävd eller 
-				else if((clickedTile && (clickedTile.index == digpogy.tileIndex || clickedTile.index == this.tileAbove) && this.active && (level.nrOfBuildPogys > 0))) {
+				else if((clickedTile && (clickedTile.index == digpogy.tileIndex || clickedTile.index == boot.tileAboveLadder) && this.active && (level.nrOfBuildPogys > 0))) {
 					
 					//If it's soild ground above,
 					if(aboveClicked) {
-						level.map.putTile(this.tileIndex, xPos, yPos, level.groundLayer);
+						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
+    				level.map.getTile(xPos, yPos).alpha = 1;
 					}
 					else {
-						level.map.replace(clickedTile.index, this.tileIndex, xPos, yPos, 1, 1, level.groundLayer);
-						level.map.putTile(this.tileAbove, xPos, yPos-1, level.groundLayer);
+						level.map.replace(clickedTile.index, boot.tileLadder, xPos, yPos, 1, 1, level.groundLayer);
+						level.map.putTile(boot.tileAboveLadder, xPos, yPos-1, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					}
