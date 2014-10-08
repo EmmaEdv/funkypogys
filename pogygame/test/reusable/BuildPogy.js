@@ -23,7 +23,7 @@ BuildPogy.prototype = {
 			var aboveClicked = level.map.getTile(xPos, yPos-1);
 			var clickedTile = level.map.getTile(xPos, yPos);
 			var underClicked = level.map.getTile(xPos, yPos+1);
-
+			
 			if(underClicked && (underClicked.index == boot.tileLadder || underClicked.index == boot.tileGround)){
 				var sound = level.game.add.audio('buildTile',1,false);
 

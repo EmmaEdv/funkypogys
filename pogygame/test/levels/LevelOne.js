@@ -66,12 +66,13 @@ LevelOne.prototype = {
 	  this.game.load.image('homeButton', 'assets/homebutton.png');
 	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
 	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
-	  this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
+	  this.game.load.image('tutCamera', 'assets/pratbubbla_shaded.png');
 	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
-	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
+	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_shovel.png');
 	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 	  this.game.load.image('restartButton', 'assets/restartbutton.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
+		this.game.load.image('levelPogy', 'assets/level_pogy.png');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
@@ -79,12 +80,6 @@ LevelOne.prototype = {
 		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
 		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
-
-		//Sounds
-		/*this.game.load.audio('digTile', 'Sounds/dig.wav');
-		this.game.load.audio('buildTile', 'Sounds/build.wav');
-		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-		*/
 	},
 
 	create: function(){
