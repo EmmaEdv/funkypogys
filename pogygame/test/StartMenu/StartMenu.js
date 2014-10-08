@@ -76,11 +76,10 @@ StartMenu.prototype = {
 		// Levelbutton
 		this.levelOneButton = this.game.add.button(130, 200, 'buttonOne', levelOne, this, 2);
 		this.levelTwoButton = this.game.add.button(230, 200, 'buttonTwo', levelTwo, this, 2);
-		this.levelThreeButton = this.game.add.button(330, 200, 'buttonThree');
+		this.levelThreeButton = this.game.add.button(330, 200, 'buttonThree', levelThree, this, 2);
 		this.levelFourButton = this.game.add.button(430, 200, 'buttonFour');
 		this.levelFiveButton = this.game.add.button(530, 200, 'buttonFive');
 
-		this.levelThreeButton.alpha = 0.5;
 		this.levelFourButton.alpha = 0.5;
 		this.levelFiveButton.alpha = 0.5;
 
@@ -88,6 +87,7 @@ StartMenu.prototype = {
 		var highScore = game.add.text(20, 285, "Highscore: ", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelOneHighScore = game.add.text(171, 285, ""+boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelTwoHighScore = game.add.text(273, 285, ""+boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelThreeHighScore = game.add.text(375, 285, ""+boot.levelThreeScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
@@ -106,5 +106,10 @@ function levelOne () {
 function levelTwo () {
 	console.log("Start Level Two");	
   this.game.state.start('startLevelTwo');
+}
+
+function levelThree () {
+	console.log("Start Level Three");	
+  this.game.state.start('startLevelThree');
 }
 

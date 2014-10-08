@@ -1,4 +1,4 @@
-LevelTwo = function(game){
+LevelThree = function(game){
 	this.game = game;
 	this.levelName = "Level Three";
 	this.nextLevel = "MainMenu";
@@ -31,7 +31,7 @@ LevelTwo = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 140;
+  this.startYpos = 300;
   this.startXpos = 25;
 
   // Timer for the level
@@ -44,7 +44,7 @@ LevelTwo = function(game){
   this.showTutorialBuild = false;
 };
 
-LevelTwo.prototype = {
+LevelThree.prototype = {
 	preload: function(){
 		// TileMaps
 		/*
@@ -66,12 +66,13 @@ LevelTwo.prototype = {
 	  this.game.load.image('homeButton', 'assets/homebutton.png');
 	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
 	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
-	  this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
+	  this.game.load.image('tutCamera', 'assets/pratbubbla_shade.png');
 	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
-	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
+	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_shovel.png');
 	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 	  this.game.load.image('restartButton', 'assets/restartbutton.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
+		this.game.load.image('tutBlowPogy', 'assets/pratbubbla_blow.png');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
@@ -133,12 +134,15 @@ LevelTwo.prototype = {
 		this.buildPogys = this.game.add.group();
 		this.buildPogys.enableBody = true;
 		this.map.createFromObjects('builder', 1002, 'ladder' , 0, true, false, this.buildPogys);
+
+		//Blow up pogy - tutorial image
+		this.game.add.image(297, 320, 'tutBlowPogy');	
 	},
 
 	update: function(){
 		// If a new highscore is set on the game, update the global variable
-		if(this.levelScore > boot.levelTwoScore) {
-		 	boot.levelTwoScore = this.levelScore;
+		if(this.levelScore > boot.levelThreeScore) {
+		 	boot.levelThreeScore = this.levelScore;
 		}
 	},
 
