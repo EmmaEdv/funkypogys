@@ -51,11 +51,10 @@ StartMenu.prototype = {
 
 		//Sounds
 		this.game.load.audio('digTile', 'Sounds/dig.wav');
-		this.game.load.audio('theme', 'Sounds/theme.mp3');
 		this.game.load.audio('buildTile', 'Sounds/build.wav');
-		this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
+		this.game.load.audio('pickUpObject', 'Sounds/collect.wav');
+		this.game.load.audio('pickUpCoin', 'Sounds/coin.wav');
 		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
 	},
 
 	create: function(){

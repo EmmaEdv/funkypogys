@@ -79,12 +79,9 @@ LevelTwo.prototype = {
 		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
 
 		//Sounds
-		this.game.load.audio('digTile', 'Sounds/dig.wav');
-		this.game.load.audio('theme', 'Sounds/theme.mp3');
+		/*this.game.load.audio('digTile', 'Sounds/dig.wav');
 		this.game.load.audio('buildTile', 'Sounds/build.wav');
-		this.game.load.audio('pickUpCoin', 'Sounds/pickUpCoin.wav');
-		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-    this.game.load.audio('pickUpObject', 'Sounds/pickUpObject.wav');
+		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');*/
 	},
 
 	create: function(){

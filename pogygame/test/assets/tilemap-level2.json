@@ -32,6 +32,7 @@
                  "ellipse":true,
                  "height":18,
                  "name":"",
+                 "gid": 1002,
                  "properties":
                     {
 
@@ -40,8 +41,8 @@
                  "type":"",
                  "visible":true,
                  "width":23,
-                 "x":844,
-                 "y":501
+                 "x":800,
+                 "y":520
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -59,6 +60,7 @@
                  "ellipse":true,
                  "height":19,
                  "name":"",
+                 "gid": 1000,
                  "properties":
                     {
 
@@ -86,6 +88,7 @@
                  "ellipse":true,
                  "height":16,
                  "name":"",
+                 "gid": 666,
                  "properties":
                     {
 
@@ -101,6 +104,7 @@
                  "ellipse":true,
                  "height":18,
                  "name":"",
+                 "gid": 666,
                  "properties":
                     {
 
@@ -116,6 +120,7 @@
                  "ellipse":true,
                  "height":15.9999999999999,
                  "name":"",
+                 "gid": 666,
                  "properties":
                     {
 
