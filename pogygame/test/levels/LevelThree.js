@@ -1,10 +1,10 @@
-LevelOne = function(game){
+LevelTwo = function(game){
 	this.game = game;
-	this.levelName = "Level One";
-	this.nextLevel = "startLevelTwo";
-	this.levelScore = 0;
-
+	this.levelName = "Level Three";
+	this.nextLevel = "MainMenu";
+	this.levelScore = null;
 	this.map = null;
+
 	this.groundLayer = null;
 
 	// Objects from tilemap
@@ -14,13 +14,13 @@ LevelOne = function(game){
   this.digPogys = null;
 
   // Counter for our Pogys
-  this.nrOfPogys = 10;
-  this.nrOfBuildPogys = 0;
+  this.nrOfPogys = 5;
+  this.nrOfBuildPogys = 2;
   this.nrOfDigPogys = 0;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = true;
-  this.hideDigPogy = true;
+  this.hideBuildPogy = false;
+  this.hideDigPogy = false;
 
   //How many is home/picked up
 	this.pogyCounter = 0;
@@ -31,27 +31,27 @@ LevelOne = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 290;
+  this.startYpos = 140;
   this.startXpos = 25;
 
   // Timer for the level
+  this.levelDuration = 60 // In sec
   this.levelTimer = null;
 
-  // If game is over
-  this.gameOver = false;
-
   // IF tutorial should start
-  this.showTutorialCamera = true;
-  this.showTutorialDig = true;
+  this.showTutorialCamera = false;
+  this.showTutorialDig = false;
   this.showTutorialBuild = false;
 };
 
-LevelOne.prototype = {
+LevelTwo.prototype = {
 	preload: function(){
 		// TileMaps
+		/*
 		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map3', 'assets/tilemap-level3.json', null, Phaser.Tilemap.TILED_JSON);*/
 
 		// TileSets
 		this.game.load.image('tileMap', 'assets/tileMap.png');
@@ -83,28 +83,24 @@ LevelOne.prototype = {
 		//Sounds
 		/*this.game.load.audio('digTile', 'Sounds/dig.wav');
 		this.game.load.audio('buildTile', 'Sounds/build.wav');
-		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-		*/
+		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');*/
 	},
 
 	create: function(){
-		// Set physics to Arcade
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
-
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(60 * 1000, this.endGame, this);
+    this.levelTimer.add(this.levelDuration * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
-		//this.game.world.setBounds(0, 0, 1750, 640);
-		this.game.world.setBounds(0, 0, 1750, 555);
+		this.game.world.setBounds(0, 0, 1750, 560);
 
-		// Set background
+		// Backgroundpicture
 		this.game.add.sprite(0,0,'background');
 
 		// Create the map
-		this.map = this.game.add.tilemap('map1');
+		this.map = this.game.add.tilemap('map3');
 
 		// Add Tileset
 		this.map.addTilesetImage('tileMap');
@@ -113,12 +109,10 @@ LevelOne.prototype = {
 		this.groundLayer = this.map.createLayer('Tile Layer 1');
 
 		// Set Collision
-		//this.map.setCollision(32);
-		//this.map.setCollision(34);
 		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Debug
-		//this.groundLayer.debug = true;
+		// this.groundLayer.debug = true;
 
 		// Add coins to the game
 		this.coins = this.game.add.group();
@@ -142,20 +136,17 @@ LevelOne.prototype = {
 	},
 
 	update: function(){
-		// Show camera tutorial in the begining
-		if(this.showTutorialCamera) {
-			this.showTutorialCamera = false;
-			tutorialscreens.openCamera();
-		}
-
-		if(this.levelScore > boot.levelOneScore) {
-		 	boot.levelOneScore = this.levelScore;
+		// If a new highscore is set on the game, update the global variable
+		if(this.levelScore > boot.levelTwoScore) {
+		 	boot.levelTwoScore = this.levelScore;
 		}
 	},
 
+	// If the game is over
 	endGame: function(){
 		guiendgamescreen.openWindow();
 		level.levelTimer.pause();
 		level.gameOver = true;
 	},
 };
+

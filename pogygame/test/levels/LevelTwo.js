@@ -1,7 +1,7 @@
 LevelTwo = function(game){
 	this.game = game;
 	this.levelName = "Level Two";
-	this.nextLevel = "MainMenu";
+	this.nextLevel = "startLevelThree";
 	this.levelScore = null;
 	this.map = null;
 
@@ -92,7 +92,7 @@ LevelTwo.prototype = {
     this.levelTimer.start();
 
 		// Set bounds to the world
-		this.game.world.setBounds(0, 0, 1750, 630);
+		this.game.world.setBounds(0, 0, 1750, 560);
 
 		// Backgroundpicture
 		this.game.add.sprite(0,0,'background');

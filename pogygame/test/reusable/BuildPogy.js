@@ -31,6 +31,7 @@ BuildPogy.prototype = {
 					//If it's soild ground above, don't build an tile above
 					if(aboveClicked) {
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					} 
@@ -38,6 +39,7 @@ BuildPogy.prototype = {
 						//Byt ut första parametern till en byggtile och den ovanför till en tileAbove:)
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
 						level.map.putTile(boot.tileAboveLadder, xPos, yPos-1, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					}
@@ -51,10 +53,12 @@ BuildPogy.prototype = {
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
+    				level.map.getTile(xPos, yPos).alpha = 1;
 					}
 					else {
 						level.map.replace(clickedTile.index, boot.tileLadder, xPos, yPos, 1, 1, level.groundLayer);
 						level.map.putTile(boot.tileAboveLadder, xPos, yPos-1, level.groundLayer);
+						level.map.getTile(xPos, yPos).alpha = 1;
 						level.nrOfBuildPogys--; // Decrease No. Of Pogys
     				sound.play(); // Play sound effect
 					}
