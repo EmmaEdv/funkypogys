@@ -146,6 +146,7 @@ GUIEndGameScreen.prototype = {
 		if(level.pogyCounter == level.nrOfPogys || level.pogysLeft == 0) {
 			this.openWindow();
 			level.levelTimer.pause();
+			this.game.add.image(30, 100, 'levelPogy');
 		}
 	},
 

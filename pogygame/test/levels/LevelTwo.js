@@ -64,12 +64,13 @@ LevelTwo.prototype = {
 	  this.game.load.image('homeButton', 'assets/homebutton.png');
 	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
 	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
-	  this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
+	  this.game.load.image('tutCamera', 'assets/pratbubbla_shaded.png');
 	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
-	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
+	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_shovel.png');
 	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 	  this.game.load.image('restartButton', 'assets/restartbutton.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
+		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
+		this.game.load.image('levelPogy', 'assets/level_pogy.png');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);

@@ -26,27 +26,16 @@ StartMenu.prototype = {
 		this.game.load.image('tileMap', 'assets/tileMap.png');
 
 		// Images
-		this.game.load.image('spade', 'assets/spade.png');
-		this.game.load.image('ladder', 'assets/build.png');
-	  this.game.load.image('coin', 'assets/pogyCoin.png');
-	  this.game.load.image('pogy', 'assets/pogyHome.png', 4);
-	  this.game.load.image('toolbar', 'assets/woodenBar.png');
-	  this.game.load.image('background', 'assets/bgMorning.png');
-	  this.game.load.image('homeButton', 'assets/homebutton.png');
-	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
-	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
-	  this.game.load.image('tutCamera', 'assets/pratbubbla_right.png');
-	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
-	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_spade.png');
-	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
-	  this.game.load.image('restartButton', 'assets/restartbutton.png');
-		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_stege.png');
+		this.game.load.image('background', 'assets/bgMorning.png');
+		this.game.load.image('welcome', 'assets/welcome_pogy.png');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
-		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
-		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
-		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
+		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 100, 100);
+		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 100, 100);
+		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 100, 100);
+		this.game.load.spritesheet('buttonFour', 'assets/level4.png', 100, 100);
+		this.game.load.spritesheet('buttonFive', 'assets/level5.png', 100, 100);
 		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
 
 		//Sounds
@@ -62,6 +51,9 @@ StartMenu.prototype = {
 
 		// Backgroundpicture
 		this.game.add.sprite(0,0,'background');
+
+		//Welcome pogy
+		this.game.add.image(80, 10, 'welcome');
 
 		// Set physics
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -82,12 +74,20 @@ StartMenu.prototype = {
 		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Levelbutton
-		this.levelOneButton = this.game.add.button(200, 200, 'buttonOne', levelOne, this, 2);
-		this.levelTwoButton = this.game.add.button(400, 200, 'buttonTwo', levelTwo, this, 2);
+		this.levelOneButton = this.game.add.button(130, 200, 'buttonOne', levelOne, this, 2);
+		this.levelTwoButton = this.game.add.button(230, 200, 'buttonTwo', levelTwo, this, 2);
+		this.levelThreeButton = this.game.add.button(330, 200, 'buttonThree');
+		this.levelFourButton = this.game.add.button(430, 200, 'buttonFour');
+		this.levelFiveButton = this.game.add.button(530, 200, 'buttonFive');
+
+		this.levelThreeButton.alpha = 0.5;
+		this.levelFourButton.alpha = 0.5;
+		this.levelFiveButton.alpha = 0.5;
 
 		// Level highscore texts
-		var levelOneHighScore = game.add.text(220, 280, "Highscore: " + boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
-		var levelTwoHighScore = game.add.text(420, 280, "Highscore: " + boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var highScore = game.add.text(20, 285, "Highscore: ", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelOneHighScore = game.add.text(171, 285, ""+boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelTwoHighScore = game.add.text(273, 285, ""+boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
