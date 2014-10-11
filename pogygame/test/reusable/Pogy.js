@@ -49,7 +49,7 @@ Pogy.prototype = {
         // 50% send back the pogy to the left, 50% to the right.
         // If it's the wrong direction it will have a new try next frame and hopefully the right direction
         else {
-          if(Math.random() <0.5) {
+          if(Math.random() < 0.5) {
             pogy.body.velocity.x = -100;
           }
           else {
@@ -109,12 +109,12 @@ Pogy.prototype = {
     var yPos = Math.floor(this.y/level.tileSize);
 
     //Add an explosion where the pogy
-    var explosion = pogy.game.add.sprite(this.x-20, this.y, 'explosion');
-    explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25], 25, false);
+    var explosion = pogy.game.add.sprite(this.x-60, this.y-40, 'explosion');
+    explosion.animations.add('explodes', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40], 60, false);
     explosion.animations.play('explodes');
 
-    // Remove he animation after it's done
-    pogy.game.time.events.add((Phaser.Timer.SECOND/60) , function(){explosion.kill();}, {explosion: explosion});
+    // Remove the animation after it's done
+    pogy.game.time.events.add((Phaser.Timer.SECOND/60)*60 , function(){explosion.kill();}, {explosion: explosion});
     
     /***
     **** Eight different cases of erase tiles

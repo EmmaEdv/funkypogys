@@ -7,18 +7,18 @@ Pointer = function(game){
 
 Pointer.prototype = {
 	preload: function(){
-		this.game.load.image('pointerBuild', 'assets/pointerBuild.png');
-		this.game.load.image('pointerDig', 'assets/pointerDig.png');
+		this.game.load.image('pointerBuild', 'assets/build_small.png');
+		this.game.load.image('pointerDig', 'assets/spade_small.png');
 		this.game.load.image('pointerError', 'assets/pointerError.png');
 	},
 
 	create: function(){
+		this.pointerErrorTile = this.game.add.image(0, 0, 'pointerError');
+		this.pointerErrorTile.alpha = 0;
 		this.pointerBuildTile = this.game.add.image(0, 0, 'pointerBuild');
 		this.pointerBuildTile.alpha = 0;
 		this.pointerDigTile = this.game.add.image(0, 0, 'pointerDig');
 		this.pointerDigTile.alpha = 0;
-		this.pointerErrorTile = this.game.add.image(0, 0, 'pointerError');
-		this.pointerErrorTile.alpha = 0;
 	},
 
 	update: function(){
@@ -40,7 +40,6 @@ Pointer.prototype = {
 		{
 			this.setErrorTileToActive();
 			this.setBuildTileToInactive();
-			this.setDigTileToInactive();
 		} 
 		else if(digpogy.active)  // if you can dig
 		{
@@ -57,7 +56,6 @@ Pointer.prototype = {
 		else if(buildpogy.active) // If you can't build
 		{
 			this.setErrorTileToActive();
-			this.setBuildTileToInactive();
 			this.setDigTileToInactive();
 		} 
 		else // If non of our tools is seleceted
@@ -91,7 +89,7 @@ Pointer.prototype = {
 	},
 
 	setDigTileToActive: function() {
-		this.pointerDigTile.alpha = 0.5;
+		this.pointerDigTile.alpha = 1;
 	},
 
 	setDigTileToInactive: function() {
