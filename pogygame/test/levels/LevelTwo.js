@@ -77,7 +77,7 @@ LevelTwo.prototype = {
 		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 160, 100);
 		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 160, 100);
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 160, 100);
-		this.game.load.spritesheet('explosion', 'assets/explosion320.png', 64, 64);
+		this.game.load.spritesheet('explosion', 'assets/explosion320.png', 128, 128);
 	},
 
 	create: function(){
