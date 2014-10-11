@@ -39,8 +39,8 @@ GUIToolbar.prototype = {
 		toolbar.fixedToCamera = true;
 
 		// LevelText
-		this.levelText = game.add.text(200, 30 , level.levelName, {
-      font: "17px Chalkduster",
+		this.levelText = game.add.text(350, 20 , level.levelName, {
+      font: "25px Chalkduster",
       fill: "#FFF",
       align: "left"
     });

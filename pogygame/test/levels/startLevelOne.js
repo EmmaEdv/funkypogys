@@ -4,6 +4,7 @@
     var buildpogy = null;
     var camera = null;
     var gui = null;
+    var pointer = null;
 startLevelOne = function(game){
 	this.game = game;
 };
@@ -31,6 +32,9 @@ startLevelOne.prototype = {
 
         tutorialscreens = new tutorialScreens(this.game);
         tutorialscreens.preload();
+
+        pointer = new Pointer(this.game);
+        pointer.preload();
 	},
 
 	create: function(){
@@ -41,6 +45,7 @@ startLevelOne.prototype = {
         gui.create();
         camera.create();
         tutorialscreens.create();
+        pointer.create();
 	},
 
 	update: function(){
@@ -50,5 +55,6 @@ startLevelOne.prototype = {
         camera.update();
         digpogy.update();
         buildpogy.update();
+        pointer.update();
 	}
 };

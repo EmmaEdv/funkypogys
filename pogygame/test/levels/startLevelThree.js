@@ -33,6 +33,9 @@ startLevelThree.prototype = {
 
         tutorialscreens = new tutorialScreens(this.game);
         tutorialscreens.preload();
+
+        pointer = new Pointer(this.game);
+        pointer.preload();
 	},
 
 	create: function(){
@@ -43,6 +46,7 @@ startLevelThree.prototype = {
         gui.create();
         camera.create();
         tutorialscreens.create();
+        pointer.create();
 	},
 
 	update: function(){
@@ -52,5 +56,6 @@ startLevelThree.prototype = {
         camera.update();
         digpogy.update();
         buildpogy.update();
+        pointer.update();
 	}
 };

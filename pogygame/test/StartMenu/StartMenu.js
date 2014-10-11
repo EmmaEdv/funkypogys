@@ -37,7 +37,6 @@ StartMenu.prototype = {
 		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 100, 100);
 		this.game.load.spritesheet('buttonFour', 'assets/level4.png', 100, 100);
 		this.game.load.spritesheet('buttonFive', 'assets/level5.png', 100, 100);
-		this.game.load.spritesheet('explosion', 'assets/pogyExplosion256.png', 256, 256);
 
 		//Sounds
 		this.game.load.audio('digTile', 'Sounds/dig.wav');
