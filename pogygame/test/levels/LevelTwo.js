@@ -14,12 +14,12 @@ LevelTwo = function(game){
   this.digPogys = null;
 
   // Counter for our Pogys
-  this.nrOfPogys = 1;
-  this.nrOfBuildPogys = 10;
+  this.nrOfPogys = 10;
+  this.nrOfBuildPogys = 0;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = false;
+  this.hideBuildPogy = true;
   this.hideDigPogy = false;
 
   //How many is home/picked up
@@ -31,8 +31,8 @@ LevelTwo = function(game){
   this.tileSize = 35;
 
   //Startposition for our pogys
-  this.startYpos = 140;
-  this.startXpos = 25;
+  this.startYpos = 100;
+  this.startXpos = 45;
 
   // Timer for the level
   this.levelDuration = 60 // In sec
@@ -70,7 +70,7 @@ LevelTwo.prototype = {
 	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
 	  this.game.load.image('restartButton', 'assets/restartbutton.png');
 		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
-		this.game.load.image('levelPogy', 'assets/level_pogy.png');
+		this.game.load.image('levelPogy', '');
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
