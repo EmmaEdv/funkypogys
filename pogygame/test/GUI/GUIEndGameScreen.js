@@ -8,7 +8,7 @@ GUIEndGameScreen = function(game){
 	this.winningScreenStartX = 250;
 	this.winningScreenStartY = 150;
 	this.spaceBetweenText = 40;
-	this.buttonsY = 250;
+	this.buttonsY = 240;
 	this.buttonsInBetween = 70;
 
 	// Which Level Text
@@ -50,7 +50,7 @@ GUIEndGameScreen.prototype = {
 
 		// The WinningScreen, background
 		this.winningScreen = game.add.sprite(this.winningScreenStartX, this.winningScreenStartY, 'winningScreen');
-    this.winningScreen.alpha = 0.7;
+    //this.winningScreen.alpha = 1.0;
     this.winningScreen.inputEnabled = true;
     this.winningScreen.scale.set(0);
     this.winningScreen.fixedToCamera = true;
@@ -61,7 +61,7 @@ GUIEndGameScreen.prototype = {
 			this.winningScreenStartY+10, 
 			level.levelName, {
       font: "30px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "center"
     });
     this.levelText.fixedToCamera = true;
@@ -72,52 +72,51 @@ GUIEndGameScreen.prototype = {
 			this.winningScreenStartY+70, 
 			"Sorry, no pogy came home \n\n\n          Try again!", {
       font: "12px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.losingText.fixedToCamera = true;
     this.losingText.scale.set(0);
 
     // Total Game Time Text
-		this.totalGameTimeText = game.add.text(this.winningScreenStartX+10, 
+		this.totalGameTimeText = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*2, 
 			"Total Time: 0", {
       font: "17px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.totalGameTimeText.fixedToCamera = true;
     this.totalGameTimeText.scale.set(0);
 
     // Total number of coins
-    this.totalNumberOfCoinsText = game.add.text(
-    	this.winningScreenStartX+10, 
+    this.totalNumberOfCoinsText = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*3, 
 			"Number of coins: 0", {
       font: "17px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.totalNumberOfCoinsText.fixedToCamera = true;
     this.totalNumberOfCoinsText.scale.set(0);
 
     // Total number of Pogys
-		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+10, 
+		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*4, 
 			"Total Number Of Pogyz: 0", {
       font: "17px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.totalNumberOfPogys.fixedToCamera = true;
     this.totalNumberOfPogys.scale.set(0);
 
     // Total score
-		this.totalScore = game.add.text(this.winningScreenStartX+10, 
+		this.totalScore = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*5, 
 			"Total score: 0", {
       font: "17px Chalkduster",
-      fill: "#000",
+      fill: "#FFF",
       align: "left"
     });
     this.totalScore.fixedToCamera = true;

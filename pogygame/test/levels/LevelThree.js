@@ -54,7 +54,12 @@ LevelThree.prototype = {
 
 		// Images
 		this.game.load.image('spade', 'assets/spade.png');
+		this.game.load.image('spadeBtn', 'assets/shovel_btn.png');
+		
 		this.game.load.image('ladder', 'assets/build.png');
+		this.game.load.image('ladderBtn', 'assets/ladder_btn.png');
+
+
 	  this.game.load.image('coin', 'assets/pogyCoin.png');
 	  this.game.load.image('pogy', 'assets/pogyHome.png', 4);
 	  this.game.load.image('toolbar', 'assets/woodenBar.png');

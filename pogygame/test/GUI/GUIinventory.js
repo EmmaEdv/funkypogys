@@ -9,7 +9,7 @@ GUIinventory = function(game){
 
 	// Positions
 	this.buttonX = 370;
-	this.buttonY = 570; 
+	this.buttonY = 565; 
 	this.buttonTextInBetween = 40;
 	this.buttonInBetween = 100;
 };
@@ -26,7 +26,7 @@ GUIinventory.prototype = {
     inventoryText.fixedToCamera = true;
 
 		// BuildPogy button //
-    this.buildPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'ladder', this.buildCallback); // Add a button
+    this.buildPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'ladderBtn', this.buildCallback); // Add a button
     this.buildPogy.fixedToCamera = true;
     this.buildPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"}); // Set text
     this.buildPogyText.fixedToCamera = true;
@@ -39,7 +39,7 @@ GUIinventory.prototype = {
     buildPogyKey.onDown.add(this.buildCallback, this);
 
     // Digpogy button //
-    this.digPogy = this.game.add.button(this.buttonX, this.buttonY, 'spade', this.digCallback); // Add button
+    this.digPogy = this.game.add.button(this.buttonX, this.buttonY, 'spadeBtn', this.digCallback); // Add button
     this.digPogy.fixedToCamera = true;
     this.digPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
     this.digPogyText.fixedToCamera = true;
