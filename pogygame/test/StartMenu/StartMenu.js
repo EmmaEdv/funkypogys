@@ -32,11 +32,11 @@ StartMenu.prototype = {
 		
 		// Spritesheet
 		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
-		this.game.load.spritesheet('buttonOne', 'assets/level1.png', 100, 100);
-		this.game.load.spritesheet('buttonTwo', 'assets/level2.png', 100, 100);
-		this.game.load.spritesheet('buttonThree', 'assets/level3.png', 100, 100);
-		this.game.load.spritesheet('buttonFour', 'assets/level4.png', 100, 100);
-		this.game.load.spritesheet('buttonFive', 'assets/level5.png', 100, 100);
+		this.game.load.spritesheet('buttonOne', 'assets/level1.png');
+		this.game.load.spritesheet('buttonTwo', 'assets/level2.png');
+		this.game.load.spritesheet('buttonThree', 'assets/level3.png');
+		this.game.load.spritesheet('buttonFour', 'assets/level4.png');
+		this.game.load.spritesheet('buttonFive', 'assets/level5.png');
 
 		//Sounds
 		this.game.load.audio('digTile', 'Sounds/dig.wav');
@@ -76,10 +76,9 @@ StartMenu.prototype = {
 		this.levelOneButton = this.game.add.button(130, 200, 'buttonOne', levelOne, this, 2);
 		this.levelTwoButton = this.game.add.button(230, 200, 'buttonTwo', levelTwo, this, 2);
 		this.levelThreeButton = this.game.add.button(330, 200, 'buttonThree', levelThree, this, 2);
-		this.levelFourButton = this.game.add.button(430, 200, 'buttonFour');
+		this.levelFourButton = this.game.add.button(430, 200, 'buttonFour', levelFour, this, 2);
 		this.levelFiveButton = this.game.add.button(530, 200, 'buttonFive');
 
-		this.levelFourButton.alpha = 0.5;
 		this.levelFiveButton.alpha = 0.5;
 
 		// Level highscore texts
@@ -87,6 +86,7 @@ StartMenu.prototype = {
 		var levelOneHighScore = game.add.text(171, 285, ""+boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelTwoHighScore = game.add.text(273, 285, ""+boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelThreeHighScore = game.add.text(375, 285, ""+boot.levelThreeScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelThreeHighScore = game.add.text(477, 285, ""+boot.levelFourScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);
@@ -112,3 +112,7 @@ function levelThree () {
   this.game.state.start('startLevelThree');
 }
 
+function levelFour () {
+	console.log("Start Level Four");	
+  this.game.state.start('startLevelFour');
+}

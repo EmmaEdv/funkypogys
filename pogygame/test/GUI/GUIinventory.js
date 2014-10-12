@@ -26,22 +26,22 @@ GUIinventory.prototype = {
     inventoryText.fixedToCamera = true;
 
 		// BuildPogy button //
-    this.buildPogy = this.game.add.button(this.buttonX, this.buttonY, 'ladder', this.buildCallback); // Add a button
+    this.buildPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'ladder', this.buildCallback); // Add a button
     this.buildPogy.fixedToCamera = true;
-    this.buildPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"}); // Set text
+    this.buildPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"}); // Set text
     this.buildPogyText.fixedToCamera = true;
     // If we want to hide the button
     if(level.hideBuildPogy) {
     	this.buildPogy.alpha = 0;
     	this.buildPogyText.alpha = 0;
     }
-    var buildPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.L); // Hotkey for the buildCallback functon if L is pressed
+    var buildPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.TWO); // Hotkey for the buildCallback functon if L is pressed
     buildPogyKey.onDown.add(this.buildCallback, this);
 
     // Digpogy button //
-    this.digPogy = this.game.add.button(this.buttonX+this.buttonInBetween, this.buttonY, 'spade', this.digCallback); // Add button
+    this.digPogy = this.game.add.button(this.buttonX, this.buttonY, 'spade', this.digCallback); // Add button
     this.digPogy.fixedToCamera = true;
-    this.digPogyText = game.add.text(this.buttonX+this.buttonInBetween+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+    this.digPogyText = game.add.text(this.buttonX+this.buttonTextInBetween, this.buttonY+30, "0", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
     this.digPogyText.fixedToCamera = true;
     // If we wanna hide the button
     if(level.hideDigPogy) {
@@ -49,14 +49,27 @@ GUIinventory.prototype = {
     	this.digPogyText.alpha = 0;
     }
     // Hotkey for the digCallback functon if D is pressed
-    var digPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.D); 
+    var digPogyKey = game.input.keyboard.addKey(Phaser.Keyboard.ONE); 
     digPogyKey.onDown.add(this.digCallback, this);
+
+    // Hotkey for disableInventory - ESC
+    var disablePogyKey = game.input.keyboard.addKey(Phaser.Keyboard.ESC); 
+    disablePogyKey.onDown.add(this.disableInventory, this);
 	},
 
 	update: function(){
 		// Update how many pogys we got left
 		this.digPogyText.setText(level.nrOfDigPogys);
 		this.buildPogyText.setText(level.nrOfBuildPogys);
+	},
+
+	// Disable build&dig-function
+	disableInventory: function() {
+		digpogy.active = false;
+		buildpogy.active = false;
+
+		guiinventory.buildPogy.alpha = 1;
+		guiinventory.digPogy.alpha = 1;
 	},
 
 	digCallback: function(){

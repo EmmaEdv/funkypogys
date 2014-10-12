@@ -15,11 +15,11 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 10;
-  this.nrOfBuildPogys = 0;
+  this.nrOfBuildPogys = 10;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = true;
+  this.hideBuildPogy = false;
   this.hideDigPogy = false;
 
   //How many is home/picked up
@@ -47,8 +47,6 @@ LevelTwo = function(game){
 LevelTwo.prototype = {
 	preload: function(){
 		// TileMaps
-		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 
 		// TileSets

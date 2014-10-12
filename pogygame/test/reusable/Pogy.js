@@ -90,15 +90,18 @@ Pogy.prototype = {
   // TODO: Should be a animation here!
   prepareBlast: function() {
 
-    // Set pogys velocitys to zero
-    // TODO: when pogy is in the air/ladder?
-    this.pogy.body.velocity.x = 0;
-    this.pogy.body.velocity.y = 0;
+    // Only explode the pogy if build or dig function is unactive
+    if(!digpogy.active && !buildpogy.active) {
+      // Set pogys velocitys to zero
+      // TODO: when pogy is in the air/ladder?
+      this.pogy.body.velocity.x = 0;
+      this.pogy.body.velocity.y = 0;
 
-    // Pause the animation. (Should be another animation here)
-    this.pogy.animations.paused = true;
-    var timeToExplode = 2; // Sec
-    pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, this.pogy);
+      // Pause the animation. (Should be another animation here)
+      this.pogy.animations.paused = true;
+      var timeToExplode = 2; // Sec
+      pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, this.pogy);
+    }
   },
 
   // Blast the pogy and all eight tiles around it

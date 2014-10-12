@@ -49,9 +49,7 @@ LevelOne = function(game){
 LevelOne.prototype = {
 	preload: function(){
 		// TileMaps
-		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 
 		// TileSets
 		this.game.load.image('tileMap', 'assets/tileMap.png');
@@ -67,11 +65,11 @@ LevelOne.prototype = {
 	  this.game.load.image('homeButton', 'assets/homebutton.png');
 	  this.game.load.image('pauseButton', 'assets/pausebutton.png');
 	  this.game.load.image('nextLevelButton', 'assets/nextButton.png');
+	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
+	  this.game.load.image('restartButton', 'assets/restartbutton.png');
 	  this.game.load.image('tutCamera', 'assets/pratbubbla_shaded.png');
 	  this.game.load.image('winningScreen', 'assets/winningScreen.png');
 	  this.game.load.image('tutDigPogy', 'assets/pratbubbla_shovel.png');
-	  this.game.load.image('backgroundPicture', 'assets/bgMorning.png');
-	  this.game.load.image('restartButton', 'assets/restartbutton.png');
 		this.game.load.image('tutBuildPogy', 'assets/pratbubbla_ladder.png');
 		
 		// Spritesheet

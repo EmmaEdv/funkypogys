@@ -154,6 +154,10 @@ GUIEndGameScreen.prototype = {
 
 	// Open winningScreen
 	openWindow: function() {
+		// It should not be possible to dig/build after the endscreen opens
+		buildpogy.active = false;
+		digpogy.active = false;
+
     //  Create a tween that will pop-open the window, but only if it's not already tweening or open
     this.winningScreen.scale.set(1);
     this.levelText.scale.set(1);
@@ -163,8 +167,10 @@ GUIEndGameScreen.prototype = {
     
     // If more than zero pogy reach the homre
     if(level.pogyCounter != 0) {
-    	this.yeehaaImg = this.game.add.image(30, 100, 'levelPogy');
-    	this.yeehaaImg.fixedToCamera = true;
+    	if(level.nextLevel == "startLevelTwo") {
+    		this.yeehaaImg = this.game.add.image(30, 100, 'levelPogy');
+    		this.yeehaaImg.fixedToCamera = true;
+    	}
     	// Show new level buttom and show total time in 1sec
     	this.nextLevelButton.scale.set(1);
     	this.game.time.events.add(Phaser.Timer.SECOND*0.5 , this.showTotalTimeText, this);
