@@ -172,7 +172,7 @@ GUIEndGameScreen.prototype = {
     	}
     	// Show new level buttom and show total time in 1sec
     	this.nextLevelButton.scale.set(1);
-    	this.game.add.image(30, 100, 'levelPogy');
+    	this.updateFinshLevel();
     	this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
     } else {
     	// Show the text about losing
@@ -206,4 +206,16 @@ GUIEndGameScreen.prototype = {
 		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
 		level.levelScore = totScore.toFixed(0);
 	},
+
+	updateFinshLevel: function() {
+		if(level.levelName == "Level One") {
+			boot.levelOneFinish = true;
+		} else if(level.levelName == "Level Two") {
+			boot.levelTwoFinish = true;
+		} else if(level.levelName == "Level Three") {
+			boot.levelThreeFinish = true;
+		} else {
+			boot.levelFourFinish = true;
+		}
+	}
 };

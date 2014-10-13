@@ -79,7 +79,8 @@ StartMenu.prototype = {
 		this.levelFourButton = this.game.add.button(430, 200, 'buttonFour', levelFour, this, 2);
 		this.levelFiveButton = this.game.add.button(530, 200, 'buttonFive');
 
-		this.levelFiveButton.alpha = 0.5;
+		// Set Alpha on levelButtons
+		this.setAlphaOnLevelButton();
 
 		// Level highscore texts
 		var highScore = game.add.text(20, 285, "Highscore: ", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
@@ -94,25 +95,40 @@ StartMenu.prototype = {
 	},
 
 	update: function(){
+	},
+
+	// If the level before is not finish - set alpha to 0.5
+	setAlphaOnLevelButton: function() {
+		if(!boot.levelOneFinish) {this.levelTwoButton.alpha = 0.5;}
+		if(!boot.levelTwoFinish) {this.levelThreeButton.alpha = 0.5;}
+		if(!boot.levelThreeFinish) {this.levelFourButton.alpha = 0.5;}
+		if(!boot.levelFourFinish) {this.levelFiveButton.alpha = 0.5;}
 	}
 };
 
 function levelOne () {
 	console.log("Start Level One");	
-  this.game.state.start('startLevelOne');
+	this.game.state.start('startLevelOne');
+
 }
 
 function levelTwo () {
-	console.log("Start Level Two");	
-  this.game.state.start('startLevelTwo');
+	if(boot.levelOneFinish) {
+		console.log("Start Level Two");	
+	  this.game.state.start('startLevelTwo');
+	}
 }
 
 function levelThree () {
-	console.log("Start Level Three");	
-  this.game.state.start('startLevelThree');
+	if(boot.levelTwoFinish) {
+		console.log("Start Level Three");	
+	  this.game.state.start('startLevelThree');
+	}
 }
 
 function levelFour () {
-	console.log("Start Level Four");	
-  this.game.state.start('startLevelFour');
+	if(boot.levelThreeFinish) {
+		console.log("Start Level Four");	
+	  this.game.state.start('startLevelFour');
+	}
 }

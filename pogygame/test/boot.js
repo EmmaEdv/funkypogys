@@ -17,6 +17,12 @@ boot = function(game){
 	this.tileGround = 1;
 	this.tileEmpty = 10;
 
+	// If level is finished
+	this.levelOneFinish = false;
+	this.levelTwoFinish = false;
+	this.levelThreeFinish = false;
+	this.levelFourFinish = false;
+
 };
 
 boot.prototype = {
