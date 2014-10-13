@@ -10,7 +10,7 @@ GUIinventory = function(game){
 	// Positions
 	this.buttonX = 370;
 	this.buttonY = 565; 
-	this.buttonTextInBetween = 40;
+	this.buttonTextInBetween = 60;
 	this.buttonInBetween = 100;
 };
 

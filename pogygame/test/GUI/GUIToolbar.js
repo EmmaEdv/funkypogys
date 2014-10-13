@@ -64,14 +64,14 @@ GUIToolbar.prototype = {
 		this.pauseButton = this.game.add.sprite(130, this.gameTimeTextY, 'pauseButton');
 		this.pauseButton.inputEnabled = true;
 		this.pauseButton.events.onInputUp.add(function () {
-																											 this.game.paused = true;
-																											 this.pauseButton.alpha=0;
-																											 this.startButton.alpha=1;
+																											 this.game.paused = true; 	// Pause game
+																											 this.pauseButton.alpha=0;	// Hide Pausebutton
+																											 this.startButton.alpha=1;	// Show Startbutton
 																											 },this);
 		this.game.input.onDown.add(function () {
-																						if(this.game.paused)this.game.paused = false;
-																						this.pauseButton.alpha=1;
-																						this.startButton.alpha=0;
+																						if(this.game.paused)this.game.paused = false; // Start game
+																						this.pauseButton.alpha=1;											// Show Pausebutton
+																						this.startButton.alpha=0;											// Hide Startbutton
 																						},this);
 		this.pauseButton.fixedToCamera = true;
 
