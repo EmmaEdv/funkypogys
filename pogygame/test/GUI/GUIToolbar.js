@@ -27,6 +27,7 @@ GUIToolbar = function(game){
 	this.homeButton = null;
 	this.restartButton = null;
 	this.pauseButton = null;
+	this.startButton = null;
 };
 
 GUIToolbar.prototype = {
@@ -54,11 +55,24 @@ GUIToolbar.prototype = {
 		this.restartButton = this.game.add.button(70, this.gameTimeTextY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 
+		// The toolbar restartbutton
+		this.startButton = this.game.add.button(135, this.gameTimeTextY, 'nextLevelButton');
+		this.startButton.fixedToCamera = true;
+		this.startButton.alpha = 0;
+
 		// The toolbar pausebutton
 		this.pauseButton = this.game.add.sprite(130, this.gameTimeTextY, 'pauseButton');
 		this.pauseButton.inputEnabled = true;
-		this.pauseButton.events.onInputUp.add(function () {this.game.paused = true;},this);
-		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
+		this.pauseButton.events.onInputUp.add(function () {
+																											 this.game.paused = true;
+																											 this.pauseButton.alpha=0;
+																											 this.startButton.alpha=1;
+																											 },this);
+		this.game.input.onDown.add(function () {
+																						if(this.game.paused)this.game.paused = false;
+																						this.pauseButton.alpha=1;
+																						this.startButton.alpha=0;
+																						},this);
 		this.pauseButton.fixedToCamera = true;
 
 		// Coins in the scoreboard
