@@ -26,7 +26,6 @@ BuildPogy.prototype = {
 
 			if(underClicked && (underClicked.index == boot.tileLadder || underClicked.index == boot.tileGround)){
 				var sound = level.game.add.audio('buildTile',1,false);
-console.log(clickedTile)
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
 					//If it's soild ground above, don't build an tile above
 					if(aboveClicked) {
