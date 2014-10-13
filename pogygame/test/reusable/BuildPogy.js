@@ -23,11 +23,13 @@ BuildPogy.prototype = {
 			var aboveClicked = level.map.getTile(xPos, yPos-1);
 			var clickedTile = level.map.getTile(xPos, yPos);
 			var underClicked = level.map.getTile(xPos, yPos+1);
-			
+console.log("tjenna: " + clickedTile);
 			if(underClicked && (underClicked.index == boot.tileLadder || underClicked.index == boot.tileGround)){
+console.log("Clicked: " + clickedTile.index);
 				var sound = level.game.add.audio('buildTile',1,false);
 
 				if((!clickedTile && this.active && (level.nrOfBuildPogys > 0))){
+console.log("hej: " + clickedTile.index);
 					//If it's soild ground above, don't build an tile above
 					if(aboveClicked) {
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
@@ -36,6 +38,7 @@ BuildPogy.prototype = {
     				sound.play(); // Play sound effect
 					} 
 					else {
+console.log("tjo: " + clickedTile.index);
 						//Byt ut första parametern till en byggtile och den ovanför till en tileAbove:)
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
 						level.map.putTile(boot.tileAboveLadder, xPos, yPos-1, level.groundLayer);
@@ -46,8 +49,8 @@ BuildPogy.prototype = {
 
 				}
 				//Om klickad tile är en som redan är grävd eller 
-				else if((clickedTile && (clickedTile.index == digpogy.tileIndex || clickedTile.index == boot.tileAboveLadder) && this.active && (level.nrOfBuildPogys > 0))) {
-					
+				else if((clickedTile && (clickedTile.index == boot.tileEmpty || clickedTile.index == boot.tileAboveLadder) && this.active && (level.nrOfBuildPogys > 0))) {
+console.log("grävd Clicked: " + clickedTile.index);					
 					//If it's soild ground above,
 					if(aboveClicked) {
 						level.map.putTile(boot.tileLadder, xPos, yPos, level.groundLayer);
