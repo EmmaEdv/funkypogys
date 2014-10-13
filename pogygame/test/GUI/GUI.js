@@ -35,6 +35,50 @@ GUI.prototype = {
 		guiendgamescreen.update();
 		guiinventory.update();
 		guitoolbar.update();
+
+		// Change alpha on your pickup-objects (Like an animation)
+		this.changeAlphaDigPogy();
+		this.changeAlphaBuildPogy();
+		this.changeAlphaCoin();
+	},
+
+	changeAlphaDigPogy: function() {
+		level.digPogys.forEach(function(dig){
+			if(dig.alpha > 1) {level.digPogysDown = true;}
+			if(dig.alpha < 0.2) {level.digPogysDown = false;}
+
+			if(level.digPogysDown) {
+				dig.alpha -= 0.02;
+			} else {
+				dig.alpha += 0.02;
+			}
+		});
+	},
+
+	changeAlphaBuildPogy: function() {
+		level.buildPogys.forEach(function(build){
+			if(build.alpha > 1) {level.buildPogysDown = true;}
+			if(build.alpha < 0.2) {level.buildPogysDown = false;}
+
+			if(level.buildPogysDown) {
+				build.alpha -= 0.02;
+			} else {
+				build.alpha += 0.02;
+			}
+		});
+	},
+
+	changeAlphaCoin: function() {
+		level.coins.forEach(function(coin){
+			if(coin.alpha > 1) {level.coinsDown = true;}
+			if(coin.alpha < 0.2) {level.coinsDown = false;}
+
+			if(level.coinsDown) {
+				coin.alpha -= 0.02;
+			} else {
+				coin.alpha += 0.02;
+			}
+		});
 	},
 };
 

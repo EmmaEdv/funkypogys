@@ -248,8 +248,6 @@ function addDigPogys(pogy, digImage) {
 }
 
 function climbs(pogys){
-  console.log("Begin climb");
-
   pogys.body.gravity.y  = 0;
   pogys.body.velocity.y = -100;
   if((pogys.body.velocity.x == 100) || (pogys.body.velocity.x == -100)) {
@@ -269,7 +267,6 @@ function climbs(pogys){
   var right = (pogys.body.velocity.x == 0.000001);
   var checkTileLeft = level.map.getTile(xPos, yPos-1);
   if(right && checkTileLeft && checkTileLeft.index == boot.tileGround) {
-    console.log("Jump left");
     pogys.body.x -= 10;
     pogys.body.velocity.x = -100;
     pogys.body.gravity.y = 200;
@@ -282,7 +279,6 @@ function climbs(pogys){
   var checkTileRight = level.map.getTile(xPos, yPos-1);
 
   if(left && checkTileRight && checkTileRight.index == boot.tileGround) {
-    console.log("Jump right");
     pogys.body.x += 10
     pogys.body.velocity.x = 100;
     pogys.body.gravity.y = 200;
@@ -290,7 +286,6 @@ function climbs(pogys){
 }
 
 function stopClimbing(pogys){
-  console.log("Stop climbing");
   pogys.body.velocity.y = 0;
   if((pogys.body.velocity.x <  1) && (pogys.body.velocity.x > -1)) {
     pogys.body.velocity.x *= 100000000;

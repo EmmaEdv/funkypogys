@@ -8,10 +8,13 @@ LevelThree = function(game){
 	this.groundLayer = null;
 
 	// Objects from tilemap
-  this.coins = null;
   this.homes = null;
+  this.coins = null;
+  this.coinsDown = null; // For the animation
   this.buildPogys = null;
-  this.digPogys = null;
+  this.buildPogysDown = true; // For the animation
+  this.digPogys = null 
+  this.digPogysDown = true; // For the animation
 
   // Counter for our Pogys
   this.nrOfPogys = 5;
