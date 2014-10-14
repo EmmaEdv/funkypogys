@@ -92,15 +92,15 @@ Pogy.prototype = {
 
     // Only explode the pogy if build or dig function is unactive
     if(!digpogy.active && !buildpogy.active) {
-      // Set pogys velocitys to zero
-      // TODO: when pogy is in the air/ladder?
-      this.pogy.body.velocity.x = 0;
-      this.pogy.body.velocity.y = 0;
 
-      // Pause the animation. (Should be another animation here)
-      this.pogy.animations.paused = true;
+      // Create a new Pogy - has no physics or interaction with the game
+      // Kill the old one
+      var tempPogy = pogy.game.add.sprite(this.pogy.body.x, this.pogy.body.y, 'dude', 4);
+      this.pogy.kill()
+
+      // Timer for the explosion
       var timeToExplode = 2; // Sec
-      pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, this.pogy);
+      pogy.game.time.events.add(Phaser.Timer.SECOND * timeToExplode, pogy.blastPogy, tempPogy);
     }
   },
 
@@ -125,7 +125,7 @@ Pogy.prototype = {
 
     // case one - NE
     var clickedTile = level.map.getTile(xPos+1, yPos-1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos-1, 1, 1);
       level.map.getTile(xPos+1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
@@ -133,7 +133,7 @@ Pogy.prototype = {
 
     // case two - N
     clickedTile = level.map.getTile(xPos, yPos-1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos-1, 1, 1);
       level.map.getTile(xPos, yPos-1).alpha = 0;
       clickedTile.resetCollision();
@@ -141,7 +141,7 @@ Pogy.prototype = {
 
     // case three - NW
     clickedTile = level.map.getTile(xPos-1, yPos-1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos-1, 1, 1);
       level.map.getTile(xPos-1, yPos-1).alpha = 0;
       clickedTile.resetCollision();
@@ -149,7 +149,7 @@ Pogy.prototype = {
 
     // case four - E
     clickedTile = level.map.getTile(xPos+1, yPos);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos, 1, 1);
       level.map.getTile(xPos+1, yPos).alpha = 0;
       clickedTile.resetCollision();
@@ -157,7 +157,7 @@ Pogy.prototype = {
 
     // case five - W
     clickedTile = level.map.getTile(xPos-1, yPos);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos, 1, 1);
       level.map.getTile(xPos-1, yPos).alpha = 0;
       clickedTile.resetCollision();
@@ -165,7 +165,7 @@ Pogy.prototype = {
 
     // case six - SE
     clickedTile = level.map.getTile(xPos+1, yPos+1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos+1, yPos+1, 1, 1);
       level.map.getTile(xPos+1, yPos+1).alpha = 0;
       clickedTile.resetCollision();
@@ -173,7 +173,7 @@ Pogy.prototype = {
 
     // case seven - S
     clickedTile = level.map.getTile(xPos, yPos+1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos, yPos+1, 1, 1);
       level.map.getTile(xPos, yPos+1).alpha = 0;
       clickedTile.resetCollision();
@@ -181,7 +181,7 @@ Pogy.prototype = {
 
     // case eight - SW
     clickedTile = level.map.getTile(xPos-1, yPos+1);
-    if(clickedTile){
+    if(clickedTile && clickedTile.index == boot.tileGround){
       level.map.replace(clickedTile.index, boot.tileEmpty, xPos-1, yPos+1, 1, 1);
       level.map.getTile(xPos-1, yPos+1).alpha = 0;
       clickedTile.resetCollision();

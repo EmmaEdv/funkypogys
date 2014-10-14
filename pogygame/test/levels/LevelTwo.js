@@ -17,7 +17,7 @@ LevelTwo = function(game){
   this.digPogysDown = true; // For the animation
 
   // Counter for our Pogys
-  this.nrOfPogys = 1;
+  this.nrOfPogys = 10;
   this.nrOfBuildPogys = 10;
   this.nrOfDigPogys = 10;
 
