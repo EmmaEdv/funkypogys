@@ -47,7 +47,8 @@ Pointer.prototype = {
 			this.setBuildTileToInactive();
 			this.setErrorTileToInactive();
 		}
-		else if(buildpogy.active && (!clickedTile || clickedTile.index == boot.tileAboveLadder) && (underClickedTile && (underClickedTile.index == boot.tileLadder || underClickedTile.index == boot.tileGround)))// If you can build
+		else if(buildpogy.active && (!clickedTile || clickedTile.index == boot.tileAboveLadder || clickedTile.index == boot.tileEmpty) && (underClickedTile && 
+		(underClickedTile.index == boot.tileLadder || underClickedTile.index == boot.tileGround)))// If you can build
 		{
 			this.setBuildTileToActive();
 			this.setDigTileToInactive();

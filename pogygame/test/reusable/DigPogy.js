@@ -27,9 +27,8 @@ DigPogy.prototype = {
 
 			var clickedTile = level.map.getTile(xPos, yPos);
 
-			//Man ska inte kunna gräva på en stege!
-			if(clickedTile && (clickedTile.index != boot.tileLadder && clickedTile.index != boot.tileAboveLadder && clickedTile.index != this.tileIndex) && this.active && (level.nrOfDigPogys > 0) && this.digState) {
-				//console.log("Clicked tile: x:" + clickedTile.x + ", y: " + clickedTile.y + ", index: " + clickedTile.index);
+			//Man ska inte kunna gräva på en stege, och inte heller där man redan grävt..
+			if(clickedTile && (clickedTile.index != boot.tileLadder && clickedTile.index != boot.tileEmpty && clickedTile.index != boot.tileAboveLadder && clickedTile.index != this.tileIndex) && this.active && (level.nrOfDigPogys > 0) && this.digState) {
 				//Varför funkar inte removeTile?! :() level.map.removeTile(xPos, yPos, level.groundLayer);
 				//Byt ut andra parametern till en tom tile eller något annat så det ser ut som att man grävt :)
 				clickedTile.resetCollision();
