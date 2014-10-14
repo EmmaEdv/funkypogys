@@ -17,33 +17,6 @@ StartMenu = function(game){
 
 StartMenu.prototype = {
 	preload: function(){
-		// TileMaps
-		this.game.load.tilemap('map0', 'assets/tilemap-level0.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
-		this.game.load.tilemap('map3', 'assets/tilemap-level3.json', null, Phaser.Tilemap.TILED_JSON);
-
-		// TileSets
-		this.game.load.image('tileMap', 'assets/tileMap.png');
-
-		// Images
-		this.game.load.image('background', 'assets/bgMorning.png');
-		this.game.load.image('welcome', 'assets/welcome_pogy.png');
-		
-		// Spritesheet
-		this.game.load.spritesheet('dude', 'assets/pogys_small.png', 28, 33);
-		this.game.load.spritesheet('buttonOne', 'assets/level1.png');
-		this.game.load.spritesheet('buttonTwo', 'assets/level2.png');
-		this.game.load.spritesheet('buttonThree', 'assets/level3.png');
-		this.game.load.spritesheet('buttonFour', 'assets/level4.png');
-		this.game.load.spritesheet('buttonFive', 'assets/level5.png');
-
-		//Sounds
-		this.game.load.audio('digTile', 'Sounds/dig.wav');
-		this.game.load.audio('buildTile', 'Sounds/build.wav');
-		this.game.load.audio('pickUpCoin', 'Sounds/coin.wav');
-		this.game.load.audio('explosionSound', 'Sounds/explosion.wav');
-    this.game.load.audio('pickUpObject', 'Sounds/collect.wav');
 	},
 
 	create: function(){

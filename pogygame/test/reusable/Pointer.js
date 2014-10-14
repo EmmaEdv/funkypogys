@@ -7,9 +7,6 @@ Pointer = function(game){
 
 Pointer.prototype = {
 	preload: function(){
-		this.game.load.image('pointerBuild', 'assets/build_small.png');
-		this.game.load.image('pointerDig', 'assets/spade_small.png');
-		this.game.load.image('pointerError', 'assets/pointerError.png');
 	},
 
 	create: function(){

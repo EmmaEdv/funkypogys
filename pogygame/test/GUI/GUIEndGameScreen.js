@@ -19,24 +19,27 @@ GUIEndGameScreen = function(game){
 
 	// Total Game Time
 	this.totalGameTimeText = null;
-	this.totalGameTimeTextTween = null;
+	this.totalGameTimeTextResult = null;
 
 	// Total number of coins
 	this.totalNumberOfCoinsText = null;
-	this.totalNumberOfCoinsTextTween = null;
+	this.totalNumberOfCoinsTextResult = null;
 
 	// Total number of Pogys
 	this.totalNumberOfPogys = null;
-	this.totalNumberOfPogysTween = null;
+	this.totalNumberOfPogysResult = null;
 
 	// Total Score
 	this.totalScore = null;
-	this.totalScoreTween = null;
+	this.totalScoreResult = null;
 
 	// Buttons
 	this.restartButton = null;
 	this.homeButton = null;
 	this.nextLevelButton = null;
+
+	// Timer for textevents (ms)
+	this.eventTimer = 1000;
 
 	//"Let's give level 2 a try"-image
 	this.yeehaaImg = null;
@@ -81,7 +84,7 @@ GUIEndGameScreen.prototype = {
     // Total Game Time Text
 		this.totalGameTimeText = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*2, 
-			"Total Time: 0", {
+			"Total Time:", {
       font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
@@ -89,10 +92,21 @@ GUIEndGameScreen.prototype = {
     this.totalGameTimeText.fixedToCamera = true;
     this.totalGameTimeText.scale.set(0);
 
+    // Total Game Time Text Result
+		this.totalGameTimeTextResult = game.add.text(this.winningScreenStartX+220, 
+			this.winningScreenStartY+this.spaceBetweenText*2, 
+			"", {
+      font: "17px Chalkduster",
+      fill: "#FFF",
+      align: "left"
+    });
+    this.totalGameTimeTextResult.fixedToCamera = true;
+    this.totalGameTimeTextResult.scale.set(0);
+
     // Total number of coins
     this.totalNumberOfCoinsText = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*3, 
-			"Number of coins: 0", {
+			"Number of coins:", {
       font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
@@ -100,10 +114,21 @@ GUIEndGameScreen.prototype = {
     this.totalNumberOfCoinsText.fixedToCamera = true;
     this.totalNumberOfCoinsText.scale.set(0);
 
+    // Total number of coins Result
+    this.totalNumberOfCoinsTextResult = game.add.text(this.winningScreenStartX+220, 
+			this.winningScreenStartY+this.spaceBetweenText*3, 
+			"", {
+      font: "17px Chalkduster",
+      fill: "#FFF",
+      align: "left"
+    });
+    this.totalNumberOfCoinsTextResult.fixedToCamera = true;
+    this.totalNumberOfCoinsTextResult.scale.set(0);
+
     // Total number of Pogys
 		this.totalNumberOfPogys = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*4, 
-			"Total Number Of Pogyz: 0", {
+			"Pogys at home:", {
       font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
@@ -111,16 +136,38 @@ GUIEndGameScreen.prototype = {
     this.totalNumberOfPogys.fixedToCamera = true;
     this.totalNumberOfPogys.scale.set(0);
 
+    // Total number of Pogys Result
+		this.totalNumberOfPogysResult = game.add.text(this.winningScreenStartX+220, 
+			this.winningScreenStartY+this.spaceBetweenText*4, 
+			"", {
+      font: "17px Chalkduster",
+      fill: "#FFF",
+      align: "left"
+    });
+    this.totalNumberOfPogysResult.fixedToCamera = true;
+    this.totalNumberOfPogysResult.scale.set(0);
+
     // Total score
 		this.totalScore = game.add.text(this.winningScreenStartX+15, 
 			this.winningScreenStartY+this.spaceBetweenText*5, 
-			"Total score: 0", {
+			"Total score:", {
       font: "17px Chalkduster",
       fill: "#FFF",
       align: "left"
     });
     this.totalScore.fixedToCamera = true;
     this.totalScore.scale.set(0);
+
+    // Total score
+		this.totalScoreResult = game.add.text(this.winningScreenStartX+220, 
+			this.winningScreenStartY+this.spaceBetweenText*5, 
+			"", {
+      font: "17px Chalkduster",
+      fill: "#FFF",
+      align: "left"
+    });
+    this.totalScoreResult.fixedToCamera = true;
+    this.totalScoreResult.scale.set(0);
 
     // Buttons on the winningscreen. Set these fixedToCamera and to scale zero.
     this.restartButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween, this.winningScreenStartY + this.buttonsY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
@@ -136,13 +183,13 @@ GUIEndGameScreen.prototype = {
 
 	update: function(){
 		// Update the time
-		this.totalGameTimeText.setText("Time left: " + (level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
+		this.totalGameTimeTextResult.setText((level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
 
 		// Update the Number of Coins	
-		this.totalNumberOfCoinsText.setText("Number of coins: "+ level.coinsCounter);	
+		this.totalNumberOfCoinsTextResult.setText(level.coinsCounter);	
 
 		// Update the Number of Pogys
-		this.totalNumberOfPogys.setText("Total number of Pogys: " + level.pogyCounter);
+		this.totalNumberOfPogysResult.setText(level.pogyCounter);
 
 		// Show the screen when all pogys are home or if all pogys are dead
 		if(level.pogyCounter == level.nrOfPogys || level.pogysLeft == 0) {
@@ -153,6 +200,9 @@ GUIEndGameScreen.prototype = {
 
 	// Open winningScreen
 	openWindow: function() {
+		var showAllResults = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER); // Hotkey for the buildCallback functon if L is pressed
+    showAllResults.onDown.add(this.setEventTimer, this);
+
 		// It should not be possible to dig/build after the endscreen opens
 		buildpogy.active = false;
 		digpogy.active = false;
@@ -173,7 +223,7 @@ GUIEndGameScreen.prototype = {
     	// Show new level buttom and show total time in 1sec
     	this.nextLevelButton.scale.set(1);
     	this.updateFinshLevel();
-    	this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalTimeText, this);
+    	this.game.time.events.add((Phaser.Timer.SECOND/1000) * this.eventTimer , this.showTotalTimeText, this);
     } else {
     	// Show the text about losing
     	this.losingText.scale.set(1);
@@ -182,29 +232,37 @@ GUIEndGameScreen.prototype = {
 
 	// Next four functions happends after eachother. One secound in between
 	showTotalTimeText: function() {
-		this.totalGameTimeTextTween = this.game.add.tween(this.totalGameTimeText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalNumberOfCoinsText, this);
+		this.totalGameTimeText.scale.set(1);
+		this.totalGameTimeTextResult.scale.set(1);
+    this.game.time.events.add((Phaser.Timer.SECOND/1000) * this.eventTimer , this.showTotalNumberOfCoinsText, this);
 	},
 
 	showTotalNumberOfCoinsText: function() {
-		this.totalNumberOfCoinsTextTween = this.game.add.tween(this.totalNumberOfCoinsText.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-    this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalNumberOfPogys, this);
+		this.totalNumberOfCoinsText.scale.set(1);
+		this.totalNumberOfCoinsTextResult.scale.set(1);
+    this.game.time.events.add((Phaser.Timer.SECOND/1000) * this.eventTimer , this.showTotalNumberOfPogys, this);
 	},
 
 	showTotalNumberOfPogys: function() {
-		this.totalNumberOfPogysTween = this.game.add.tween(this.totalNumberOfPogys.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-		this.game.time.events.add(Phaser.Timer.SECOND , this.showTotalScore, this);
+		this.totalNumberOfPogys.scale.set(1);
+		this.totalNumberOfPogysResult.scale.set(1);
+		this.game.time.events.add((Phaser.Timer.SECOND/1000) * this.eventTimer , this.showTotalScore, this);
 	},
 
 	showTotalScore: function() {
-		this.calculateTotalScore()
-		this.totalScoreTween = this.game.add.tween(this.totalScore.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+		this.calculateTotalScore();
+		this.totalScore.scale.set(1);
+		this.totalScoreResult.scale.set(1);
 	},
 
 	calculateTotalScore: function() {
 		var totScore = ((level.coinsCounter * level.pogyCounter) * (level.levelTimer.duration.toFixed(1)/1000));
-		this.totalScore.setText("Total Score: " + totScore.toFixed(1));
+		this.totalScoreResult.setText(totScore.toFixed(1));
 		level.levelScore = totScore.toFixed(0);
+	},
+
+	setEventTimer: function() {
+		this.eventTimer = 1;
 	},
 
 	updateFinshLevel: function() {
