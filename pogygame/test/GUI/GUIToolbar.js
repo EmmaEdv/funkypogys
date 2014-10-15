@@ -27,6 +27,7 @@ GUIToolbar = function(game){
 	this.homeButton = null;
 	this.restartButton = null;
 	this.pauseButton = null;
+	this.startButton = null;
 };
 
 GUIToolbar.prototype = {
@@ -39,8 +40,8 @@ GUIToolbar.prototype = {
 		toolbar.fixedToCamera = true;
 
 		// LevelText
-		this.levelText = game.add.text(200, 30 , level.levelName, {
-      font: "17px Chalkduster",
+		this.levelText = game.add.text(350, 20 , level.levelName, {
+      font: "25px Chalkduster",
       fill: "#FFF",
       align: "left"
     });
@@ -54,11 +55,24 @@ GUIToolbar.prototype = {
 		this.restartButton = this.game.add.button(70, this.gameTimeTextY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 
+		// The toolbar restartbutton
+		this.startButton = this.game.add.button(135, this.gameTimeTextY, 'nextLevelButton');
+		this.startButton.fixedToCamera = true;
+		this.startButton.alpha = 0;
+
 		// The toolbar pausebutton
 		this.pauseButton = this.game.add.sprite(130, this.gameTimeTextY, 'pauseButton');
 		this.pauseButton.inputEnabled = true;
-		this.pauseButton.events.onInputUp.add(function () {this.game.paused = true;},this);
-		this.game.input.onDown.add(function () {if(this.game.paused)this.game.paused = false;},this);
+		this.pauseButton.events.onInputUp.add(function () {
+																											 this.game.paused = true; 	// Pause game
+																											 this.pauseButton.alpha=0;	// Hide Pausebutton
+																											 this.startButton.alpha=1;	// Show Startbutton
+																											 },this);
+		this.game.input.onDown.add(function () {
+																						if(this.game.paused)this.game.paused = false; // Start game
+																						this.pauseButton.alpha=1;											// Show Pausebutton
+																						this.startButton.alpha=0;											// Hide Startbutton
+																						},this);
 		this.pauseButton.fixedToCamera = true;
 
 		// Coins in the scoreboard

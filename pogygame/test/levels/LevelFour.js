@@ -1,7 +1,7 @@
-LevelTwo = function(game){
+LevelFour = function(game){
 	this.game = game;
-	this.levelName = "Level Two";
-	this.nextLevel = "startLevelThree";
+	this.levelName = "Level Four";
+	this.nextLevel = "MainMenu";
 	this.levelScore = null;
 	this.map = null;
 
@@ -18,7 +18,7 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 10;
-  this.nrOfBuildPogys = 10;
+  this.nrOfBuildPogys = 20;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
@@ -38,7 +38,7 @@ LevelTwo = function(game){
   this.startXpos = 45;
 
   // Timer for the level
-  this.levelDuration = 60 // In sec
+  this.levelDuration = 120 // In sec
   this.levelTimer = null;
 
   // IF tutorial should start
@@ -47,7 +47,7 @@ LevelTwo = function(game){
   this.showTutorialBuild = true;
 };
 
-LevelTwo.prototype = {
+LevelFour.prototype = {
 	preload: function(){
 	},
 
@@ -65,7 +65,7 @@ LevelTwo.prototype = {
 		this.game.add.sprite(0,0,'background');
 
 		// Create the map
-		this.map = this.game.add.tilemap('map2');
+		this.map = this.game.add.tilemap('map4');
 
 		// Add Tileset
 		this.map.addTilesetImage('tileMap');
@@ -77,7 +77,7 @@ LevelTwo.prototype = {
 		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Debug
-		// this.groundLayer.debug = true;
+		 this.groundLayer.debug = true;
 
 		// Add coins to the game
 		this.coins = this.game.add.group();
@@ -102,8 +102,8 @@ LevelTwo.prototype = {
 
 	update: function(){
 		// If a new highscore is set on the game, update the global variable
-		if(this.levelScore > boot.levelTwoScore) {
-		 	boot.levelTwoScore = this.levelScore;
+		if(this.levelScore > boot.levelFourScore) {
+		 	boot.levelFourScore = this.levelScore;
 		}
 	},
 

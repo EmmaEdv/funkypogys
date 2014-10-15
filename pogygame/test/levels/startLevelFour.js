@@ -4,16 +4,16 @@
     var buildpogy = null;
     var camera = null;
     var gui = null;
-    var pointer = null;
-    
-startLevelOne = function(game){
+    var tutorialscreens = null;
+
+startLevelFour = function(game){
 	this.game = game;
 };
 
-startLevelOne.prototype = {
+startLevelFour.prototype = {
 
 	preload: function(){
-    	level = new LevelOne(this.game);
+    	level = new LevelFour(this.game);
         level.preload();
 
         pogy = new Pogy(this.game);
