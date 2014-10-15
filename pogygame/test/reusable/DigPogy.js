@@ -9,6 +9,7 @@ DigPogy = function(game){
 
 DigPogy.prototype = {
 	preload: function(){
+		//För att undvika att grävning sker 1000 ggr på ett klick, typ
 		this.timerCheck = game.time.create(false);
 	},
 
@@ -17,7 +18,6 @@ DigPogy.prototype = {
 
 	update: function(){
 		if(this.game.input.mousePointer.isDown){
-
 			// Create digging sound
 			var sound = level.game.add.audio('digTile',1,false);
 

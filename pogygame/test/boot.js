@@ -33,6 +33,7 @@ boot.prototype = {
 		this.game.load.tilemap('map1', 'assets/tilemap-level1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map2', 'assets/tilemap-level2.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('map3', 'assets/tilemap-level3.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('map4', 'assets/tilemap-level4.json', null, Phaser.Tilemap.TILED_JSON);
 
 		// TileSets
 		this.game.load.image('tileMap', 'assets/tileMap.png');
@@ -88,7 +89,7 @@ boot.prototype = {
 	},
 
 	create: function(){
-				game.state.add('MainMenu',startStartMenu, true);
+		game.state.add('MainMenu',startStartMenu, true);
 		game.state.add('startLevelOne',startLevelOne);
 		game.state.add('startLevelTwo',startLevelTwo);
 		game.state.add('startLevelThree',startLevelThree);

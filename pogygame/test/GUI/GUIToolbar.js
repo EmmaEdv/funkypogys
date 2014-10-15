@@ -48,7 +48,7 @@ GUIToolbar.prototype = {
     this.levelText.fixedToCamera = true;
 
 		// The toolbar homebutton
-		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {this.game.state.start('MainMenu', true, true);});
+		this.homeButton = this.game.add.button(10, this.gameTimeTextY, 'homeButton', function() {this.game.state.start('MainMenu', false, false);});
 		this.homeButton.fixedToCamera = true;
 
 		// The toolbar restartbutton

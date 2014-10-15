@@ -17,7 +17,7 @@ LevelThree = function(game){
   this.digPogysDown = true; // For the animation
 
   // Counter for our Pogys
-  this.nrOfPogys = 5;
+  this.nrOfPogys = 10;
   this.nrOfBuildPogys = 2;
   this.nrOfDigPogys = 0;
 
@@ -117,4 +117,3 @@ LevelThree.prototype = {
 		level.gameOver = true;
 	},
 };
-

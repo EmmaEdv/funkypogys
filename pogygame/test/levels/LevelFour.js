@@ -18,7 +18,7 @@ LevelFour = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 10;
-  this.nrOfBuildPogys = 20;
+  this.nrOfBuildPogys = 10;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
@@ -77,7 +77,7 @@ LevelFour.prototype = {
 		this.map.setCollision([1,2,3,4,5,6,7,8,9,16,17]);
 
 		// Debug
-		 this.groundLayer.debug = true;
+		 //this.groundLayer.debug = true;
 
 		// Add coins to the game
 		this.coins = this.game.add.group();
@@ -114,4 +114,3 @@ LevelFour.prototype = {
 		level.gameOver = true;
 	},
 };
-

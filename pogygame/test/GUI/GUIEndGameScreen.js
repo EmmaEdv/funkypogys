@@ -173,7 +173,7 @@ GUIEndGameScreen.prototype = {
     this.restartButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween, this.winningScreenStartY + this.buttonsY, 'restartButton', function() {this.game.state.start(this.game.state.current);});
 		this.restartButton.fixedToCamera = true;
 		this.restartButton.scale.set(0);
-		this.homeButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*2, this.winningScreenStartY + this.buttonsY, 'homeButton', function() {this.game.state.start('MainMenu');});
+		this.homeButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*2, this.winningScreenStartY + this.buttonsY, 'homeButton', function() {this.game.state.start('MainMenu', false, false);});
 		this.homeButton.fixedToCamera = true;
 		this.homeButton.scale.set(0);
 		this.nextLevelButton = this.game.add.button(this.winningScreenStartX+this.buttonsInBetween*3, this.winningScreenStartY + this.buttonsY, 'nextLevelButton', function() {this.game.state.start(level.nextLevel)});

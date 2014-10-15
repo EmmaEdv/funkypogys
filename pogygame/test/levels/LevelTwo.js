@@ -18,11 +18,11 @@ LevelTwo = function(game){
 
   // Counter for our Pogys
   this.nrOfPogys = 10;
-  this.nrOfBuildPogys = 10;
+  this.nrOfBuildPogys = 0;
   this.nrOfDigPogys = 10;
 
   //Show or hide Build/Dig-pogys
-  this.hideBuildPogy = false;
+  this.hideBuildPogy = true;
   this.hideDigPogy = false;
 
   //How many is home/picked up
