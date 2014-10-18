@@ -17,7 +17,7 @@ LevelOne = function(game){
   this.digPogysDown = true; // For the animation
 
   // Counter for our Pogys
-  this.nrOfPogys = 1;
+  this.nrOfPogys = 10;
   this.nrOfBuildPogys = 0;
   this.nrOfDigPogys = 0;
 
@@ -109,10 +109,6 @@ LevelOne.prototype = {
 
 	update: function(){
 		// Show camera tutorial in the begining
-		if(this.showTutorialCamera) {
-			this.showTutorialCamera = false;
-			tutorialscreens.openCamera();
-		}
 
 		if(this.levelScore > boot.levelOneScore) {
 		 	boot.levelOneScore = this.levelScore;
