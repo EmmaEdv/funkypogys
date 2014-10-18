@@ -71,6 +71,10 @@ tutorialScreens.prototype = {
 	// Close Tutorial-pop-up for le digpogy
 	closeDigPogy: function() {
     this.tutotialDigPogyTween = this.game.add.tween(this.tutotialDigPogy.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
+		if(level.showTutorialCamera) {
+			level.showTutorialCamera = false;
+			this.openCamera();
+		}
 	},
 
 	// Open Tutorial-pop-up for BuildPogy

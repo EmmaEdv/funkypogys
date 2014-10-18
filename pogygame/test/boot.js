@@ -18,10 +18,10 @@ boot = function(game){
 	this.tileEmpty = 10;
 
 	// If level is finished
-	this.levelOneFinish = true;
-	this.levelTwoFinish = true;
-	this.levelThreeFinish = true;
-	this.levelFourFinish = true;
+	this.levelOneFinish = false;
+	this.levelTwoFinish = false
+	this.levelThreeFinish = false;
+	this.levelFourFinish = false;
 
 };
 
