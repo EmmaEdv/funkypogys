@@ -10,6 +10,7 @@ boot = function(game){
 	this.levelTwoScore = 0;
 	this.levelThreeScore = 0;
 	this.levelFourScore = 0;
+	this.levelFiveScore = 0;
 
 	// Tilesettings
 	this.tileAboveLadder = 18;

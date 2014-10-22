@@ -183,7 +183,7 @@ GUIEndGameScreen.prototype = {
 
 	update: function(){
 		// Update the time
-		this.totalGameTimeTextResult.setText((level.levelTimer.duration.toFixed(1)/1000).toFixed(1));
+		this.totalGameTimeTextResult.setText( level.levelDuration - ((level.levelTimer.duration.toFixed(1)/1000).toFixed(1)));
 
 		// Update the Number of Coins	
 		this.totalNumberOfCoinsTextResult.setText(level.coinsCounter);	

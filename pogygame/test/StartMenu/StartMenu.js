@@ -58,9 +58,10 @@ StartMenu.prototype = {
 		// Level highscore texts
 		var highScore = game.add.text(20, 285, "Highscore: ", {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelOneHighScore = game.add.text(171, 285, ""+boot.levelOneScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
-		var levelTwoHighScore = game.add.text(273, 285, ""+boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelTwoHighScore = game.add.text(274, 285, ""+boot.levelTwoScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 		var levelThreeHighScore = game.add.text(375, 285, ""+boot.levelThreeScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
-		var levelThreeHighScore = game.add.text(477, 285, ""+boot.levelFourScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelFourHighScore = game.add.text(477, 285, ""+boot.levelFourScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
+		var levelFiveHighScore = game.add.text(576, 285, ""+boot.levelFiveScore, {font: "17px Chalkduster",fill: "#FFF",align: "left"});
 	
 		// Play the Theme Song
 		this.themeSong = this.game.add.audio('theme',1,true);

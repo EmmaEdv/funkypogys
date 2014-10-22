@@ -39,6 +39,7 @@ LevelOne = function(game){
 
   // Timer for the level
   this.levelTimer = null;
+  this.levelDuration = 60;
 
   // If game is over
   this.gameOver = false;
@@ -59,7 +60,7 @@ LevelOne.prototype = {
 
 		//  Create our Timer
    	this.levelTimer = game.time.create(false);
-    this.levelTimer.add(60 * 1000, this.endGame, this);
+    this.levelTimer.add(this.levelDuration * 1000, this.endGame, this);
     this.levelTimer.start();
 
 		// Set bounds to the world
